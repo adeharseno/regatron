@@ -4,31 +4,31 @@ const values = [
   {
     n: '01',
     title: 'Sustainability',
-    desc: 'Dedikasi mutlak terhadap pelestarian lingkungan melalui integrasi proses manufaktur sirkular yang bersih.',
+    desc: 'Absolute dedication to environmental preservation through the integration of clean, circular manufacturing processes.',
     Icon: Leaf,
   },
   {
     n: '02',
     title: 'Responsibility',
-    desc: 'Kepatuhan ketat terhadap regulasi limbah B3 internasional guna memastikan keamanan ekosistem global.',
+    desc: 'Strict compliance with international hazardous waste regulations to ensure the safety of the global ecosystem.',
     Icon: ShieldCheck,
   },
   {
     n: '03',
     title: 'Innovation',
-    desc: 'Pengembangan teknologi ekstraksi mutakhir untuk optimalisasi pemulihan material berharga secara efisien.',
+    desc: 'Development of advanced extraction technology to efficiently optimize the recovery of valuable materials.',
     Icon: Cpu,
   },
   {
     n: '04',
     title: 'Integrity',
-    desc: 'Etika bisnis yang tak tergoyahkan dan transparansi rantai pasok sebagai landasan kepercayaan kemitraan.',
+    desc: 'Unwavering business ethics and supply chain transparency as the foundation of partnership trust.',
     Icon: Handshake,
   },
   {
     n: '05',
     title: 'Collaboration',
-    desc: 'Sinergi lintas industri yang dinamis untuk mewujudkan visi ekonomi sirkular Indonesia yang inklusif.',
+    desc: 'Dynamic cross-industry synergy to realize an inclusive circular economy vision for Indonesia.',
     Icon: Network,
   },
 ]
@@ -40,20 +40,17 @@ export function Philosophy() {
       <div className="relative z-10 mx-auto max-w-[1440px] px-6 md:px-margin-desktop">
         <div className="mb-24 flex flex-col items-start justify-between gap-12 lg:flex-row">
           <div className="relative">
-            <span className="pointer-events-none absolute -left-6 -top-24 select-none text-[140px] font-black leading-none tracking-tighter text-white/[0.03]">
-              VALUES
-            </span>
             <span className="relative mb-6 block text-xs font-bold uppercase tracking-[0.4em] text-secondary-container">
               The Core of Regatron
             </span>
-            <h2 className="relative text-5xl font-bold uppercase leading-none tracking-tighter text-white md:text-7xl">
+            <h2 className="relative text-[40px] font-bold uppercase leading-none tracking-tighter text-white md:text-7xl">
               Our Philosophy
             </h2>
           </div>
           <div className="lg:pt-14">
             <p className="max-w-lg border-l-2 border-primary-container pl-10 text-lg leading-relaxed text-white/60">
-              Prinsip fundamental yang menggerakkan setiap inovasi dan operasional kami dalam
-              membangun ekosistem industri sirkular yang transparan dan berdampak.
+              The fundamental principles driving every innovation and operation in building a
+              transparent and impactful circular industrial ecosystem.
             </p>
           </div>
         </div>

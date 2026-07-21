@@ -12,7 +12,7 @@ export default function Page() {
   return (
     <>
       <Navbar />
-      <main className="pt-16">
+      <main>
         <Hero />
         <Milestones />
         <Philosophy />

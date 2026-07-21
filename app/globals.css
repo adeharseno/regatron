@@ -55,6 +55,10 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem; /* navbar height offset */
+  }
   * {
     border-color: var(--color-outline-variant);
     border-radius: 0;

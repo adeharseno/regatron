@@ -2,12 +2,12 @@ import { Globe, Share2, Mail, ArrowUpRight } from 'lucide-react'
 
 const columns = [
   {
-    heading: 'Navigasi',
-    links: ['Tentang Kami', 'Layanan & Solusi', 'Katalog Produk', 'Pusat Berita'],
+    heading: 'Navigation',
+    links: ['About Us', 'Services & Solutions', 'Product Catalog', 'News Center'],
   },
   {
-    heading: 'Legalitas',
-    links: ['Privacy Policy', 'Terms & Conditions', 'Sertifikasi ISO'],
+    heading: 'Legal',
+    links: ['Privacy Policy', 'Terms & Conditions', 'ISO Certifications'],
   },
 ]
 
@@ -23,8 +23,8 @@ export function SiteFooter() {
               Regatron
             </span>
             <p className="mb-10 max-w-sm text-sm leading-relaxed text-white/60">
-              Solusi terpercaya untuk ekstraksi logam mulia dan pengelolaan e-waste dengan standar
-              lingkungan tertinggi. Pionir industri sirkular elektronik Indonesia.
+              Trusted solutions for precious metal extraction and e-waste management with the
+              highest environmental standards. Indonesia&apos;s pioneer in circular electronics industry.
             </p>
             <div className="flex gap-3">
               {[Globe, Share2, Mail].map((Icon, i) => (
@@ -63,7 +63,7 @@ export function SiteFooter() {
               ))}
               <div className="col-span-2 md:col-span-1">
                 <h5 className="mb-8 border-l-2 border-primary pl-4 text-[10px] font-bold uppercase tracking-[0.15em] text-white">
-                  Media Sosial
+                  Social Media
                 </h5>
                 <ul className="space-y-5 text-sm">
                   {socials.map((s) => (
@@ -85,7 +85,7 @@ export function SiteFooter() {
 
         <div className="flex flex-col items-center justify-between gap-6 border-t border-outline/10 pt-10 md:flex-row">
           <p className="text-[10px] uppercase tracking-widest text-outline">
-            © 2024 PT. Regar Karya Utama. Seluruh Hak Cipta Dilindungi.
+            © 2024 PT. Regar Karya Utama. All Rights Reserved.
           </p>
           <div className="flex items-center gap-8 text-[10px] font-bold uppercase tracking-widest text-outline">
             <span>Precision Enterprise</span>

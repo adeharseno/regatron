@@ -2,30 +2,30 @@ import { Factory, FlaskConical, Globe, Sparkles } from 'lucide-react'
 
 const milestones = [
   {
-    period: '2014 • Inisiasi',
-    title: 'Visi Sirkular',
-    desc: 'Pendirian fasilitas pengolahan pertama dengan lisensi lingkungan standar nasional tertinggi.',
+    period: '2014 • Initiation',
+    title: 'Circular Vision',
+    desc: 'Establishment of the first processing facility with the highest national environmental license standards.',
     tag: 'Initial Plant',
     Icon: Factory,
   },
   {
-    period: '2018 • Inovasi',
-    title: 'Teknologi Bersih',
-    desc: 'Implementasi sistem ekstraksi kimia tertutup tanpa emisi berbahaya, standar nol limbah cair.',
+    period: '2018 • Innovation',
+    title: 'Clean Technology',
+    desc: 'Implementation of a closed-loop chemical extraction system with zero hazardous emissions and zero liquid waste standards.',
     tag: 'Tech Pivot',
     Icon: FlaskConical,
   },
   {
-    period: '2021 • Ekspansi',
+    period: '2021 • Expansion',
     title: 'Global Supply',
-    desc: 'Menjalin kemitraan strategis dengan manufaktur elektronik global untuk rantai pasok tertutup.',
+    desc: 'Building strategic partnerships with global electronics manufacturers for closed-loop supply chains.',
     tag: 'Regional Lead',
     Icon: Globe,
   },
   {
     period: 'Current • 4.0',
-    title: 'Presisi AI',
-    desc: 'Integrasi AI dalam penyortiran otomatis untuk tingkat kemurnian logam hingga 99.9%.',
+    title: 'AI Precision',
+    desc: 'AI integration in automated sorting for metal purity levels up to 99.9%.',
     tag: 'Industry 4.0',
     Icon: Sparkles,
   },
@@ -39,12 +39,12 @@ export function Milestones() {
     >
       <div className="mx-auto max-w-[1440px] px-6 md:px-margin-desktop">
         <div className="mb-20">
-          <h2 className="mb-4 text-[32px] font-bold uppercase leading-tight tracking-tight text-on-background text-balance">
-            Milestone Perjalanan Kami
+          <h2 className="mb-4 text-[40px] font-bold uppercase leading-tight tracking-tight text-on-background text-balance">
+            Our Journey Milestones
           </h2>
           <p className="max-w-2xl leading-relaxed text-on-surface-variant">
-            Jejak langkah strategis dalam mentransformasi limbah elektronik menjadi sumber daya
-            bernilai tinggi bagi ekosistem industri global.
+            Strategic milestones in transforming electronic waste into high-value resources
+            for the global industrial ecosystem.
           </p>
         </div>
 

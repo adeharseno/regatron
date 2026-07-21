@@ -13,8 +13,8 @@ export function Products() {
               Our Products
             </h2>
             <p className="mt-6 max-w-lg text-on-surface-variant">
-              Katalog material hasil ekstraksi dengan tingkat kemurnian tinggi, siap untuk integrasi
-              kembali ke rantai pasok manufaktur global.
+              Catalog of extracted materials with high purity levels, ready for reintegration
+              into the global manufacturing supply chain.
             </p>
           </div>
           <button className="group flex items-center gap-4 bg-primary px-8 py-4 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:bg-primary-container">
@@ -35,8 +35,8 @@ export function Products() {
                 </div>
                 <h3 className="mb-6 text-2xl font-semibold uppercase tracking-wide">Scrap PCB</h3>
                 <p className="mb-8 text-sm leading-relaxed text-on-surface-variant">
-                  Papan sirkuit cetak dari berbagai perangkat elektronik dengan kandungan logam
-                  mulia yang dioptimalkan untuk proses pemurnian.
+                  Printed circuit boards from various electronic devices with precious metal
+                  content optimized for the refining process.
                 </p>
                 <ul className="grid grid-cols-2 gap-4">
                   {['Motherboards', 'Server Boards', 'Laptop PCB', 'Desktop PCB'].map((item) => (
@@ -64,7 +64,7 @@ export function Products() {
                   IC &amp; Chip Scrap
                 </h3>
                 <p className="mb-6 text-xs leading-relaxed text-on-surface-variant">
-                  Komponen semikonduktor dengan konsentrasi emas dan perak tinggi.
+                  Semiconductor components with high gold and silver concentrations.
                 </p>
                 <div className="text-[10px] font-bold uppercase tracking-widest text-primary">
                   BGA • RAM • CPU • GPU
@@ -79,7 +79,7 @@ export function Products() {
                 </div>
                 <h3 className="mb-4 text-xl font-semibold uppercase tracking-wide">PM Connectors</h3>
                 <p className="mb-6 text-xs leading-relaxed text-on-surface-variant">
-                  Konektor berlapis emas dan soket presisi tinggi.
+                  Gold-plated connectors and high-precision sockets.
                 </p>
                 <div className="text-[10px] font-bold uppercase tracking-widest text-primary">
                   Gold-Plated • CPU Sockets
@@ -100,8 +100,8 @@ export function Products() {
                 Capacitors &amp; Resistors
               </h3>
               <p className="mb-10 text-sm leading-relaxed text-on-surface-variant">
-                Komponen pasif yang mengandung paladium dan perak, diproses melalui pemisahan
-                mekanis presisi.
+                Passive components containing palladium and silver, processed through precision
+                mechanical separation.
               </p>
               <div className="mt-auto border-t border-outline-variant/20 pt-8">
                 <div className="flex items-center justify-between">

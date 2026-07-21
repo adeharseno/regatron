@@ -1,28 +1,28 @@
 const services = [
   {
     title: 'E-Waste Collection',
-    desc: 'Logistik bersertifikat untuk penjemputan limbah dari sektor rumah tangga, perkantoran, dan kawasan industri.',
+    desc: 'Certified logistics for waste collection from households, offices, and industrial zones.',
     img: '/images/service-collection.png',
     clip: 'service-clip-first',
     z: 'z-10',
   },
   {
     title: 'Sorting & Analysis',
-    desc: 'Pemisahan material menggunakan teknologi AI untuk mengidentifikasi kandungan logam mulia dengan presisi tinggi.',
+    desc: 'Material separation using AI technology to identify precious metal content with high precision.',
     img: '/images/service-sorting.png',
     clip: 'service-clip',
     z: 'z-20',
   },
   {
     title: 'Eco-Refining',
-    desc: 'Proses ekstraksi logam mulia menggunakan metode hidrometalurgi ramah lingkungan dengan emisi karbon minimal.',
+    desc: 'Precious metal extraction using eco-friendly hydrometallurgical methods with minimal carbon emissions.',
     img: '/images/service-refining.png',
     clip: 'service-clip',
     z: 'z-30',
   },
   {
     title: 'Material Supply',
-    desc: 'Distribusi material hasil ekstraksi ke manufaktur teknologi global untuk mendukung ekonomi sirkular.',
+    desc: 'Distribution of extracted materials to global technology manufacturers to support the circular economy.',
     img: '/images/service-supply.png',
     clip: 'service-clip-last',
     z: 'z-40',
@@ -37,8 +37,8 @@ export function Services() {
           Our Services
         </h2>
         <p className="mt-2 max-w-xl text-secondary">
-          Solusi end-to-end untuk pengelolaan limbah elektronik bernilai tinggi dengan efisiensi
-          pemulihan material maksimal.
+          End-to-end solutions for high-value electronic waste management with maximum
+          material recovery efficiency.
         </p>
       </div>
 

@@ -3,11 +3,11 @@ import { MapPin, AtSign, Phone } from 'lucide-react'
 const details = [
   {
     Icon: MapPin,
-    label: 'Kantor Pusat',
-    value: 'Kawasan Industri Jababeka Phase III, Cikarang, Bekasi, Jawa Barat 17530',
+    label: 'Head Office',
+    value: 'Jababeka Industrial Estate Phase III, Cikarang, Bekasi, West Java 17530',
   },
   { Icon: AtSign, label: 'Email', value: 'info@regatron.co.id' },
-  { Icon: Phone, label: 'Telepon', value: '+62 (21) 8934 4567' },
+  { Icon: Phone, label: 'Phone', value: '+62 (21) 8934 4567' },
 ]
 
 function Field({
@@ -47,10 +47,10 @@ export function Contact() {
               <span className="mb-4 block text-xs font-bold uppercase tracking-[0.2em] text-primary">
                 Get in Touch
               </span>
-              <h2 className="mb-6 text-[32px] font-bold uppercase leading-none">Hubungi Kami</h2>
+              <h2 className="mb-6 text-[40px] font-bold uppercase leading-none">Contact Us</h2>
               <p className="text-on-surface-variant">
-                Sampaikan kebutuhan atau pertanyaan Anda. Tim spesialis kami siap memberikan solusi
-                strategis untuk pengelolaan e-waste perusahaan Anda.
+                Share your needs or inquiries. Our specialist team is ready to provide strategic
+                solutions for your company&apos;s e-waste management.
               </p>
             </div>
             <div className="space-y-10">
@@ -75,10 +75,10 @@ export function Contact() {
               <div className="absolute -right-6 -top-6 -z-10 h-24 w-24 bg-primary/5" />
               <form className="space-y-10">
                 <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
-                  <Field id="name" label="Nama Lengkap" />
-                  <Field id="email" label="Email Bisnis" type="email" />
+                  <Field id="name" label="Full Name" />
+                  <Field id="email" label="Business Email" type="email" />
                 </div>
-                <Field id="subject" label="Subjek" />
+                <Field id="subject" label="Subject" />
                 <div className="relative">
                   <textarea
                     id="message"
@@ -90,14 +90,14 @@ export function Contact() {
                     htmlFor="message"
                     className="pointer-events-none absolute left-0 top-3 text-sm text-outline transition-all peer-focus:-top-3.5 peer-focus:text-[10px] peer-focus:font-bold peer-focus:uppercase peer-focus:tracking-widest peer-focus:text-primary peer-[:not(:placeholder-shown)]:-top-3.5 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:font-bold peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-widest"
                   >
-                    Pesan Anda
+                    Your Message
                   </label>
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-primary py-5 text-sm font-bold uppercase tracking-[0.2em] text-on-primary shadow-lg transition-all hover:bg-primary-container active:scale-95"
+                  className="w-full cursor-pointer bg-primary py-5 text-sm font-bold uppercase tracking-[0.2em] text-on-primary shadow-lg transition-all hover:bg-primary-container active:scale-95"
                 >
-                  Kirim Pesan Strategis
+                  Send Strategic Message
                 </button>
               </form>
             </div>

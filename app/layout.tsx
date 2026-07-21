@@ -10,9 +10,9 @@ const plusJakarta = Plus_Jakarta_Sans({
 })
 
 export const metadata: Metadata = {
-  title: 'REGATRON — Pengolahan PCB Scrap & E-Waste Berkelanjutan',
+  title: 'REGATRON — Sustainable PCB Scrap & E-Waste Processing',
   description:
-    'Pionir pengolahan PCB scrap dan e-waste di Indonesia. Ekstraksi logam mulia melalui proses ramah lingkungan dengan standar industri 4.0.',
+    'Pioneering PCB scrap and e-waste processing in Indonesia. Precious metal extraction through environmentally friendly processes with Industry 4.0 standards.',
   generator: 'v0.app',
 }
 
