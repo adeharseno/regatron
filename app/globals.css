@@ -1,26 +1,110 @@
-@import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import 'tailwindcss';
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: 'Plus Jakarta Sans', 'Plus Jakarta Sans Fallback', ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: #f7f9fb;
+  --color-foreground: #191c1e;
+
+  --color-surface: #f7f9fb;
+  --color-surface-bright: #f7f9fb;
+  --color-surface-dim: #d8dadc;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f2f4f6;
+  --color-surface-container: #eceef0;
+  --color-surface-container-high: #e6e8ea;
+  --color-surface-container-highest: #e0e3e5;
+  --color-surface-variant: #e0e3e5;
+
+  --color-on-surface: #191c1e;
+  --color-on-surface-variant: #424653;
+  --color-on-background: #191c1e;
+
+  --color-inverse-surface: #2d3133;
+  --color-inverse-on-surface: #eff1f3;
+
+  --color-outline: #737785;
+  --color-outline-variant: #c2c6d5;
+
+  --color-primary: #004095;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #0156c3;
+  --color-on-primary-container: #c4d4ff;
+  --color-inverse-primary: #afc6ff;
+
+  --color-secondary: #505f78;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #d1e0ff;
+  --color-on-secondary-container: #55637d;
+
+  --color-tertiary: #36455b;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #4d5d73;
+
+  --color-navy: #001944;
+  --color-navy-deep: #000d26;
+
+  --spacing-margin-desktop: 64px;
+  --spacing-gutter: 24px;
+
+  --radius: 0px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  color-scheme: light;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-outline-variant);
+    border-radius: 0;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-on-surface);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Signature diagonal cut for hero panel */
+.hero-slant {
+  clip-path: polygon(0 0, 100% 0, 75% 100%, 0% 100%);
+}
+@media (max-width: 768px) {
+  .hero-slant {
+    clip-path: none;
+  }
+}
+
+/* Service card slants */
+.service-clip {
+  clip-path: polygon(15% 0, 100% 0, 85% 100%, 0 100%);
+}
+.service-clip-first {
+  clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);
+}
+.service-clip-last {
+  clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%);
+}
+@media (max-width: 768px) {
+  .service-clip,
+  .service-clip-first,
+  .service-clip-last {
+    clip-path: none;
+  }
+}
+
+.slanted-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 25, 68, 0.55) 100%);
+  transition: all 0.5s ease;
+}
+.group:hover .slanted-card-overlay {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 64, 149, 0.75) 100%);
+}
+
+.industrial-pattern {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
