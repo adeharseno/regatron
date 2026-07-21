@@ -30,6 +30,20 @@ export const postType = defineType({
       },
     }),
     defineField({
+      name: 'tag',
+      title: 'Kategori / Tag',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Industry Insights', value: 'Industry Insights' },
+          { title: 'Sustainability', value: 'Sustainability' },
+          { title: 'Technology', value: 'Technology' },
+          { title: 'Company Update', value: 'Company Update' },
+          { title: 'Event', value: 'Event' },
+        ],
+      },
+    }),
+    defineField({
       name: 'publishedAt',
       title: 'Tanggal Publikasi',
       type: 'datetime',
