@@ -25,7 +25,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { slug } = await params
+  const { locale, slug } = await params
+  if (!isValidLocale(locale)) return {}
   const { data } = await sanityFetch({
     query: POST_BY_SLUG_QUERY,
     params: { slug },
@@ -37,8 +38,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${post.title} — REGATRON News`,
     description: post.excerpt,
+    alternates: {
+      canonical: `/${locale}/news/${slug}`,
+      languages: {
+        id: `/id/news/${slug}`,
+        en: `/en/news/${slug}`,
+        'x-default': `/id/news/${slug}`,
+      },
+    },
     openGraph: post.mainImage
       ? {
+          title: post.title,
+          description: post.excerpt,
+          url: `/${locale}/news/${slug}`,
+          type: 'article',
           images: [urlFor(post.mainImage).width(1200).height(630).url()],
         }
       : undefined,

@@ -7,6 +7,7 @@ import { CtaBanner } from "@/components/shared/cta-banner";
 import { isValidLocale, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { getCatalogItems } from "@/lib/catalog-data";
+import { createPageMetadata } from "@/lib/seo";
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -15,12 +16,7 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps) {
   const { locale } = await params;
   if (!isValidLocale(locale)) return {};
-  const dict = await getDictionary(locale);
-
-  return {
-    title: `${dict.catalog.hero.title} — REGATRON`,
-    description: dict.catalog.hero.quote,
-  };
+  return createPageMetadata("catalog", locale);
 }
 
 export default async function CatalogPage({ params }: PageProps) {

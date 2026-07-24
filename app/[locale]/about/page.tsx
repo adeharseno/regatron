@@ -9,6 +9,7 @@ import { VisionMission } from '@/components/about/vision-mission'
 import { ProgressTimeline } from '@/components/about/progress-timeline'
 import { LeadershipTeam } from '@/components/about/leadership-team'
 import { CtaBanner } from '@/components/shared/cta-banner'
+import { createPageMetadata } from '@/lib/seo'
 
 interface PageProps {
   params: Promise<{ locale: string }>
@@ -17,11 +18,7 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps) {
   const { locale } = await params
   if (!isValidLocale(locale)) return {}
-  const dict = await getDictionary(locale)
-  return {
-    title: `${dict.about.hero.title} — REGATRON`,
-    description: dict.about.hero.description,
-  }
+  return createPageMetadata('about', locale)
 }
 
 export default async function AboutPage({ params }: PageProps) {

@@ -9,12 +9,19 @@ import { SiteFooter } from '@/components/layout/site-footer'
 import type { Post } from '@/sanity/lib/types'
 import { isValidLocale, type Locale } from '@/lib/i18n/config'
 import { getDictionary } from '@/lib/i18n/dictionaries'
+import { createPageMetadata } from '@/lib/seo'
 
-export default async function NewsArchivePage({
-  params,
-}: {
+interface PageProps {
   params: Promise<{ locale: string }>
-}) {
+}
+
+export async function generateMetadata({ params }: PageProps) {
+  const { locale } = await params
+  if (!isValidLocale(locale)) return {}
+  return createPageMetadata('news', locale)
+}
+
+export default async function NewsArchivePage({ params }: PageProps) {
   const { locale } = await params
   if (!isValidLocale(locale)) notFound()
   const dict = await getDictionary(locale as Locale)

@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation'
 import { Navbar } from '@/components/layout/navbar'
 import { SiteFooter } from '@/components/layout/site-footer'
 import { ContactSection } from '@/components/contact/contact-section'
+import { createPageMetadata } from '@/lib/seo'
 
 interface PageProps {
   params: Promise<{ locale: string }>
@@ -13,11 +14,7 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params
   if (!isValidLocale(locale)) return {}
-  const dict = await getDictionary(locale)
-  return {
-    title: `${dict.contact.heading} — REGATRON`,
-    description: dict.contact.description,
-  }
+  return createPageMetadata('contact', locale)
 }
 
 export default async function ContactPage({ params }: PageProps) {

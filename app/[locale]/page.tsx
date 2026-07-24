@@ -9,8 +9,19 @@ import { Products } from '@/components/home/products'
 import { News } from '@/components/home/news-section'
 import { CtaBanner } from '@/components/shared/cta-banner'
 import { SiteFooter } from '@/components/layout/site-footer'
+import { createPageMetadata } from '@/lib/seo'
 
-export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
+interface PageProps {
+  params: Promise<{ locale: string }>
+}
+
+export async function generateMetadata({ params }: PageProps) {
+  const { locale } = await params
+  if (!isValidLocale(locale)) return {}
+  return createPageMetadata('home', locale)
+}
+
+export default async function Page({ params }: PageProps) {
   const { locale } = await params
   if (!isValidLocale(locale)) notFound()
   const dict = await getDictionary(locale as Locale)

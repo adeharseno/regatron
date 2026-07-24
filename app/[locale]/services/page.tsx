@@ -6,6 +6,7 @@ import { SiteFooter } from '@/components/layout/site-footer'
 import { ServicesHero } from '@/components/services/services-hero'
 import { LifecycleGrid } from '@/components/services/lifecycle-grid'
 import { CtaBanner } from '@/components/shared/cta-banner'
+import { createPageMetadata } from '@/lib/seo'
 
 interface PageProps {
   params: Promise<{ locale: string }>
@@ -14,11 +15,7 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps) {
   const { locale } = await params
   if (!isValidLocale(locale)) return {}
-  const dict = await getDictionary(locale)
-  return {
-    title: `${dict.services.hero.title} — REGATRON`,
-    description: dict.services.hero.quote,
-  }
+  return createPageMetadata('services', locale)
 }
 
 export default async function ServicesPage({ params }: PageProps) {

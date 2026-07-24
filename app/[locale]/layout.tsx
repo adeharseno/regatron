@@ -12,10 +12,15 @@ const plusJakarta = Plus_Jakarta_Sans({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://regatron.co'),
   title: 'REGATRON — Sustainable PCB Scrap & E-Waste Processing',
   description:
     'Pioneering PCB scrap and e-waste processing in Indonesia. Precious metal extraction through environmentally friendly processes with Industry 4.0 standards.',
   generator: 'v0.app',
+  icons: {
+    icon: [{ url: '/images/favicon.ico', type: 'image/x-icon' }],
+    shortcut: '/images/favicon.ico',
+  },
 }
 
 export const viewport: Viewport = {
