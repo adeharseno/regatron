@@ -6,8 +6,8 @@ import { PortableText, type PortableTextBlock } from '@portabletext/react'
 import { sanityFetch } from '@/sanity/lib/live'
 import { ALL_SLUGS_QUERY, POST_BY_SLUG_QUERY } from '@/sanity/lib/queries'
 import { urlFor } from '@/sanity/lib/image'
-import { Navbar } from '@/components/navbar'
-import { SiteFooter } from '@/components/site-footer'
+import { Navbar } from '@/components/layout/navbar'
+import { SiteFooter } from '@/components/layout/site-footer'
 import type { Post, PostWithBody } from '@/sanity/lib/types'
 
 interface PageProps {

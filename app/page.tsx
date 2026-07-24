@@ -1,12 +1,11 @@
-import { Navbar } from '@/components/navbar'
-import { Hero } from '@/components/hero'
-import { Milestones } from '@/components/milestones'
-import { Philosophy } from '@/components/philosophy'
-import { Services } from '@/components/services'
-import { Products } from '@/components/products'
-import { News } from '@/components/news'
-import { Contact } from '@/components/contact'
-import { SiteFooter } from '@/components/site-footer'
+import { Navbar } from '@/components/layout/navbar'
+import { Hero } from '@/components/home/hero'
+import { Milestones } from '@/components/home/milestones'
+import { Services } from '@/components/home/services'
+import { Products } from '@/components/home/products'
+import { News } from '@/components/home/news-section'
+import { Contact } from '@/components/home/contact'
+import { SiteFooter } from '@/components/layout/site-footer'
 
 export default function Page() {
   return (
@@ -15,7 +14,6 @@ export default function Page() {
       <main>
         <Hero />
         <Milestones />
-        <Philosophy />
         <Services />
         <Products />
         <News />

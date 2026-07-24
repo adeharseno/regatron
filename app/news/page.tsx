@@ -2,9 +2,9 @@ import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import { sanityFetch } from '@/sanity/lib/live'
 import { ALL_POSTS_QUERY } from '@/sanity/lib/queries'
-import { ArticleCard } from '@/components/article-card'
-import { Navbar } from '@/components/navbar'
-import { SiteFooter } from '@/components/site-footer'
+import { ArticleCard } from '@/components/news/article-card'
+import { Navbar } from '@/components/layout/navbar'
+import { SiteFooter } from '@/components/layout/site-footer'
 import type { Post } from '@/sanity/lib/types'
 
 export default async function NewsArchivePage() {
