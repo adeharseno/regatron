@@ -3,12 +3,9 @@ import type { Dictionary } from "../dictionaries";
 const id: Dictionary = {
   nav: {
     aboutUs: "Tentang Kami",
-    ourStory: "Perjalanan Kami",
-    services: "Layanan",
+    services: "Servis E-Waste",
     catalog: "Katalog E-Waste",
-    products: "Produk",
     news: "Berita",
-    contact: "Kontak",
     contactCta: "Hubungi Kami",
   },
   footer: {
@@ -133,7 +130,10 @@ const id: Dictionary = {
         "Mengembangkan teknologi ramah lingkungan untuk pemrosesan yang aman",
         "Membangun kemitraan jangka panjang dalam ekosistem daur ulang berkelanjutan",
       ],
+      valuesEyebrow: "Landasan Kami",
       valuesLabel: "Nilai Utama",
+      valuesDescription:
+        "Prinsip yang mendasari setiap keputusan, kemitraan, dan material yang kami tangani.",
       values: [
         "Keberlanjutan",
         "Tanggung Jawab",

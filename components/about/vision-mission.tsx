@@ -1,5 +1,7 @@
-import { Eye, Target } from 'lucide-react'
+import { Eye, Handshake, Leaf, Lightbulb, Scale, ShieldCheck, Target } from 'lucide-react'
 import type { Dictionary } from '@/lib/i18n/dictionaries'
+
+const valueIcons = [Leaf, ShieldCheck, Lightbulb, Scale, Handshake]
 
 export function VisionMission({ dict }: { dict: Dictionary }) {
   const t = dict.about.visionMission
@@ -36,19 +38,41 @@ export function VisionMission({ dict }: { dict: Dictionary }) {
           </div>
         </div>
 
-        <div className="mt-gutter border border-outline-variant/30 bg-white p-12 text-center">
-          <h3 className="mb-6 text-xs font-bold uppercase tracking-widest text-outline">
-            {t.valuesLabel}
-          </h3>
-          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
-            {t.values.map((value, i) => (
-              <span key={value} className="flex items-center gap-8">
-                <span className="text-lg font-semibold text-on-background">{value}</span>
-                {i < t.values.length - 1 && (
-                  <span className="hidden h-1 w-1 rounded-full bg-outline-variant md:inline-block" />
-                )}
+        <div className="relative mt-gutter overflow-hidden bg-navy px-8 py-14 text-white md:px-12 md:py-16">
+          <div className="absolute -right-24 -top-32 h-80 w-80 rounded-full border border-white/5" />
+          <div className="absolute -right-8 -top-16 h-52 w-52 rounded-full border border-white/5" />
+
+          <div className="relative grid gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="lg:col-span-4">
+              <span className="mb-5 block text-xs font-bold uppercase tracking-[0.18em] text-secondary-container">
+                {t.valuesEyebrow}
               </span>
-            ))}
+              <h3 className="text-3xl font-bold tracking-tight md:text-4xl">{t.valuesLabel}</h3>
+              <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/60">
+                {t.valuesDescription}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 lg:col-span-8 lg:grid-cols-5">
+              {t.values.map((value, index) => {
+                const Icon = valueIcons[index]
+
+                return (
+                  <div
+                    key={value}
+                    className="group border-t border-white/20 pt-5 transition-colors hover:border-secondary-container"
+                  >
+                    <div className="mb-9 flex items-start justify-between text-secondary-container">
+                      <Icon className="h-12 w-12" strokeWidth={1.35} />
+                      <span className="text-[10px] font-bold tracking-[0.18em] text-white/30">
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+                    </div>
+                    <p className="text-base font-semibold leading-snug text-white">{value}</p>
+                  </div>
+                )
+              })}
+            </div>
           </div>
         </div>
       </div>

@@ -39,7 +39,7 @@ export function ContactSection({ dict }: { dict: Dictionary }) {
   ]
 
   return (
-    <section className="overflow-hidden bg-white py-24">
+    <section className="overflow-hidden bg-white py-24 mt-20">
       <div className="mx-auto max-w-[1440px] px-6 md:px-margin-desktop">
         <div className="grid grid-cols-1 items-start gap-16 lg:grid-cols-12">
           <div className="space-y-12 lg:col-span-5">

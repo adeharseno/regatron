@@ -14,10 +14,6 @@ export function Products({ dict }: { dict: Dictionary }) {
             </h2>
             <p className="mt-6 max-w-lg text-on-surface-variant">{t.description}</p>
           </div>
-          <button className="group flex cursor-pointer items-center gap-4 bg-primary px-8 py-4 text-sm font-bold tracking-widest text-white transition-colors hover:bg-primary-container">
-            <span>{t.downloadCta}</span>
-            <Download className="h-5 w-5 transition-transform group-hover:translate-y-1" />
-          </button>
         </div>
 
         <div className="grid grid-cols-1 gap-gutter md:grid-cols-12">

@@ -1,12 +1,9 @@
 const en = {
   nav: {
     aboutUs: "About Us",
-    ourStory: "Our Story",
-    services: "Services",
+    services: "E-Waste Service",
     catalog: "E-Waste Catalog",
-    products: "Products",
     news: "News",
-    contact: "Contact",
     contactCta: "Contact Us",
   },
   footer: {
@@ -130,7 +127,10 @@ const en = {
         "Innovate eco-friendly technologies for safe processing",
         "Build lasting partnerships across a sustainable recycling ecosystem",
       ],
+      valuesEyebrow: "What Guides Us",
       valuesLabel: "Core Values",
+      valuesDescription:
+        "The principles behind every decision, partnership, and material we handle.",
       values: [
         "Sustainability",
         "Responsibility",
