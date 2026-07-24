@@ -20,6 +20,7 @@ export function Navbar({ dict }: { dict: Dictionary }) {
   const isAboutPage = restOfPath === '/about'
 
   const isServicesPage = restOfPath === '/services'
+  const isCatalogPage = restOfPath === '/catalog'
 
   const anchorLinks = [
     { label: dict.nav.ourStory, id: 'milestones' },
@@ -137,6 +138,16 @@ export function Navbar({ dict }: { dict: Dictionary }) {
             }
           >
             {dict.nav.services}
+          </Link>
+          <Link
+            href={`/${locale}/catalog`}
+            className={
+              isCatalogPage
+                ? 'border-b-2 border-primary pb-1 text-sm font-bold tracking-wider text-primary transition-colors'
+                : 'text-sm font-medium tracking-wider text-secondary transition-colors hover:text-primary'
+            }
+          >
+            {dict.nav.catalog}
           </Link>
           {anchorLinks.map((link) => (
             <Link

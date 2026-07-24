@@ -1,0 +1,222 @@
+No	Prefix	Kategori Barang	Kode Barang	Nama Barang / Deskripsi
+1	ACC	Aksesoris & Peralatan Pendukung	ACC-001	KAMERA HP
+2	ACC	Aksesoris & Peralatan Pendukung	ACC-002	MODEM USB
+3	ACC	Aksesoris & Peralatan Pendukung	ACC-003	BOLT MIFI
+4	ACC	Aksesoris & Peralatan Pendukung	ACC-004	PRINTER BESAR
+5	ACC	Aksesoris & Peralatan Pendukung	ACC-005	FLEKSIBEL HP
+6	ACC	Aksesoris & Peralatan Pendukung	ACC-006	KASET
+7	ACC	Aksesoris & Peralatan Pendukung	ACC-007	TUNER
+8	ACC	Aksesoris & Peralatan Pendukung	ACC-008	POWER SUPLY SERVER/SOKET
+9	ACC	Aksesoris & Peralatan Pendukung	ACC-009	POWER SUPLY
+10	ACC	Aksesoris & Peralatan Pendukung	ACC-010	OPTIK
+11	ACC	Aksesoris & Peralatan Pendukung	ACC-011	TRAPO
+12	ACC	Aksesoris & Peralatan Pendukung	ACC-012	KATRID/TINTA ADA FLEXIBEL
+13	ACC	Aksesoris & Peralatan Pendukung	ACC-013	MEKANIK PS 3
+14	BAT	Baterai & Aki	BAT-001	BATRE HP
+15	BAT	Baterai & Aki	BAT-002	BATRE PB
+16	BAT	Baterai & Aki	BAT-003	BATRE PB BANTAL
+17	BAT	Baterai & Aki	BAT-004	BATRE LIPO
+18	BAT	Baterai & Aki	BAT-005	BATRE PB UTUH
+19	BAT	Baterai & Aki	BAT-006	AKI BESAR
+20	BAT	Baterai & Aki	BAT-007	AKI KECIL
+21	CPU	Komputer, Server, & Unit Konsol	CPU-001	LAPTOP CHIP 1
+22	CPU	Komputer, Server, & Unit Konsol	CPU-002	LAPTOP 2
+23	CPU	Komputer, Server, & Unit Konsol	CPU-003	LAPTOP CIP 3
+24	CPU	Komputer, Server, & Unit Konsol	CPU-004	PS 2
+25	CPU	Komputer, Server, & Unit Konsol	CPU-005	LAPTOP KACA A
+26	CPU	Komputer, Server, & Unit Konsol	CPU-006	LAPTOP KACA B
+27	CPU	Komputer, Server, & Unit Konsol	CPU-007	PRO LAPTOP
+28	CPU	Komputer, Server, & Unit Konsol	CPU-008	SERVER 2345
+29	CPU	Komputer, Server, & Unit Konsol	CPU-009	PS2 UTUH
+30	CPU	Komputer, Server, & Unit Konsol	CPU-010	LAPTOP JADUL UTUH
+31	CPU	Komputer, Server, & Unit Konsol	CPU-011	NOTEBOOK UTUH
+32	CPU	Komputer, Server, & Unit Konsol	CPU-012	DEBIT UTUH (PCS)
+33	DIS	Layar, LCD, Monitor	DIS-001	LCD A (KECIL)
+34	DIS	Layar, LCD, Monitor	DIS-002	LCD B (ANDROID)
+35	DIS	Layar, LCD, Monitor	DIS-003	LCD C (TABLET)
+36	DIS	Layar, LCD, Monitor	DIS-004	MONITOR 14 15
+37	DIS	Layar, LCD, Monitor	DIS-005	MONITOR 17
+38	DIS	Layar, LCD, Monitor	DIS-006	MONITOR LCD (PCS)
+39	HDD	Hardisk & Media Penyimpanan	HDD-001	CDROOM
+40	HDD	Hardisk & Media Penyimpanan	HDD-002	BOT HARDISK A
+41	HDD	Hardisk & Media Penyimpanan	HDD-003	BOT HARDISK B
+42	HDD	Hardisk & Media Penyimpanan	HDD-004	BOT HDD LAPTOP
+43	HDD	Hardisk & Media Penyimpanan	HDD-005	MAGNET HDD
+44	HDD	Hardisk & Media Penyimpanan	HDD-006	HARDISK KOSONG BESAR
+45	HDD	Hardisk & Media Penyimpanan	HDD-007	HARDISK KOSONG LAPTOP
+46	HDD	Hardisk & Media Penyimpanan	HDD-008	HARDISK LAPTOP UTUH
+47	HDD	Hardisk & Media Penyimpanan	HDD-009	HARDISK A/IDE UTUH
+48	HDD	Hardisk & Media Penyimpanan	HDD-010	HARDISK B/SATA UTUH
+49	HDD	Hardisk & Media Penyimpanan	HDD-011	CD IDE UTUH
+50	HDD	Hardisk & Media Penyimpanan	HDD-012	CD SATA UTUH
+51	HDD	Hardisk & Media Penyimpanan	HDD-013	CDROOM B
+52	HDD	Hardisk & Media Penyimpanan	HDD-014	CAPIT HARDISK
+53	LGM	Logam, Plastik, & Komponen Dasar	LGM-005	P3/P4
+54	LGM	Logam, Plastik, & Komponen Dasar	LGM-006	JARUM A
+55	LGM	Logam, Plastik, & Komponen Dasar	LGM-007	JARUM B
+56	LGM	Logam, Plastik, & Komponen Dasar	LGM-008	JARUM C
+57	LGM	Logam, Plastik, & Komponen Dasar	LGM-009	PLASTIK KIBOT
+58	LGM	Logam, Plastik, & Komponen Dasar	LGM-010	PLATIK RONSEN
+59	LGM	Logam, Plastik, & Komponen Dasar	LGM-011	RILAY
+60	LGM	Logam, Plastik, & Komponen Dasar	LGM-012	TIKTOK
+61	LGM	Logam, Plastik, & Komponen Dasar	LGM-013	BONCOS ISI
+62	LGM	Logam, Plastik, & Komponen Dasar	LGM-014	BONCOS KOSONG
+63	LGM	Logam, Plastik, & Komponen Dasar	LGM-015	BONCOS REMOT
+64	LGM	Logam, Plastik, & Komponen Dasar	LGM-016	TM 1
+65	LGM	Logam, Plastik, & Komponen Dasar	LGM-017	TM 2
+66	LGM	Logam, Plastik, & Komponen Dasar	LGM-018	TB
+67	LGM	Logam, Plastik, & Komponen Dasar	LGM-019	TB DANDANG
+68	LGM	Logam, Plastik, & Komponen Dasar	LGM-020	TB GRAM
+69	LGM	Logam, Plastik, & Komponen Dasar	LGM-021	KN
+70	LGM	Logam, Plastik, & Komponen Dasar	LGM-022	KN RADIATOR
+71	LGM	Logam, Plastik, & Komponen Dasar	LGM-023	KN GRAM
+72	LGM	Logam, Plastik, & Komponen Dasar	LGM-024	SIKU BERSIH
+73	LGM	Logam, Plastik, & Komponen Dasar	LGM-025	TEBALAN (POTONGAN3%)
+74	LGM	Logam, Plastik, & Komponen Dasar	LGM-026	BEBET ELEMEN
+75	LGM	Logam, Plastik, & Komponen Dasar	LGM-027	AL TUTUP
+76	LGM	Logam, Plastik, & Komponen Dasar	LGM-028	BREAKER
+77	LGM	Logam, Plastik, & Komponen Dasar	LGM-029	KONTRAKTOR
+78	LGM	Logam, Plastik, & Komponen Dasar	LGM-030	MCB
+79	LGM	Logam, Plastik, & Komponen Dasar	LGM-031	PLAYBACK
+80	LGM	Logam, Plastik, & Komponen Dasar	LGM-032	ELKO A
+81	LGM	Logam, Plastik, & Komponen Dasar	LGM-033	ELKO B
+82	LGM	Logam, Plastik, & Komponen Dasar	LGM-034	GETAR BULAT
+83	LGM	Logam, Plastik, & Komponen Dasar	LGM-035	DIODA
+84	LGM	Logam, Plastik, & Komponen Dasar	LGM-036	PLAT ALUMUNIUM KUNING KUPU KUPU
+85	LGM	Logam, Plastik, & Komponen Dasar	LGM-037	PLAT ALUMUNIUM KUPU KUPU HITAM
+86	LGM	Logam, Plastik, & Komponen Dasar	LGM-038	PLAT TEMBAGA KUPU KUPU
+87	MBH	Mainboard / Mesin HP	MBH-001	ANDROID A++ 512G
+88	MBH	Mainboard / Mesin HP	MBH-002	ANDROID A++ 256G
+89	MBH	Mainboard / Mesin HP	MBH-003	ANDROID A++ 128G
+90	MBH	Mainboard / Mesin HP	MBH-004	ANDROID A++ 64G
+91	MBH	Mainboard / Mesin HP	MBH-005	ANDROID A++ A 3/32GB
+92	MBH	Mainboard / Mesin HP	MBH-006	ANDROID A++ B 2/32GB
+93	MBH	Mainboard / Mesin HP	MBH-007	ANDROID A++ 16GB
+94	MBH	Mainboard / Mesin HP	MBH-008	ANDROID A+-A
+95	MBH	Mainboard / Mesin HP	MBH-009	ANDROID A+-B
+96	MBH	Mainboard / Mesin HP	MBH-010	ANDROID A+
+97	MBH	Mainboard / Mesin HP	MBH-011	ANDROID A/B
+98	MBH	Mainboard / Mesin HP	MBH-012	ANDROID B SAMSUNG
+99	MBH	Mainboard / Mesin HP	MBH-013	ANDROID C
+100	MBH	Mainboard / Mesin HP	MBH-014	A KHUSUS/A+ SAMSUNG
+101	MBH	Mainboard / Mesin HP	MBH-015	ASUS 512GB
+102	MBH	Mainboard / Mesin HP	MBH-016	ASUS 256GB
+103	MBH	Mainboard / Mesin HP	MBH-017	ASUS 128GB
+104	MBH	Mainboard / Mesin HP	MBH-018	ASUS 64GB
+105	MBH	Mainboard / Mesin HP	MBH-019	ASUS A 32GB
+106	MBH	Mainboard / Mesin HP	MBH-020	ASUS 16GB
+107	MBH	Mainboard / Mesin HP	MBH-021	ASUS 8GB
+108	MBH	Mainboard / Mesin HP	MBH-022	IPHONE
+109	MBH	Mainboard / Mesin HP	MBH-023	HP SEPOTONG
+110	MBH	Mainboard / Mesin HP	MBH-024	HP SUPER
+111	MBH	Mainboard / Mesin HP	MBH-025	HP NOKIA A
+112	MBH	Mainboard / Mesin HP	MBH-026	HP CINA A
+113	MBH	Mainboard / Mesin HP	MBH-027	HP CINA B
+114	MBH	Mainboard / Mesin HP	MBH-028	HP CINA C
+115	MBH	Mainboard / Mesin HP	MBH-029	ANDROID KOSONG 1
+116	MBH	Mainboard / Mesin HP	MBH-030	TABLET KILOAN
+117	MBH	Mainboard / Mesin HP	MBH-030	TABLET PCS
+118	MBH	Mainboard / Mesin HP	MBH-031	ANDROID KILOAN
+119	MBH	Mainboard / Mesin HP	MBH-032	HP QQ/BB.A/B
+120	MBH	Mainboard / Mesin HP	MBH-033	HP BB B
+121	MBH	Mainboard / Mesin HP	MBH-034	HP JADUL
+122	MBH	Mainboard / Mesin HP	MBH-035	HP M/DAKOTA
+123	MBH	Mainboard / Mesin HP	MBH-036	HP SAMSUNG
+124	MBH	Mainboard / Mesin HP	MBH-037	SAMSUNG ANDROID KILOAN
+125	MBH	Mainboard / Mesin HP	MBH-038	TABLET SAMSUNG
+126	MBH	Mainboard / Mesin HP	MBH-039	HP EXPRESS
+127	MBH	Mainboard / Mesin HP	MBH-040	HP NOKIA INDIA
+128	MBH	Mainboard / Mesin HP	MBH-041	HP C3
+129	MBH	Mainboard / Mesin HP	MBH-042	HP PLATING/KULIT
+130	MBH	Mainboard / Mesin HP	MBH-043	NOKIA BESAR
+131	MBH	Mainboard / Mesin HP	MBH-044	NOKIA SEDANG
+132	MBH	Mainboard / Mesin HP	MBH-045	NOKIA KECIL
+133	MBH	Mainboard / Mesin HP	MBH-046	BB FULL
+134	MBH	Mainboard / Mesin HP	MBH-047	BB B/ DAKOTA
+135	MBH	Mainboard / Mesin HP	MBH-048	BB SEPOTONG
+136	MBH	Mainboard / Mesin HP	MBH-049	NOKIA B/JADUL
+137	MBH	Mainboard / Mesin HP	MBH-050	CINA AQUA
+138	MBH	Mainboard / Mesin HP	MBH-051	LLQOM
+139	MBH	Mainboard / Mesin HP	MBH-052	EXPRESS
+140	MBH	Mainboard / Mesin HP	MBH-053	NOKIA SENTER / CINA B
+141	MBH	Mainboard / Mesin HP	MBH-001	ANDROID A++ 6580
+142	MBH	Mainboard / Mesin HP	MBH-002	ANDROID A+-A 6580
+143	MBH	Mainboard / Mesin HP	MBH-003	ANDROID A+-B 6580
+144	MBH	Mainboard / Mesin HP	MBH-004	ANDROID A+6580
+145	MBH	Mainboard / Mesin HP	MBH-005	ANDROID A-6580
+146	MBH	Mainboard / Mesin HP	MBH-006	ANDROID A+8321
+147	MBH	Mainboard / Mesin HP	MBH-007	ANDROID A 8321
+148	MBH	Mainboard / Mesin HP	MBH-008	ANDROID A++ SABLON
+149	MBH	Mainboard / Mesin HP	MBH-009	MB CIP 3
+150	MBH	Mainboard / Mesin HP	MBH-010	MB CIP 2
+151	MBH	Mainboard / Mesin HP	MBH-011	MB CIP 1
+152	MBH	Mainboard / Mesin HP	MBH-012	MB CIP 0/KACA
+153	MBH	Mainboard / Mesin HP	MBH-013	MB JADUL
+154	PCB	Papan PCB & Modul	PCB-001	6531 E
+155	PCB	Papan PCB & Modul	PCB-002	6531 D
+156	PCB	Papan PCB & Modul	PCB-003	6531 C
+157	PCB	Papan PCB & Modul	PCB-004	6533
+158	PCB	Papan PCB & Modul	PCB-005	6500
+159	PCB	Papan PCB & Modul	PCB-006	RDA
+160	PCB	Papan PCB & Modul	PCB-007	6261
+161	PCB	Papan PCB & Modul	PCB-008	WIFI A
+162	PCB	Papan PCB & Modul	PCB-009	MIX A
+163	PCB	Papan PCB & Modul	PCB-010	MIX A PALKUN
+164	PCB	Papan PCB & Modul	PCB-011	MIX B
+165	PCB	Papan PCB & Modul	PCB-012	MIX C
+166	PCB	Papan PCB & Modul	PCB-013	MIX C-
+167	PCB	Papan PCB & Modul	PCB-014	MIX A SUPER
+168	PCB	Papan PCB & Modul	PCB-015	WAKWAW A (PRINTER BESAR)
+169	PCB	Papan PCB & Modul	PCB-016	WAKWAW B (PANEL A++ )
+170	PCB	Papan PCB & Modul	PCB-017	TOKEN BERSIH
+171	PCB	Papan PCB & Modul	PCB-018	KOSONG/GP A
+172	PCB	Papan PCB & Modul	PCB-019	IJOAN/GP B
+173	PCB	Papan PCB & Modul	PCB-020	PCB BARU (PCB DOBEL)
+174	PCB	Papan PCB & Modul	PCB-021	MIX KAT (KAT B)
+175	PCB	Papan PCB & Modul	PCB-022	KAT SUPER (KAT A)
+176	PCB	Papan PCB & Modul	PCB-023	VGA
+177	PCB	Papan PCB & Modul	PCB-024	PANEL LCD (TIKON)
+178	PCB	Papan PCB & Modul	PCB-025	PCB PS3
+179	PCB	Papan PCB & Modul	PCB-026	PCB PS1
+180	PCB	Papan PCB & Modul	PCB-027	MPEG A
+181	PCB	Papan PCB & Modul	PCB-028	MPEG B+
+182	PCB	Papan PCB & Modul	PCB-029	MPEG B
+183	PCB	Papan PCB & Modul	PCB-030	MPEG C
+184	PCB	Papan PCB & Modul	PCB-031	TELKOM 3
+185	PCB	Papan PCB & Modul	PCB-032	TELKOM 2
+186	PCB	Papan PCB & Modul	PCB-033	TELKOM 1
+187	PCB	Papan PCB & Modul	PCB-034	TELKOM LIST KUNING
+188	PCB	Papan PCB & Modul	PCB-035	TELKOM FULL KUNING
+189	PCB	Papan PCB & Modul	PCB-036	POWER TELKOM
+190	PCB	Papan PCB & Modul	PCB-037	PCB DEBIT BERSIH
+191	PCB	Papan PCB & Modul	PCB-038	PANEL FOTO COPY
+192	PCB	Papan PCB & Modul	PCB-039	PANEL HT BERSIH
+193	PCB	Papan PCB & Modul	PCB-040	PCB POWER TELKOM
+194	PRO	Processor & IC	PRO-001	LGA
+195	PRO	Processor & IC	PRO-002	PRO BESAR
+196	PRO	Processor & IC	PRO-003	PRO KECIL
+197	PRO	Processor & IC	PRO-004	AMD K5(A)
+198	PRO	Processor & IC	PRO-005	AMD K5(B)
+199	PRO	Processor & IC	PRO-006	486 BESAR
+200	PRO	Processor & IC	PRO-007	486 SEDANG
+201	PRO	Processor & IC	PRO-008	486 KECIL
+202	PRO	Processor & IC	PRO-009	CERIK
+203	PRO	Processor & IC	PRO-010	386
+204	PRO	Processor & IC	PRO-011	IPP (P1)
+205	PRO	Processor & IC	PRO-012	AMD KALENG
+206	PRO	Processor & IC	PRO-013	MMX
+207	PRO	Processor & IC	PRO-014	SLOT A
+208	PRO	Processor & IC	PRO-015	SLOT B
+209	PRO	Processor & IC	PRO-016	SLOT C
+210	PRO	Processor & IC	PRO-017	IC KOTAK ROOT
+211	PRO	Processor & IC	PRO-0018	TR
+212	PRO	Processor & IC	PRO-0019	TOGE
+213	PRO	Processor & IC	PRO-0020	CUCUK
+214	PRO	Processor & IC	PRO-0021	TR SISIR
+215	RAM	Memori RAM	RAM-001	RAM 1
+216	RAM	Memori RAM	RAM-002	RAM 2
+217	RAM	Memori RAM	RAM-003	RAM DDR1
+218	RAM	Memori RAM	RAM-004	RAM DDR2
+219	RAM	Memori RAM	RAM-005	RAM SISIR PUTIH/PUDAR
+220	RAM	Memori RAM	RAM-006	RAM EDO
+221	RAM	Memori RAM	RAM-007	RAM DDR2 (PCS)

@@ -4,7 +4,7 @@ import type { Locale } from '@/lib/i18n/config'
 import type { Dictionary } from '@/lib/i18n/dictionaries'
 
 export function SiteFooter({ dict, locale }: { dict: Dictionary; locale: Locale }) {
-  const navigationHrefs = [`/${locale}/about`, `/${locale}#services`, `/${locale}#products`, `/${locale}/news`]
+  const navigationHrefs = [`/${locale}/about`, `/${locale}/services`, `/${locale}/catalog`, `/${locale}/news`]
 
   const columns = [
     {
