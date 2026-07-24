@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from 'next'
 import { Plus_Jakarta_Sans } from 'next/font/google'
 import { notFound } from 'next/navigation'
 import { isValidLocale, type Locale } from '@/lib/i18n/config'
+import { SanityLive } from '@/sanity/lib/live'
 import '../globals.css'
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -42,6 +43,7 @@ export default async function LocaleLayout({
     <html lang={locale satisfies Locale} className={`${plusJakarta.variable} bg-background`}>
       <body className="font-sans antialiased">
         {children}
+        <SanityLive />
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
