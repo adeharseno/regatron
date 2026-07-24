@@ -3,19 +3,28 @@
 import { useCallback, useEffect, useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import Link from 'next/link'
+import type { Locale } from '@/lib/i18n/config'
+import type { Dictionary } from '@/lib/i18n/dictionaries'
 
-const anchorLinks = [
-  { label: 'Our Story', id: 'milestones' },
-  { label: 'Services', id: 'services' },
-  { label: 'Products', id: 'products' },
-  { label: 'News', id: 'news' },
-  { label: 'Contact', id: 'contact' },
-]
+const anchorIds = ['milestones', 'services', 'products', 'news'] as const
 
-export function Navbar() {
+export function Navbar({ dict }: { dict: Dictionary }) {
   const pathname = usePathname()
   const router = useRouter()
-  const isHome = pathname === '/'
+
+  const segments = pathname.split('/')
+  const locale = (segments[1] ?? 'id') as Locale
+  const restOfPath = '/' + segments.slice(2).join('/')
+  const isHome = restOfPath === '/'
+  const isContactPage = restOfPath === '/contact'
+  const isAboutPage = restOfPath === '/about'
+
+  const anchorLinks = [
+    { label: dict.nav.ourStory, id: 'milestones' },
+    { label: dict.nav.services, id: 'services' },
+    { label: dict.nav.products, id: 'products' },
+    { label: dict.nav.news, id: 'news' },
+  ]
 
   const [activeSection, setActiveSection] = useState('')
   const [scrolled, setScrolled] = useState(false)
@@ -23,7 +32,7 @@ export function Navbar() {
   const scrollToSection = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
       if (!isHome) {
-        // Not on the homepage: let the link navigate to /#id normally
+        // Not on the homepage: let the link navigate to /{locale}#id normally
         return
       }
       e.preventDefault()
@@ -31,15 +40,22 @@ export function Navbar() {
       if (el) {
         el.scrollIntoView({ behavior: 'smooth' })
       } else {
-        router.push(`/#${id}`)
+        router.push(`/${locale}#${id}`)
       }
       setActiveSection(id)
     },
-    [isHome, router],
+    [isHome, locale, router],
+  )
+
+  const switchLocale = useCallback(
+    (target: Locale) => {
+      document.cookie = `NEXT_LOCALE=${target}; path=/; max-age=31536000`
+      router.push(`/${target}${restOfPath}`)
+    },
+    [restOfPath, router],
   )
 
   useEffect(() => {
-    // Scroll-based shadow animation
     const onScroll = () => {
       setScrolled(window.scrollY > 20)
     }
@@ -52,18 +68,16 @@ export function Navbar() {
     // Active section detection only makes sense on the homepage
     if (!isHome) return
 
-    const els = anchorLinks
-      .map((l) => document.getElementById(l.id))
+    const els = anchorIds
+      .map((id) => document.getElementById(id))
       .filter(Boolean) as HTMLElement[]
 
     if (els.length === 0) return
 
     const observer = new IntersectionObserver(
       (entries) => {
-        // Find all entries that are currently intersecting
         const visible = entries
           .filter((e) => e.isIntersecting)
-          // Sort by the element's top position so the highest one wins
           .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
 
         if (visible.length > 0) {
@@ -71,7 +85,6 @@ export function Navbar() {
         }
       },
       {
-        // Adjust rootMargin so detection triggers at a sensible scroll position
         rootMargin: '-20% 0px -60% 0px',
         threshold: 0,
       },
@@ -95,29 +108,29 @@ export function Navbar() {
       }}
     >
       <div className="mx-auto flex h-full max-w-[1440px] items-center justify-between px-6 md:px-margin-desktop">
-        <div className="flex items-center w-56">
+        <Link href={`/${locale}`} className="flex items-center w-56">
           <img
             src="/images/logo.png"
             alt="REGATRON industrial e-waste processing facility"
             className="h-full w-full object-cover"
           />
-        </div>
+        </Link>
 
         <div className="hidden items-center gap-10 md:flex">
           <Link
-            href="/about"
+            href={`/${locale}/about`}
             className={
-              pathname === '/about'
+              isAboutPage
                 ? 'border-b-2 border-primary pb-1 text-sm font-bold tracking-wider text-primary transition-colors'
                 : 'text-sm font-medium tracking-wider text-secondary transition-colors hover:text-primary'
             }
           >
-            About Us
+            {dict.nav.aboutUs}
           </Link>
           {anchorLinks.map((link) => (
             <Link
-              key={link.label}
-              href={isHome ? `#${link.id}` : `/#${link.id}`}
+              key={link.id}
+              href={isHome ? `#${link.id}` : `/${locale}#${link.id}`}
               onClick={(e) => scrollToSection(e, link.id)}
               className={
                 isHome && activeSection === link.id
@@ -128,29 +141,48 @@ export function Navbar() {
               {link.label}
             </Link>
           ))}
+          <Link
+            href={`/${locale}/contact`}
+            className={
+              isContactPage
+                ? 'border-b-2 border-primary pb-1 text-sm font-bold tracking-wider text-primary transition-colors'
+                : 'text-sm font-medium tracking-wider text-secondary transition-colors hover:text-primary'
+            }
+          >
+            {dict.nav.contact}
+          </Link>
         </div>
 
         <div className="flex items-center gap-6">
           <div className="flex items-center text-xs font-bold tracking-widest">
-            <span className="cursor-pointer border-b border-primary font-bold text-primary">ID</span>
-            <span className="mx-2 text-outline">|</span>
-            <span className="cursor-pointer text-secondary transition-colors hover:text-primary">
-              EN
-            </span>
-          </div>
-          <button
-            onClick={() => {
-              if (!isHome) {
-                router.push('/#contact')
-                return
+            <button
+              onClick={() => switchLocale('id')}
+              className={
+                locale === 'id'
+                  ? 'cursor-pointer border-b border-primary font-bold text-primary'
+                  : 'cursor-pointer text-secondary transition-colors hover:text-primary'
               }
-              const el = document.getElementById('contact')
-              if (el) el.scrollIntoView({ behavior: 'smooth' })
-            }}
+            >
+              ID
+            </button>
+            <span className="mx-2 text-outline">|</span>
+            <button
+              onClick={() => switchLocale('en')}
+              className={
+                locale === 'en'
+                  ? 'cursor-pointer border-b border-primary font-bold text-primary'
+                  : 'cursor-pointer text-secondary transition-colors hover:text-primary'
+              }
+            >
+              EN
+            </button>
+          </div>
+          <Link
+            href={`/${locale}/contact`}
             className="hidden cursor-pointer bg-primary px-5 py-3 text-xs font-bold tracking-wider text-on-primary transition-transform active:scale-95 md:block"
           >
-            Contact Us
-          </button>
+            {dict.nav.contactCta}
+          </Link>
         </div>
       </div>
     </nav>

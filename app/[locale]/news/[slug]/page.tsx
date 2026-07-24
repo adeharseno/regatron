@@ -9,15 +9,19 @@ import { urlFor } from '@/sanity/lib/image'
 import { Navbar } from '@/components/layout/navbar'
 import { SiteFooter } from '@/components/layout/site-footer'
 import type { Post, PostWithBody } from '@/sanity/lib/types'
+import { isValidLocale, locales, type Locale } from '@/lib/i18n/config'
+import { getDictionary } from '@/lib/i18n/dictionaries'
 
 interface PageProps {
-  params: Promise<{ slug: string }>
+  params: Promise<{ locale: string; slug: string }>
 }
 
 export async function generateStaticParams() {
   const { data } = await sanityFetch({ query: ALL_SLUGS_QUERY })
   const slugs = data as unknown as { slug: string }[]
-  return (slugs ?? []).map((item: { slug: string }) => ({ slug: item.slug }))
+  return locales.flatMap((locale) =>
+    (slugs ?? []).map((item: { slug: string }) => ({ locale, slug: item.slug })),
+  )
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -42,7 +46,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function NewsArticlePage({ params }: PageProps) {
-  const { slug } = await params
+  const { locale, slug } = await params
+  if (!isValidLocale(locale)) notFound()
+  const dict = await getDictionary(locale as Locale)
+
   const { data } = await sanityFetch({
     query: POST_BY_SLUG_QUERY,
     params: { slug },
@@ -66,19 +73,21 @@ export default async function NewsArticlePage({ params }: PageProps) {
       })
     : ''
 
+  const newsHref = `/${locale}/news`
+
   return (
     <>
-      <Navbar />
+      <Navbar dict={dict} />
       <main>
         {/* Hero Banner */}
         <section className="pb-16 pt-32">
           <div className="mx-auto max-w-360 px-6 md:px-margin-desktop">
             <Link
-              href="/news"
+              href={newsHref}
               className="mb-8 inline-flex items-center gap-2 text-sm font-medium"
             >
               <ArrowLeft className="h-4 w-4" />
-              Back to News
+              {dict.home.news.backToNews}
             </Link>
 
             {/* Tag + Date */}
@@ -140,16 +149,16 @@ export default async function NewsArticlePage({ params }: PageProps) {
 
             {/* Back Link */}
             <Link
-              href="/news"
+              href={newsHref}
               className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-primary transition-colors hover:text-primary-container"
             >
               <ArrowLeft className="h-4 w-4" />
-              Back to News
+              {dict.home.news.backToNews}
             </Link>
           </div>
         </section>
       </main>
-      <SiteFooter />
+      <SiteFooter dict={dict} locale={locale as Locale} />
     </>
   )
 }

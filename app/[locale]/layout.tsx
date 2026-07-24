@@ -1,7 +1,9 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Plus_Jakarta_Sans } from 'next/font/google'
-import './globals.css'
+import { notFound } from 'next/navigation'
+import { isValidLocale, type Locale } from '@/lib/i18n/config'
+import '../globals.css'
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
@@ -21,13 +23,18 @@ export const viewport: Viewport = {
   themeColor: '#001944',
 }
 
-export default function RootLayout({
+export default async function LocaleLayout({
   children,
-}: Readonly<{
+  params,
+}: {
   children: React.ReactNode
-}>) {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  if (!isValidLocale(locale)) notFound()
+
   return (
-    <html lang="id" className={`${plusJakarta.variable} bg-background`}>
+    <html lang={locale satisfies Locale} className={`${plusJakarta.variable} bg-background`}>
       <body className="font-sans antialiased">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}

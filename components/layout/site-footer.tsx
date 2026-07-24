@@ -1,19 +1,25 @@
 import { Globe, Share2, Mail, ArrowUpRight } from 'lucide-react'
+import Link from 'next/link'
+import type { Locale } from '@/lib/i18n/config'
+import type { Dictionary } from '@/lib/i18n/dictionaries'
 
-const columns = [
-  {
-    heading: 'Navigation',
-    links: ['About Us', 'Services & Solutions', 'Product Catalog', 'News Center'],
-  },
-  {
-    heading: 'Legal',
-    links: ['Privacy Policy', 'Terms & Conditions', 'ISO Certifications'],
-  },
-]
+export function SiteFooter({ dict, locale }: { dict: Dictionary; locale: Locale }) {
+  const navigationHrefs = [`/${locale}/about`, `/${locale}#services`, `/${locale}#products`, `/${locale}/news`]
 
-const socials = ['LinkedIn', 'Instagram', 'YouTube']
+  const columns = [
+    {
+      heading: dict.footer.navigationHeading,
+      links: dict.footer.navigationLinks.map((label, i) => ({
+        label,
+        href: navigationHrefs[i],
+      })),
+    },
+    {
+      heading: dict.footer.legalHeading,
+      links: dict.footer.legalLinks.map((label) => ({ label, href: '#' })),
+    },
+  ]
 
-export function SiteFooter() {
   return (
     <footer className="border-t border-outline/10 bg-on-background pb-12 pt-24 text-white">
       <div className="mx-auto max-w-[1440px] px-6 md:px-margin-desktop">
@@ -23,8 +29,7 @@ export function SiteFooter() {
               Regatron
             </span>
             <p className="mb-10 max-w-sm text-sm leading-relaxed text-white/60">
-              Trusted solutions for precious metal extraction and e-waste management with the
-              highest environmental standards. Indonesia&apos;s pioneer in circular electronics industry.
+              {dict.footer.description}
             </p>
             <div className="flex gap-3">
               {[Globe, Share2, Mail].map((Icon, i) => (
@@ -49,13 +54,13 @@ export function SiteFooter() {
                   </h5>
                   <ul className="space-y-5 text-sm">
                     {col.links.map((link) => (
-                      <li key={link}>
-                        <a
-                          href="#"
+                      <li key={link.label}>
+                        <Link
+                          href={link.href}
                           className="text-white/60 transition-colors duration-200 hover:text-primary"
                         >
-                          {link}
-                        </a>
+                          {link.label}
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -63,10 +68,10 @@ export function SiteFooter() {
               ))}
               <div className="col-span-2 md:col-span-1">
                 <h5 className="mb-8 border-l-2 border-primary pl-4 text-[10px] font-bold uppercase tracking-[0.15em] text-white">
-                  Social Media
+                  {dict.footer.socialHeading}
                 </h5>
                 <ul className="space-y-5 text-sm">
-                  {socials.map((s) => (
+                  {dict.footer.socials.map((s) => (
                     <li key={s}>
                       <a
                         href="#"
@@ -85,12 +90,12 @@ export function SiteFooter() {
 
         <div className="flex flex-col items-center justify-between gap-6 border-t border-outline/10 pt-10 md:flex-row">
           <p className="text-[10px] uppercase tracking-widest text-outline">
-            © 2024 PT. Regar Karya Utama. All Rights Reserved.
+            {dict.footer.copyright}
           </p>
           <div className="flex items-center gap-8 text-[10px] font-bold uppercase tracking-widest text-outline">
-            <span>Precision Enterprise</span>
+            <span>{dict.footer.tagline}</span>
             <span className="h-1 w-1 rounded-full bg-outline" />
-            <span>Bekasi, Indonesia</span>
+            <span>{dict.footer.location}</span>
           </div>
         </div>
       </div>

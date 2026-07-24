@@ -1,6 +1,10 @@
-export function Hero() {
+import type { Dictionary } from '@/lib/i18n/dictionaries'
+
+export function Hero({ dict }: { dict: Dictionary }) {
+  const t = dict.home.hero
+
   return (
-    <section id="about" className="relative flex min-h-[600px] overflow-hidden bg-navy h-screen">
+    <section className="relative flex h-screen min-h-[600px] overflow-hidden bg-navy">
       <div className="absolute inset-0 z-0">
         <img
           src="/images/hero-facility.png"
@@ -13,18 +17,16 @@ export function Hero() {
           <div className="max-w-2xl space-y-8">
             <div className="h-1 w-20 bg-secondary-container" />
             <h1 className="text-[40px] font-black leading-tight tracking-tight text-white text-balance md:text-[42px]">
-              Turning E-Waste Into <br />
-             <span className="text-secondary-container">A Cleaner, Safer Future</span>
+              {t.titleLine1} <br />
+              <span className="text-secondary-container">{t.titleLine2}</span>
             </h1>
-            <p className="max-w-lg text-lg leading-relaxed text-white/80">
-              Responsible e-waste recycling and material recovery for businesses, industries and institutions across Indonesia.
-            </p>
+            <p className="max-w-lg text-lg leading-relaxed text-white/80">{t.description}</p>
             <div className="flex flex-wrap gap-4 pt-4">
               <button className="bg-white px-10 py-5 text-sm font-bold cursor-pointer tracking-widest text-primary transition-colors hover:bg-secondary-container">
-                Get Free Consultation
+                {t.ctaPrimary}
               </button>
               <button className="border border-white/30 px-10 py-5 text-sm font-bold cursor-pointer tracking-widest text-white transition-colors hover:bg-white/10">
-                Explore Services
+                {t.ctaSecondary}
               </button>
             </div>
           </div>

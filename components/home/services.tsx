@@ -1,45 +1,21 @@
-const services = [
-  {
-    title: 'E-Waste Collection',
-    desc: 'Certified logistics for waste collection from households, offices, and industrial zones.',
-    img: '/images/service-collection.png',
-    clip: 'service-clip-first',
-    z: 'z-10',
-  },
-  {
-    title: 'Sorting & Analysis',
-    desc: 'Material separation using AI technology to identify precious metal content with high precision.',
-    img: '/images/service-sorting.png',
-    clip: 'service-clip',
-    z: 'z-20',
-  },
-  {
-    title: 'Eco-Refining',
-    desc: 'Precious metal extraction using eco-friendly hydrometallurgical methods with minimal carbon emissions.',
-    img: '/images/service-refining.png',
-    clip: 'service-clip',
-    z: 'z-30',
-  },
-  {
-    title: 'Material Supply',
-    desc: 'Distribution of extracted materials to global technology manufacturers to support the circular economy.',
-    img: '/images/service-supply.png',
-    clip: 'service-clip-last',
-    z: 'z-40',
-  },
+import type { Dictionary } from '@/lib/i18n/dictionaries'
+
+const meta = [
+  { img: '/images/service-collection.png', clip: 'service-clip-first', z: 'z-10' },
+  { img: '/images/service-sorting.png', clip: 'service-clip', z: 'z-20' },
+  { img: '/images/service-refining.png', clip: 'service-clip', z: 'z-30' },
+  { img: '/images/service-supply.png', clip: 'service-clip-last', z: 'z-40' },
 ]
 
-export function Services() {
+export function Services({ dict }: { dict: Dictionary }) {
+  const t = dict.home.services
+  const services = t.items.map((item, i) => ({ ...item, ...meta[i] }))
+
   return (
     <section id="services" className="relative overflow-hidden bg-[#e9e9e9] py-24">
       <div className="relative mx-auto mb-16 max-w-[1440px] px-6 md:px-margin-desktop">
-        <h2 className="text-[40px] font-bold tracking-tighter">
-          What Sets Us Apart
-        </h2>
-        <p className="mt-2 max-w-xl">
-          End-to-end solutions for high-value electronic waste management with maximum
-          material recovery efficiency.
-        </p>
+        <h2 className="text-[40px] font-bold tracking-tighter">{t.heading}</h2>
+        <p className="mt-2 max-w-xl">{t.description}</p>
       </div>
 
       <div className="flex h-auto w-full flex-col overflow-hidden md:h-[650px] md:flex-row">

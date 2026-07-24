@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { urlFor } from '@/sanity/lib/image'
 import type { SanityImageSource } from '@sanity/image-url'
+import type { Locale } from '@/lib/i18n/config'
 
 export interface ArticleCardData {
   _id: string
@@ -13,7 +14,7 @@ export interface ArticleCardData {
   excerpt?: string
 }
 
-export function ArticleCard({ article }: { article: ArticleCardData }) {
+export function ArticleCard({ article, locale }: { article: ArticleCardData; locale: Locale }) {
   const imgSrc = article.mainImage
     ? urlFor(article.mainImage).width(600).height(750).url()
     : '/placeholder.svg'
@@ -26,9 +27,11 @@ export function ArticleCard({ article }: { article: ArticleCardData }) {
       })
     : ''
 
+  const href = `/${locale}/news/${article.slug}`
+
   return (
     <article className="group">
-      <Link href={`/news/${article.slug}`}>
+      <Link href={href}>
         <div className="mb-6 aspect-[4/5] overflow-hidden border border-outline-variant/30 bg-surface">
           <img
             src={imgSrc}
@@ -49,7 +52,7 @@ export function ArticleCard({ article }: { article: ArticleCardData }) {
           </span>
         )}
       </div>
-      <Link href={`/news/${article.slug}`}>
+      <Link href={href}>
         <h3 className="mb-4 cursor-pointer text-xl font-semibold transition-colors group-hover:text-primary">
           {article.title}
         </h3>
@@ -60,7 +63,7 @@ export function ArticleCard({ article }: { article: ArticleCardData }) {
         </p>
       )}
       <Link
-        href={`/news/${article.slug}`}
+        href={href}
         className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest transition-colors hover:text-primary"
       >
         <span>Read More</span>

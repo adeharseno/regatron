@@ -1,21 +1,21 @@
 import { Cpu, Download, SlidersHorizontal, Cable, Zap, ArrowRight } from 'lucide-react'
+import type { Dictionary } from '@/lib/i18n/dictionaries'
 
-export function Products() {
+export function Products({ dict }: { dict: Dictionary }) {
+  const t = dict.home.products
+
   return (
     <section id="products" className="bg-surface-container-low py-24">
       <div className="mx-auto max-w-[1440px] px-6 md:px-margin-desktop">
         <div className="mb-24 flex flex-col items-end justify-between gap-8 lg:flex-row">
           <div className="max-w-2xl">
             <h2 className="text-[40px] font-bold leading-none tracking-tighter text-on-background">
-              Our Products
+              {t.heading}
             </h2>
-            <p className="mt-6 max-w-lg text-on-surface-variant">
-              Catalog of extracted materials with high purity levels, ready for reintegration
-              into the global manufacturing supply chain.
-            </p>
+            <p className="mt-6 max-w-lg text-on-surface-variant">{t.description}</p>
           </div>
-          <button className="group flex items-center cursor-pointer gap-4 bg-primary px-8 py-4 text-sm font-bold tracking-widest text-white transition-colors hover:bg-primary-container">
-            <span>Download Full Catalog</span>
+          <button className="group flex cursor-pointer items-center gap-4 bg-primary px-8 py-4 text-sm font-bold tracking-widest text-white transition-colors hover:bg-primary-container">
+            <span>{t.downloadCta}</span>
             <Download className="h-5 w-5 transition-transform group-hover:translate-y-1" />
           </button>
         </div>
@@ -30,13 +30,14 @@ export function Products() {
                   </span>
                   <Cpu className="h-6 w-6 text-primary" />
                 </div>
-                <h3 className="mb-6 text-2xl font-semibold uppercase tracking-wide">Scrap PCB</h3>
+                <h3 className="mb-6 text-2xl font-semibold uppercase tracking-wide">
+                  {t.cat1.title}
+                </h3>
                 <p className="mb-8 text-sm leading-relaxed text-on-surface-variant">
-                  Printed circuit boards from various electronic devices with precious metal
-                  content optimized for the refining process.
+                  {t.cat1.desc}
                 </p>
                 <ul className="grid grid-cols-2 gap-4">
-                  {['Motherboards', 'Server Boards', 'Laptop PCB', 'Desktop PCB'].map((item) => (
+                  {t.cat1.items.map((item) => (
                     <li
                       key={item}
                       className="flex items-center gap-2 text-xs font-bold uppercase text-outline"
@@ -58,13 +59,13 @@ export function Products() {
                   <SlidersHorizontal className="h-6 w-6 text-primary" />
                 </div>
                 <h3 className="mb-4 text-xl font-semibold uppercase tracking-wide">
-                  IC &amp; Chip Scrap
+                  {t.cat2.title}
                 </h3>
                 <p className="mb-6 text-xs leading-relaxed text-on-surface-variant">
-                  Semiconductor components with high gold and silver concentrations.
+                  {t.cat2.desc}
                 </p>
                 <div className="text-[10px] font-bold uppercase tracking-widest text-primary">
-                  BGA • RAM • CPU • GPU
+                  {t.cat2.tag}
                 </div>
               </div>
               <div className="group border border-outline-variant/30 bg-white p-10 transition-colors duration-500 hover:border-primary">
@@ -74,12 +75,14 @@ export function Products() {
                   </span>
                   <Cable className="h-6 w-6 text-primary" />
                 </div>
-                <h3 className="mb-4 text-xl font-semibold uppercase tracking-wide">PM Connectors</h3>
+                <h3 className="mb-4 text-xl font-semibold uppercase tracking-wide">
+                  {t.cat3.title}
+                </h3>
                 <p className="mb-6 text-xs leading-relaxed text-on-surface-variant">
-                  Gold-plated connectors and high-precision sockets.
+                  {t.cat3.desc}
                 </p>
                 <div className="text-[10px] font-bold uppercase tracking-widest text-primary">
-                  Gold-Plated • CPU Sockets
+                  {t.cat3.tag}
                 </div>
               </div>
             </div>
@@ -94,16 +97,15 @@ export function Products() {
                 <Zap className="h-6 w-6 text-primary" />
               </div>
               <h3 className="mb-6 text-2xl font-semibold uppercase tracking-wide">
-                Capacitors &amp; Resistors
+                {t.cat4.title}
               </h3>
               <p className="mb-10 text-sm leading-relaxed text-on-surface-variant">
-                Passive components containing palladium and silver, processed through precision
-                mechanical separation.
+                {t.cat4.desc}
               </p>
               <div className="mt-auto border-t border-outline-variant/20 pt-8">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold uppercase tracking-widest text-outline">
-                    Industrial Grade
+                    {t.cat4.tag}
                   </span>
                   <ArrowRight className="h-6 w-6 text-primary" />
                 </div>

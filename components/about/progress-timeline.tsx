@@ -1,45 +1,17 @@
-const milestones = [
-  {
-    year: '2015',
-    label: 'Foundation',
-    desc: 'Established the first collection hub in Bekasi, focusing on corporate hardware retirement.',
-    done: true,
-  },
-  {
-    year: '2018',
-    label: 'Refining Hub',
-    desc: 'Opened the primary hydro-metallurgical facility for gold and silver extraction.',
-    done: true,
-  },
-  {
-    year: '2021',
-    label: 'Digitalization',
-    desc: 'Launched the REGATRACK client portal for real-time sustainability reporting.',
-    done: true,
-  },
-  {
-    year: '2024',
-    label: 'Regional Scale',
-    desc: 'Expansion to West Java industrial corridors with automated sorting systems.',
-    done: true,
-  },
-  {
-    year: '2025',
-    label: 'Zero Waste 2.0',
-    desc: 'Scheduled activation of the advanced rare-earth element recovery unit.',
-    done: false,
-  },
-]
+import type { Dictionary } from '@/lib/i18n/dictionaries'
 
-export function ProgressTimeline() {
+export function ProgressTimeline({ dict }: { dict: Dictionary }) {
+  const t = dict.about.timeline
+  const milestones = t.items.map((item, i) => ({ ...item, done: i < t.items.length - 1 }))
+
   return (
     <section className="py-24">
       <div className="mx-auto max-w-[1440px] px-6 md:px-margin-desktop">
         <div className="mb-16">
           <h2 className="text-[40px] font-bold leading-tight tracking-tight text-on-background">
-            Decade of Progress
+            {t.heading}
           </h2>
-          <p className="text-outline">The evolution of REGATRON&apos;s infrastructure.</p>
+          <p className="text-outline">{t.description}</p>
         </div>
 
         <div className="relative mt-16">

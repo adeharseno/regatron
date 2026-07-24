@@ -1,47 +1,27 @@
 import { ChevronDown } from 'lucide-react'
+import type { Dictionary } from '@/lib/i18n/dictionaries'
 
-const team = [
-  {
-    name: 'Budi Santoso',
-    role: 'Chief Executive Officer',
-    bio: 'Formerly lead engineer at global automotive electronics firms. 15+ years in materials science.',
-    quote: '"Precision is the driver of impact."',
-  },
-  {
-    name: 'Dr. Maya Lestari',
-    role: 'Chief Technology Officer',
-    bio: 'PhD in Chemical Engineering. Specialist in non-ferrous metal recovery and waste-to-resource systems.',
-    quote: '"Sustainability is a technical requirement."',
-  },
-  {
-    name: 'Hendrik Wijaya',
-    role: 'Operations Director',
-    bio: 'Operational strategist with deep roots in logistics and industrial facility management across Java.',
-    quote: '"Safety and efficiency are inseparable."',
-  },
-]
+export function LeadershipTeam({ dict }: { dict: Dictionary }) {
+  const t = dict.about.leadership
 
-export function LeadershipTeam() {
   return (
     <section className="bg-surface-container-low py-24">
       <div className="mx-auto max-w-[1440px] px-6 md:px-margin-desktop">
         <div className="mb-16 flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-center">
           <div>
             <h2 className="text-[40px] font-bold leading-tight tracking-tight text-on-background">
-              Strategic Leadership
+              {t.heading}
             </h2>
-            <p className="text-on-surface-variant">
-              Engineering and environmental expertise at the core.
-            </p>
+            <p className="text-on-surface-variant">{t.description}</p>
           </div>
           <button className="flex cursor-pointer items-center gap-2 bg-primary px-8 py-4 text-sm font-bold tracking-widest text-on-primary transition-colors hover:bg-primary-container">
-            <span>View Advisory Board</span>
+            <span>{t.viewBoard}</span>
             <ChevronDown className="h-4 w-4" />
           </button>
         </div>
 
         <div className="grid grid-cols-1 gap-gutter md:grid-cols-3">
-          {team.map((member) => (
+          {t.members.map((member) => (
             <div key={member.name} className="group">
               <div className="relative mb-6 h-96 overflow-hidden">
                 <img
