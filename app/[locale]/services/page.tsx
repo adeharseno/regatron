@@ -3,11 +3,8 @@ import { isValidLocale, type Locale } from '@/lib/i18n/config'
 import { getDictionary } from '@/lib/i18n/dictionaries'
 import { Navbar } from '@/components/layout/navbar'
 import { SiteFooter } from '@/components/layout/site-footer'
-import { AboutHero } from '@/components/about/about-hero'
-import { WhyRegatron } from '@/components/about/why-regatron'
-import { VisionMission } from '@/components/about/vision-mission'
-import { ProgressTimeline } from '@/components/about/progress-timeline'
-import { LeadershipTeam } from '@/components/about/leadership-team'
+import { ServicesHero } from '@/components/services/services-hero'
+import { LifecycleGrid } from '@/components/services/lifecycle-grid'
 import { CtaBanner } from '@/components/shared/cta-banner'
 
 interface PageProps {
@@ -19,12 +16,12 @@ export async function generateMetadata({ params }: PageProps) {
   if (!isValidLocale(locale)) return {}
   const dict = await getDictionary(locale)
   return {
-    title: `${dict.about.hero.title} — REGATRON`,
-    description: dict.about.hero.description,
+    title: `${dict.services.hero.title} — REGATRON`,
+    description: dict.services.hero.quote,
   }
 }
 
-export default async function AboutPage({ params }: PageProps) {
+export default async function ServicesPage({ params }: PageProps) {
   const { locale } = await params
   if (!isValidLocale(locale)) notFound()
   const dict = await getDictionary(locale as Locale)
@@ -33,11 +30,8 @@ export default async function AboutPage({ params }: PageProps) {
     <>
       <Navbar dict={dict} />
       <main>
-        <AboutHero dict={dict} />
-        <WhyRegatron dict={dict} />
-        <VisionMission dict={dict} />
-        <ProgressTimeline dict={dict} />
-        <LeadershipTeam dict={dict} />
+        <ServicesHero dict={dict} />
+        <LifecycleGrid dict={dict} />
         <CtaBanner
           heading={dict.ctaBanner.heading}
           description={dict.ctaBanner.description}

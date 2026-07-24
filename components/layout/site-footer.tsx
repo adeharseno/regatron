@@ -21,7 +21,7 @@ export function SiteFooter({ dict, locale }: { dict: Dictionary; locale: Locale 
   ]
 
   return (
-    <footer className="border-t border-outline/10 bg-on-background pb-12 pt-24 text-white">
+    <footer className="border-t border-white/10 bg-navy pb-12 pt-24 text-white">
       <div className="mx-auto max-w-[1440px] px-6 md:px-margin-desktop">
         <div className="mb-24 grid grid-cols-1 gap-12 md:grid-cols-12 lg:gap-16">
           <div className="md:col-span-5 lg:col-span-4">

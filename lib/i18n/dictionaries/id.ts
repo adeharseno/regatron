@@ -106,91 +106,58 @@ const id: Dictionary = {
     },
     why: {
       heading: 'Mengapa REGATRON Hadir',
-      quote: 'Menyelesaikan krisis tersembunyi dari manufaktur modern.',
       paragraph1:
-        'Indonesia adalah salah satu pasar barang elektronik dengan pertumbuhan tercepat di dunia. Namun tanpa infrastruktur pemulihan berskala industri, sumber daya berharga akan terbuang ke tempat pembuangan dan berisiko mencemari lingkungan.',
+        'Teknologi bergerak sangat cepat — dan meninggalkan jejak di baliknya. Perangkat elektronik yang dibuang mengandung zat berbahaya seperti arsenik dan merkuri, yang jika tidak dikelola dapat mencemari tanah, air, dan makhluk hidup yang bergantung padanya.',
       paragraph2:
-        'REGATRON didirikan untuk menjembatani hal ini. Kami menyediakan solusi "Closed-Loop" bagi produsen elektronik, data center, dan entitas korporat untuk membuang perangkat keras secara aman sekaligus mengintegrasikan kembali emas, palladium, dan tembaga ke rantai pasok.',
-      stat1: { value: '98%', label: 'Tingkat Pemulihan Sumber Daya' },
-      stat2: { value: '15K', label: 'Ton Diproses per Tahun' },
-      badge:
-        'Fasilitas bersertifikat ISO 14001 & R2v3 yang memenuhi standar global pengelolaan lingkungan.',
+        'REGATRON dibangun untuk menutup celah itu. Kami menghadirkan solusi daur ulang e-waste yang bertanggung jawab dan berkelanjutan, dengan satu misi sederhana: menjadikan daur ulang e-waste mudah, aman, dan benar-benar berdampak.',
+      atGlanceLabel: 'Sekilas Perusahaan',
+      atGlance:
+        'REGATRON (PT Regar Karya Utama) adalah perusahaan pengelolaan e-waste Indonesia yang didirikan pada 2015. Kami mengelola seluruh siklus limbah elektronik — dari pengumpulan, pemilahan, hingga pengolahan ramah lingkungan — untuk rumah tangga, bisnis, dan mitra industri di seluruh negeri.',
     },
-    principles: {
-      heading: 'Prinsip Utama',
-      description: 'Peta jalan kami menuju ekosistem industri nol limbah di Asia Tenggara.',
-      vision: {
-        title: 'Visi Kami',
-        desc: 'Menjadi fondasi utama ekonomi sirkular Indonesia, menetapkan standar presisi teknis dan transparansi etis dalam pengelolaan limbah industri.',
-        since: 'BERDIRI 2015',
-      },
-      tech: {
-        title: 'Integritas Teknologi',
-        desc: 'Mengembangkan teknologi eco-refining eksklusif untuk memaksimalkan ekstraksi material bermurni tinggi.',
-      },
-      eco: {
-        title: 'Tanggung Jawab Lingkungan',
-        desc: 'Melindungi ekosistem lokal melalui proses zero-discharge dan kepatuhan ketat.',
-      },
-      partnership: {
-        title: 'Kemitraan Strategis',
-        desc: 'Memberdayakan industri mencapai target keberlanjutan melalui pelaporan dan logistik berbasis data.',
-      },
+    visionMission: {
+      visionLabel: 'Visi',
+      vision:
+        'Menjadi pemimpin global dalam pengelolaan e-waste yang berkelanjutan, dengan mendorong solusi inovatif demi bumi yang lebih bersih dan sehat.',
+      missionLabel: 'Misi',
+      mission: [
+        'Menghadirkan solusi daur ulang e-waste yang praktis dan bertanggung jawab',
+        'Meningkatkan kesadaran akan bahaya e-waste yang tidak dikelola',
+        'Mengembangkan teknologi ramah lingkungan untuk pemrosesan yang aman',
+        'Membangun kemitraan jangka panjang dalam ekosistem daur ulang berkelanjutan',
+      ],
+      valuesLabel: 'Nilai Utama',
+      values: ['Keberlanjutan', 'Tanggung Jawab', 'Inovasi', 'Integritas', 'Kolaborasi'],
     },
     timeline: {
-      heading: 'Satu Dekade Kemajuan',
-      description: 'Evolusi infrastruktur REGATRON.',
+      heading: 'Rekam Jejak',
+      description: 'Perjalanan REGATRON dari 2015 hingga 2025.',
       items: [
         {
           year: '2015',
-          label: 'Pendirian',
-          desc: 'Mendirikan hub pengumpulan pertama di Bekasi, fokus pada peremajaan perangkat keras korporat.',
+          label: 'Berdiri',
+          desc: 'REGATRON didirikan untuk menjawab tantangan e-waste yang terus tumbuh di Indonesia.',
         },
         {
-          year: '2018',
-          label: 'Hub Pemurnian',
-          desc: 'Membuka fasilitas hidrometalurgi utama untuk ekstraksi emas dan perak.',
-        },
-        {
-          year: '2021',
-          label: 'Digitalisasi',
-          desc: 'Meluncurkan portal klien REGATRACK untuk pelaporan keberlanjutan secara real-time.',
-        },
-        {
-          year: '2024',
-          label: 'Ekspansi Regional',
-          desc: 'Ekspansi ke koridor industri Jawa Barat dengan sistem sortir otomatis.',
+          year: '2019',
+          label: 'Ekspansi',
+          desc: 'Layanan diperluas ke klien korporasi dan industri, disertai teknologi pemilahan dan daur ulang yang lebih canggih.',
         },
         {
           year: '2025',
-          label: 'Zero Waste 2.0',
-          desc: 'Rencana aktivasi unit pemulihan unsur tanah jarang tingkat lanjut.',
+          label: 'Penguatan Skala',
+          desc: 'Memperkuat kemitraan dan infrastruktur menuju cakupan nasional dan standar pengelolaan e-waste bertaraf global.',
         },
       ],
     },
     leadership: {
-      heading: 'Kepemimpinan Strategis',
-      description: 'Keahlian rekayasa dan lingkungan sebagai fondasi utama.',
-      viewBoard: 'Lihat Dewan Penasihat',
+      heading: 'Tim Manajemen',
+      description: 'Orang-orang yang memimpin REGATRON melangkah maju.',
       members: [
-        {
-          name: 'Budi Santoso',
-          role: 'Chief Executive Officer',
-          bio: 'Mantan lead engineer di perusahaan elektronik otomotif global. 15+ tahun di bidang materials science.',
-          quote: '"Presisi adalah penggerak dampak."',
-        },
-        {
-          name: 'Dr. Maya Lestari',
-          role: 'Chief Technology Officer',
-          bio: 'PhD Teknik Kimia. Spesialis pemulihan logam non-ferrous dan sistem waste-to-resource.',
-          quote: '"Keberlanjutan adalah kebutuhan teknis."',
-        },
-        {
-          name: 'Hendrik Wijaya',
-          role: 'Operations Director',
-          bio: 'Ahli strategi operasional dengan pengalaman mendalam di logistik dan manajemen fasilitas industri di Jawa.',
-          quote: '"Keselamatan dan efisiensi tidak terpisahkan."',
-        },
+        { name: 'Faisal Siregar', role: 'Direktur Utama' },
+        { name: 'M. Osama Siregar', role: 'Kepala Pengembangan Bisnis' },
+        { name: 'Soleh', role: 'Kepala Pengadaan' },
+        { name: 'Randhika Djabal', role: 'Kepala Keuangan & Akuntansi' },
+        { name: 'Aldo Alfanso', role: 'Kepala Logistik & Gudang' },
       ],
     },
   },
@@ -200,6 +167,35 @@ const id: Dictionary = {
       'Bergabunglah dengan ratusan perusahaan Indonesia dalam transisi menuju sirkularitas industri. Mari bangun masa depan yang lebih bersih bersama.',
     primary: 'Mulai Konsultasi',
     secondary: 'Ajukan Kunjungan Lokasi',
+  },
+  services: {
+    hero: {
+      title: 'Layanan E-Waste',
+      quote:
+        'Mulai dari saat e-waste Anda kami jemput hingga materialnya kembali bernilai dalam rantai pasok, REGATRON menangani setiap tahapnya.',
+    },
+    lifecycle: {
+      eyebrow: 'Keunggulan Operasional',
+      heading: 'Siklus Pemulihan Material Terintegrasi',
+    },
+    items: [
+      {
+        title: 'Penjemputan E-Waste',
+        desc: 'Layanan penjemputan yang efisien untuk rumah tangga, perkantoran, dan lokasi industri. Jadwalkan penjemputan, dan tim kami menangani sisanya — cepat, aman, dan minim gangguan terhadap operasional Anda.',
+      },
+      {
+        title: 'Pemilahan & Pemrosesan',
+        desc: 'Setiap batch e-waste dipilah secara cermat menjadi komponen yang dapat digunakan kembali, material yang dapat didaur ulang, dan zat berbahaya — sehingga setiap jenis material mendapat penanganan yang sesuai.',
+      },
+      {
+        title: 'Daur Ulang Ramah Lingkungan',
+        desc: 'Dengan metode yang bertanggung jawab terhadap lingkungan, kami memulihkan komponen bernilai sekaligus memastikan material berbahaya dinetralisasi dengan aman — melindungi pekerja maupun lingkungan sekitar.',
+      },
+      {
+        title: 'Perdagangan & Pasokan E-Waste',
+        desc: 'Bagi mitra dan pembeli industri, REGATRON menyediakan pasokan material e-waste hasil olahan yang andal dan berstandar tinggi, didukung proses sumber material yang transparan dan dapat dilacak.',
+      },
+    ],
   },
   contact: {
     heading: 'Hubungi Kami',

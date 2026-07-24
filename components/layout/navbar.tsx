@@ -6,7 +6,7 @@ import Link from 'next/link'
 import type { Locale } from '@/lib/i18n/config'
 import type { Dictionary } from '@/lib/i18n/dictionaries'
 
-const anchorIds = ['milestones', 'services', 'products', 'news'] as const
+const anchorIds = ['milestones', 'products', 'news'] as const
 
 export function Navbar({ dict }: { dict: Dictionary }) {
   const pathname = usePathname()
@@ -19,9 +19,10 @@ export function Navbar({ dict }: { dict: Dictionary }) {
   const isContactPage = restOfPath === '/contact'
   const isAboutPage = restOfPath === '/about'
 
+  const isServicesPage = restOfPath === '/services'
+
   const anchorLinks = [
     { label: dict.nav.ourStory, id: 'milestones' },
-    { label: dict.nav.services, id: 'services' },
     { label: dict.nav.products, id: 'products' },
     { label: dict.nav.news, id: 'news' },
   ]
@@ -126,6 +127,16 @@ export function Navbar({ dict }: { dict: Dictionary }) {
             }
           >
             {dict.nav.aboutUs}
+          </Link>
+          <Link
+            href={`/${locale}/services`}
+            className={
+              isServicesPage
+                ? 'border-b-2 border-primary pb-1 text-sm font-bold tracking-wider text-primary transition-colors'
+                : 'text-sm font-medium tracking-wider text-secondary transition-colors hover:text-primary'
+            }
+          >
+            {dict.nav.services}
           </Link>
           {anchorLinks.map((link) => (
             <Link

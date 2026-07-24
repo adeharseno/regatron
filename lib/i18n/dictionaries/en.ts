@@ -104,91 +104,58 @@ const en = {
     },
     why: {
       heading: 'Why REGATRON Exists',
-      quote: 'Solving the invisible crisis of modern manufacturing.',
       paragraph1:
-        "Indonesia is one of the world's fastest-growing markets for electronic goods. However, without a dedicated industrial-scale infrastructure for recovery, precious resources are lost to landfills and hazardous leaching.",
+        'Technology moves fast — and it leaves a trail behind. Discarded electronics carry hazardous substances like arsenic and mercury, which, left unmanaged, can contaminate soil, water, and the living things that depend on them.',
       paragraph2:
-        'REGATRON was founded to bridge this gap. We provide a "Closed-Loop" solution for electronics manufacturers, data centers, and corporate entities to securely dispose of hardware while reintegrating gold, palladium, and copper back into the supply chain.',
-      stat1: { value: '98%', label: 'Resource Recovery Rate' },
-      stat2: { value: '15K', label: 'Tons Processed Annually' },
-      badge:
-        'ISO 14001 & R2v3 Certified Facilities ensuring global standards for environmental management.',
+        'REGATRON was built to close that gap. We provide responsible, sustainable e-waste recycling solutions with one simple mission: make e-waste recycling easy, safe, and genuinely impactful.',
+      atGlanceLabel: 'At a Glance',
+      atGlance:
+        'REGATRON (PT Regar Karya Utama) is an Indonesian e-waste management company founded in 2015. We manage the full lifecycle of electronic waste — from collection and sorting to eco-friendly processing — for households, businesses, and industrial partners across the country.',
     },
-    principles: {
-      heading: 'Core Principles',
-      description: 'Our roadmap towards a zero-waste industrial ecosystem in Southeast Asia.',
-      vision: {
-        title: 'Our Vision',
-        desc: "To be the definitive cornerstone of Indonesia's circular economy, setting the standard for technical precision and ethical transparency in industrial waste management.",
-        since: 'EST. 2015',
-      },
-      tech: {
-        title: 'Tech Integrity',
-        desc: 'Developing proprietary eco-refining technologies to maximize high-purity material extraction.',
-      },
-      eco: {
-        title: 'Eco-Responsibility',
-        desc: 'Protecting local ecosystems through zero-discharge processing and strict compliance.',
-      },
-      partnership: {
-        title: 'Strategic Partnership',
-        desc: 'Empowering industries to achieve their sustainability targets through data-driven reporting and logistics.',
-      },
+    visionMission: {
+      visionLabel: 'Vision',
+      vision:
+        'To become a global leader in sustainable e-waste management, driving innovative solutions for a cleaner, healthier planet.',
+      missionLabel: 'Mission',
+      mission: [
+        'Deliver practical, responsible e-waste recycling solutions',
+        'Raise awareness of the risks of unmanaged e-waste',
+        'Innovate eco-friendly technologies for safe processing',
+        'Build lasting partnerships across a sustainable recycling ecosystem',
+      ],
+      valuesLabel: 'Core Values',
+      values: ['Sustainability', 'Responsibility', 'Innovation', 'Integrity', 'Collaboration'],
     },
     timeline: {
-      heading: 'Decade of Progress',
-      description: "The evolution of REGATRON's infrastructure.",
+      heading: 'Milestones',
+      description: "REGATRON's track record from 2015 to 2025.",
       items: [
         {
           year: '2015',
-          label: 'Foundation',
-          desc: 'Established the first collection hub in Bekasi, focusing on corporate hardware retirement.',
+          label: 'Founded',
+          desc: "REGATRON was established to address Indonesia's growing e-waste challenge.",
         },
         {
-          year: '2018',
-          label: 'Refining Hub',
-          desc: 'Opened the primary hydro-metallurgical facility for gold and silver extraction.',
-        },
-        {
-          year: '2021',
-          label: 'Digitalization',
-          desc: 'Launched the REGATRACK client portal for real-time sustainability reporting.',
-        },
-        {
-          year: '2024',
-          label: 'Regional Scale',
-          desc: 'Expansion to West Java industrial corridors with automated sorting systems.',
+          year: '2019',
+          label: 'Expansion',
+          desc: 'Services extended to corporate and industrial clients, with more advanced sorting and recycling technology introduced.',
         },
         {
           year: '2025',
-          label: 'Zero Waste 2.0',
-          desc: 'Scheduled activation of the advanced rare-earth element recovery unit.',
+          label: 'Scaling Up',
+          desc: 'Strengthening partnerships and infrastructure toward nationwide coverage and global-standard e-waste management.',
         },
       ],
     },
     leadership: {
-      heading: 'Strategic Leadership',
-      description: 'Engineering and environmental expertise at the core.',
-      viewBoard: 'View Advisory Board',
+      heading: 'Management Team',
+      description: 'The people leading REGATRON forward.',
       members: [
-        {
-          name: 'Budi Santoso',
-          role: 'Chief Executive Officer',
-          bio: 'Formerly lead engineer at global automotive electronics firms. 15+ years in materials science.',
-          quote: '"Precision is the driver of impact."',
-        },
-        {
-          name: 'Dr. Maya Lestari',
-          role: 'Chief Technology Officer',
-          bio: 'PhD in Chemical Engineering. Specialist in non-ferrous metal recovery and waste-to-resource systems.',
-          quote: '"Sustainability is a technical requirement."',
-        },
-        {
-          name: 'Hendrik Wijaya',
-          role: 'Operations Director',
-          bio: 'Operational strategist with deep roots in logistics and industrial facility management across Java.',
-          quote: '"Safety and efficiency are inseparable."',
-        },
+        { name: 'Faisal Siregar', role: 'President Director' },
+        { name: 'M. Osama Siregar', role: 'Head of Business Development' },
+        { name: 'Soleh', role: 'Head of Procurement' },
+        { name: 'Randhika Djabal', role: 'Head of Finance & Accounting' },
+        { name: 'Aldo Alfanso', role: 'Head of Logistics & Warehouse' },
       ],
     },
   },
@@ -198,6 +165,35 @@ const en = {
       "Join hundreds of Indonesian enterprises in the transition to industrial circularity. Let's build a cleaner future together.",
     primary: 'Start Consultation',
     secondary: 'Request Site Visit',
+  },
+  services: {
+    hero: {
+      title: 'E-Waste Services',
+      quote:
+        "From the moment your e-waste leaves your hands to the moment its valuable materials re-enter the supply chain, REGATRON manages every step.",
+    },
+    lifecycle: {
+      eyebrow: 'Operational Excellence',
+      heading: 'Integrated Material Recovery Lifecycle',
+    },
+    items: [
+      {
+        title: 'E-Waste Collection',
+        desc: 'A streamlined pickup service for households, offices, and industrial sites. Schedule a pickup, and our team handles the rest — fast, safe, and with minimal disruption to your operations.',
+      },
+      {
+        title: 'Sorting & Processing',
+        desc: 'Every batch of e-waste is carefully separated into reusable components, recyclable materials, and hazardous substances, so each stream gets the handling it actually requires.',
+      },
+      {
+        title: 'Eco-Friendly Recycling',
+        desc: 'Using environmentally responsible methods, we recover valuable components while ensuring hazardous materials are neutralized safely — protecting both our workers and the surrounding environment.',
+      },
+      {
+        title: 'E-Waste Trading & Supply',
+        desc: 'For industrial partners and buyers, REGATRON offers a reliable, high-standard supply of processed e-waste materials, backed by a transparent and traceable sourcing process.',
+      },
+    ],
   },
   contact: {
     heading: 'Get in Touch',

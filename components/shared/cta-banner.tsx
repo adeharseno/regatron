@@ -7,7 +7,7 @@ interface CtaBannerProps {
 
 export function CtaBanner({ heading, description, primaryLabel, secondaryLabel }: CtaBannerProps) {
   return (
-    <section className="section-slant-top relative bg-primary py-24 text-on-primary">
+    <section className="section-slant-top relative bg-navy py-24 text-on-primary">
       <div className="mx-auto max-w-[1440px] px-6 text-center md:px-margin-desktop">
         <h2 className="mb-8 text-[40px] font-bold leading-tight tracking-tight text-balance md:text-5xl">
           {heading}
