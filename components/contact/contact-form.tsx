@@ -5,6 +5,7 @@ import { submitContactForm } from '@/app/[locale]/contact/actions'
 
 const initialContactFormState: {
   status: 'idle' | 'success' | 'error'
+  error?: 'validation' | 'submission'
 } = {
   status: 'idle',
 }
@@ -80,20 +81,6 @@ export function ContactForm({
         disabled={pending}
         className="m-0 space-y-10 border-0 p-0 disabled:opacity-70"
       >
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -left-[9999px] h-px w-px overflow-hidden"
-        >
-          <label htmlFor="regatronFormGuard">Leave this field empty</label>
-          <input
-            id="regatronFormGuard"
-            name="regatronFormGuard"
-            type="text"
-            tabIndex={-1}
-            autoComplete="new-password"
-          />
-        </div>
-
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
           <Field id="fullName" label={copy.fullName} required />
           <Field id="company" label={copy.company} />

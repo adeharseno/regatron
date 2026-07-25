@@ -5,6 +5,7 @@ import { getSanityWriteClient } from '@/sanity/lib/write-client'
 
 interface ContactFormState {
   status: 'idle' | 'success' | 'error'
+  error?: 'validation' | 'submission'
 }
 
 function getText(formData: FormData, name: string, maxLength: number) {
@@ -25,12 +26,8 @@ export async function submitContactForm(
   formData: FormData,
 ): Promise<ContactFormState> {
   if (!isValidLocale(locale)) {
-    return { status: 'error' }
-  }
-
-  // Honeypot: browsers should leave this field empty.
-  if (getText(formData, 'regatronFormGuard', 200)) {
-    return { status: 'error' }
+    console.warn('Contact form rejected: invalid locale')
+    return { status: 'error', error: 'validation' }
   }
 
   const fullName = getText(formData, 'fullName', 100)
@@ -47,7 +44,15 @@ export async function submitContactForm(
     !inquiryType ||
     message.length < 5
   ) {
-    return { status: 'error' }
+    console.warn('Contact form rejected: invalid fields', {
+      locale,
+      hasFullName: fullName.length >= 2,
+      hasPhone: phone.length >= 5,
+      hasValidEmail: isValidEmail(email),
+      hasInquiryType: Boolean(inquiryType),
+      hasMessage: message.length >= 5,
+    })
+    return { status: 'error', error: 'validation' }
   }
 
   try {
@@ -67,6 +72,6 @@ export async function submitContactForm(
     return { status: 'success' }
   } catch (error) {
     console.error('Failed to save contact submission', error)
-    return { status: 'error' }
+    return { status: 'error', error: 'submission' }
   }
 }

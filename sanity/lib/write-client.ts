@@ -4,7 +4,7 @@ import { createClient } from 'next-sanity'
 import { apiVersion, dataset, projectId } from '../env'
 
 export function getSanityWriteClient() {
-  const token = process.env.SANITY_API_WRITE_TOKEN
+  const token = process.env.SANITY_API_WRITE_TOKEN?.trim()
 
   if (!token) {
     throw new Error('Missing environment variable: SANITY_API_WRITE_TOKEN')
