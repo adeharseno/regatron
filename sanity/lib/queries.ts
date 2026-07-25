@@ -115,6 +115,108 @@ export const SITE_SETTINGS_QUERY = defineQuery(
   }`,
 )
 
+export const CONTACT_PAGE_QUERY = defineQuery(
+  `*[_id == "contactPage"][0] {
+    "heading": coalesce(
+      heading[language == $locale || _key == $locale][0].value,
+      heading[language == "id" || _key == "id"][0].value
+    ),
+    "description": coalesce(
+      description[language == $locale || _key == $locale][0].value,
+      description[language == "id" || _key == "id"][0].value
+    ),
+    "addressLabel": coalesce(
+      addressLabel[language == $locale || _key == $locale][0].value,
+      addressLabel[language == "id" || _key == "id"][0].value
+    ),
+    "address": coalesce(
+      address[language == $locale || _key == $locale][0].value,
+      address[language == "id" || _key == "id"][0].value
+    ),
+    "phoneLabel": coalesce(
+      phoneLabel[language == $locale || _key == $locale][0].value,
+      phoneLabel[language == "id" || _key == "id"][0].value
+    ),
+    phone,
+    "emailLabel": coalesce(
+      emailLabel[language == $locale || _key == $locale][0].value,
+      emailLabel[language == "id" || _key == "id"][0].value
+    ),
+    email,
+    "form": {
+      "fullNameLabel": coalesce(
+        fullNameLabel[language == $locale || _key == $locale][0].value,
+        fullNameLabel[language == "id" || _key == "id"][0].value
+      ),
+      "companyLabel": coalesce(
+        companyLabel[language == $locale || _key == $locale][0].value,
+        companyLabel[language == "id" || _key == "id"][0].value
+      ),
+      "phoneLabel": coalesce(
+        formPhoneLabel[language == $locale || _key == $locale][0].value,
+        formPhoneLabel[language == "id" || _key == "id"][0].value
+      ),
+      "emailLabel": coalesce(
+        formEmailLabel[language == $locale || _key == $locale][0].value,
+        formEmailLabel[language == "id" || _key == "id"][0].value
+      ),
+      "inquiryTypeLabel": coalesce(
+        inquiryTypeLabel[language == $locale || _key == $locale][0].value,
+        inquiryTypeLabel[language == "id" || _key == "id"][0].value
+      ),
+      "inquiryOptions": inquiryOptions[] {
+        _key,
+        "label": coalesce(
+          label[language == $locale || _key == $locale][0].value,
+          label[language == "id" || _key == "id"][0].value
+        )
+      },
+      "messageLabel": coalesce(
+        messageLabel[language == $locale || _key == $locale][0].value,
+        messageLabel[language == "id" || _key == "id"][0].value
+      ),
+      "submitLabel": coalesce(
+        submitLabel[language == $locale || _key == $locale][0].value,
+        submitLabel[language == "id" || _key == "id"][0].value
+      ),
+      "submittingLabel": coalesce(
+        submittingLabel[language == $locale || _key == $locale][0].value,
+        submittingLabel[language == "id" || _key == "id"][0].value
+      ),
+      "successMessage": coalesce(
+        successMessage[language == $locale || _key == $locale][0].value,
+        successMessage[language == "id" || _key == "id"][0].value
+      ),
+      "errorMessage": coalesce(
+        errorMessage[language == $locale || _key == $locale][0].value,
+        errorMessage[language == "id" || _key == "id"][0].value
+      )
+    }
+  }`,
+)
+
+export const LEGAL_PAGE_QUERY = defineQuery(
+  `*[_id == $documentId][0] {
+    "title": coalesce(
+      title[language == $locale || _key == $locale][0].value,
+      title[language == "id" || _key == "id"][0].value
+    ),
+    "body": coalesce(
+      body[language == $locale || _key == $locale][0].value,
+      body[language == "id" || _key == "id"][0].value
+    ),
+    lastUpdated,
+    "metaTitle": coalesce(
+      metaTitle[language == $locale || _key == $locale][0].value,
+      metaTitle[language == "id" || _key == "id"][0].value
+    ),
+    "metaDescription": coalesce(
+      metaDescription[language == $locale || _key == $locale][0].value,
+      metaDescription[language == "id" || _key == "id"][0].value
+    )
+  }`,
+)
+
 export const HOME_PAGE_SEO_QUERY = defineQuery(
   `*[_id == "homePage"][0] {
     "title": coalesce(
@@ -237,12 +339,31 @@ export const HOME_PAGE_QUERY = defineQuery(
 export const ALL_POSTS_QUERY = defineQuery(
   `*[_type == "post"] | order(publishedAt desc) {
     _id,
-    title,
+    "title": coalesce(
+      titleI18n[language == $locale || _key == $locale][0].value,
+      titleI18n[language == "id" || _key == "id"][0].value,
+      title,
+      ""
+    ),
     "slug": slug.current,
     mainImage,
-    tag,
+    "mainImageAlt": coalesce(
+      mainImageAlt[language == $locale || _key == $locale][0].value,
+      mainImageAlt[language == "id" || _key == "id"][0].value
+    ),
+    "tag": coalesce(
+      tagI18n[language == $locale || _key == $locale][0].value,
+      tagI18n[language == "id" || _key == "id"][0].value,
+      tag
+    ),
     publishedAt,
-    excerpt
+    "excerpt": coalesce(
+      metaDescriptionI18n[language == $locale || _key == $locale][0].value,
+      metaDescriptionI18n[language == "id" || _key == "id"][0].value,
+      excerptI18n[language == $locale || _key == $locale][0].value,
+      excerptI18n[language == "id" || _key == "id"][0].value,
+      excerpt
+    )
   }`,
 )
 
@@ -250,13 +371,56 @@ export const ALL_POSTS_QUERY = defineQuery(
 export const POST_BY_SLUG_QUERY = defineQuery(
   `*[_type == "post" && slug.current == $slug][0] {
     _id,
-    title,
+    "title": coalesce(
+      titleI18n[language == $locale || _key == $locale][0].value,
+      titleI18n[language == "id" || _key == "id"][0].value,
+      title,
+      ""
+    ),
     "slug": slug.current,
     mainImage,
-    tag,
+    "mainImageAlt": coalesce(
+      mainImageAlt[language == $locale || _key == $locale][0].value,
+      mainImageAlt[language == "id" || _key == "id"][0].value
+    ),
+    "tag": coalesce(
+      tagI18n[language == $locale || _key == $locale][0].value,
+      tagI18n[language == "id" || _key == "id"][0].value,
+      tag
+    ),
     publishedAt,
-    excerpt,
-    body
+    "metaTitle": coalesce(
+      metaTitleI18n[language == $locale || _key == $locale][0].value,
+      metaTitleI18n[language == "id" || _key == "id"][0].value,
+      titleI18n[language == $locale || _key == $locale][0].value,
+      titleI18n[language == "id" || _key == "id"][0].value,
+      title,
+      ""
+    ),
+    "metaDescription": coalesce(
+      metaDescriptionI18n[language == $locale || _key == $locale][0].value,
+      metaDescriptionI18n[language == "id" || _key == "id"][0].value,
+      excerptI18n[language == $locale || _key == $locale][0].value,
+      excerptI18n[language == "id" || _key == "id"][0].value,
+      excerpt
+    ),
+    "metaKeywords": coalesce(
+      metaKeywordsI18n[language == $locale || _key == $locale][0].value,
+      metaKeywordsI18n[language == "id" || _key == "id"][0].value
+    ),
+    "excerpt": coalesce(
+      metaDescriptionI18n[language == $locale || _key == $locale][0].value,
+      metaDescriptionI18n[language == "id" || _key == "id"][0].value,
+      excerptI18n[language == $locale || _key == $locale][0].value,
+      excerptI18n[language == "id" || _key == "id"][0].value,
+      excerpt
+    ),
+    "body": coalesce(
+      bodyI18n[language == $locale || _key == $locale][0].value,
+      bodyI18n[language == "id" || _key == "id"][0].value,
+      body,
+      []
+    )
   }`,
 )
 
@@ -264,12 +428,31 @@ export const POST_BY_SLUG_QUERY = defineQuery(
 export const LATEST_POSTS_QUERY = defineQuery(
   `*[_type == "post"] | order(publishedAt desc) [0...3] {
     _id,
-    title,
+    "title": coalesce(
+      titleI18n[language == $locale || _key == $locale][0].value,
+      titleI18n[language == "id" || _key == "id"][0].value,
+      title,
+      ""
+    ),
     "slug": slug.current,
     mainImage,
-    tag,
+    "mainImageAlt": coalesce(
+      mainImageAlt[language == $locale || _key == $locale][0].value,
+      mainImageAlt[language == "id" || _key == "id"][0].value
+    ),
+    "tag": coalesce(
+      tagI18n[language == $locale || _key == $locale][0].value,
+      tagI18n[language == "id" || _key == "id"][0].value,
+      tag
+    ),
     publishedAt,
-    excerpt
+    "excerpt": coalesce(
+      metaDescriptionI18n[language == $locale || _key == $locale][0].value,
+      metaDescriptionI18n[language == "id" || _key == "id"][0].value,
+      excerptI18n[language == $locale || _key == $locale][0].value,
+      excerptI18n[language == "id" || _key == "id"][0].value,
+      excerpt
+    )
   }`,
 )
 

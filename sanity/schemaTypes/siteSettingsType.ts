@@ -1,5 +1,10 @@
 import { CogIcon } from '@sanity/icons/Cog'
-import { defineArrayMember, defineField, defineType } from 'sanity'
+import {
+  ALL_FIELDS_GROUP,
+  defineArrayMember,
+  defineField,
+  defineType,
+} from 'sanity'
 
 const localizedString = (id: string, en: string) => [
   {
@@ -43,26 +48,23 @@ export const siteSettingsType = defineType({
   title: 'Header, Footer & Contact Section',
   type: 'document',
   icon: CogIcon,
-  fieldsets: [
+  groups: [
+    {
+      ...ALL_FIELDS_GROUP,
+      hidden: true,
+    },
     {
       name: 'header',
       title: 'Header',
-      options: { collapsible: true, collapsed: false },
+      default: true,
     },
     {
       name: 'footer',
       title: 'Footer',
-      options: { collapsible: true, collapsed: true },
     },
     {
       name: 'contactSection',
-      title: 'Contact Section di Atas Footer',
-      options: { collapsible: true, collapsed: true },
-    },
-    {
-      name: 'legacy',
-      title: 'Field Lama',
-      options: { collapsible: true, collapsed: true },
+      title: 'Contact CTA',
     },
   ],
   fields: [
@@ -70,7 +72,7 @@ export const siteSettingsType = defineType({
       name: 'headerLogo',
       title: 'Logo Header',
       type: 'image',
-      fieldset: 'header',
+      group: 'header',
       options: { hotspot: true },
       validation: (rule) =>
         rule.warning('Tambahkan logo agar header tidak memakai aset bawaan.'),
@@ -79,7 +81,7 @@ export const siteSettingsType = defineType({
       name: 'headerLogoAlt',
       title: 'Alternative Text Logo',
       type: 'internationalizedArrayString',
-      fieldset: 'header',
+      group: 'header',
       validation: (rule) =>
         rule
           .min(2)
@@ -90,14 +92,14 @@ export const siteSettingsType = defineType({
       title: 'Menu Navigasi',
       description: 'Item dapat ditambah, dihapus, dan diurutkan.',
       type: 'array',
-      fieldset: 'header',
+      group: 'header',
       of: [defineArrayMember({ type: 'siteLink' })],
     }),
     defineField({
       name: 'headerContactLabel',
       title: 'Label Tombol Kontak',
       type: 'internationalizedArrayString',
-      fieldset: 'header',
+      group: 'header',
       validation: (rule) =>
         rule.min(2).warning('Lengkapi label Bahasa Indonesia dan English.'),
     }),
@@ -105,7 +107,7 @@ export const siteSettingsType = defineType({
       name: 'headerContactHref',
       title: 'Link Tombol Kontak',
       type: 'string',
-      fieldset: 'header',
+      group: 'header',
       description: 'Gunakan path internal seperti /contact atau URL https://...',
       validation: (rule) =>
         rule.custom((value) => {
@@ -120,21 +122,21 @@ export const siteSettingsType = defineType({
       name: 'companyName',
       title: 'Nama Perusahaan',
       type: 'string',
-      fieldset: 'footer',
+      group: 'footer',
       initialValue: 'REGATRON',
     }),
     defineField({
       name: 'footerLogo',
       title: 'Logo Footer',
       type: 'image',
-      fieldset: 'footer',
+      group: 'footer',
       options: { hotspot: true },
     }),
     defineField({
       name: 'footerLogoAlt',
       title: 'Alternative Text Logo Footer',
       type: 'internationalizedArrayString',
-      fieldset: 'footer',
+      group: 'footer',
       validation: (rule) =>
         rule
           .min(2)
@@ -144,7 +146,7 @@ export const siteSettingsType = defineType({
       name: 'footerDescription',
       title: 'Deskripsi Perusahaan',
       type: 'internationalizedArrayText',
-      fieldset: 'footer',
+      group: 'footer',
       validation: (rule) =>
         rule.min(2).warning('Lengkapi deskripsi Bahasa Indonesia dan English.'),
     }),
@@ -152,7 +154,7 @@ export const siteSettingsType = defineType({
       name: 'footerNavigationHeading',
       title: 'Judul Kolom Navigasi',
       type: 'internationalizedArrayString',
-      fieldset: 'footer',
+      group: 'footer',
       validation: (rule) =>
         rule.min(2).warning('Lengkapi judul Bahasa Indonesia dan English.'),
     }),
@@ -160,14 +162,14 @@ export const siteSettingsType = defineType({
       name: 'footerNavigationLinks',
       title: 'Link Navigasi Footer',
       type: 'array',
-      fieldset: 'footer',
+      group: 'footer',
       of: [defineArrayMember({ type: 'siteLink' })],
     }),
     defineField({
       name: 'footerLegalHeading',
       title: 'Judul Kolom Legal',
       type: 'internationalizedArrayString',
-      fieldset: 'footer',
+      group: 'footer',
       validation: (rule) =>
         rule.min(2).warning('Lengkapi judul Bahasa Indonesia dan English.'),
     }),
@@ -175,14 +177,14 @@ export const siteSettingsType = defineType({
       name: 'footerLegalLinks',
       title: 'Link Legal',
       type: 'array',
-      fieldset: 'footer',
+      group: 'footer',
       of: [defineArrayMember({ type: 'siteLink' })],
     }),
     defineField({
       name: 'footerSocialHeading',
       title: 'Judul Kolom Media Sosial',
       type: 'internationalizedArrayString',
-      fieldset: 'footer',
+      group: 'footer',
       validation: (rule) =>
         rule.min(2).warning('Lengkapi judul Bahasa Indonesia dan English.'),
     }),
@@ -190,14 +192,14 @@ export const siteSettingsType = defineType({
       name: 'footerSocialLinks',
       title: 'Link Media Sosial',
       type: 'array',
-      fieldset: 'footer',
+      group: 'footer',
       of: [defineArrayMember({ type: 'siteLink' })],
     }),
     defineField({
       name: 'footerCopyright',
       title: 'Copyright',
       type: 'internationalizedArrayString',
-      fieldset: 'footer',
+      group: 'footer',
       validation: (rule) =>
         rule.min(2).warning('Lengkapi copyright Bahasa Indonesia dan English.'),
     }),
@@ -205,7 +207,7 @@ export const siteSettingsType = defineType({
       name: 'footerTagline',
       title: 'Tagline',
       type: 'internationalizedArrayString',
-      fieldset: 'footer',
+      group: 'footer',
       validation: (rule) =>
         rule.min(2).warning('Lengkapi tagline Bahasa Indonesia dan English.'),
     }),
@@ -213,7 +215,7 @@ export const siteSettingsType = defineType({
       name: 'footerLocation',
       title: 'Lokasi',
       type: 'internationalizedArrayString',
-      fieldset: 'footer',
+      group: 'footer',
       validation: (rule) =>
         rule.min(2).warning('Lengkapi lokasi Bahasa Indonesia dan English.'),
     }),
@@ -221,7 +223,7 @@ export const siteSettingsType = defineType({
       name: 'contactSectionHeading',
       title: 'Judul',
       type: 'internationalizedArrayString',
-      fieldset: 'contactSection',
+      group: 'contactSection',
       validation: (rule) =>
         rule.min(2).warning('Lengkapi judul Bahasa Indonesia dan English.'),
     }),
@@ -229,7 +231,7 @@ export const siteSettingsType = defineType({
       name: 'contactSectionDescription',
       title: 'Deskripsi',
       type: 'internationalizedArrayText',
-      fieldset: 'contactSection',
+      group: 'contactSection',
       validation: (rule) =>
         rule.min(2).warning('Lengkapi deskripsi Bahasa Indonesia dan English.'),
     }),
@@ -237,7 +239,7 @@ export const siteSettingsType = defineType({
       name: 'contactSectionPrimaryLabel',
       title: 'Label Tombol Utama',
       type: 'internationalizedArrayString',
-      fieldset: 'contactSection',
+      group: 'contactSection',
       validation: (rule) =>
         rule.min(2).warning('Lengkapi label Bahasa Indonesia dan English.'),
     }),
@@ -245,7 +247,7 @@ export const siteSettingsType = defineType({
       name: 'contactSectionPrimaryHref',
       title: 'Link Tombol Utama',
       type: 'string',
-      fieldset: 'contactSection',
+      group: 'contactSection',
       description: 'Gunakan path internal seperti /contact atau URL https://...',
       validation: (rule) =>
         rule.custom((value) => {
@@ -260,7 +262,7 @@ export const siteSettingsType = defineType({
       name: 'contactSectionSecondaryLabel',
       title: 'Label Tombol Kedua',
       type: 'internationalizedArrayString',
-      fieldset: 'contactSection',
+      group: 'contactSection',
       validation: (rule) =>
         rule.min(2).warning('Lengkapi label Bahasa Indonesia dan English.'),
     }),
@@ -268,7 +270,7 @@ export const siteSettingsType = defineType({
       name: 'contactSectionSecondaryHref',
       title: 'Link Tombol Kedua',
       type: 'string',
-      fieldset: 'contactSection',
+      group: 'contactSection',
       description: 'Gunakan path internal seperti /contact atau URL https://...',
       validation: (rule) =>
         rule.custom((value) => {
@@ -283,13 +285,12 @@ export const siteSettingsType = defineType({
       name: 'heroHeading',
       title: 'Hero Heading (Deprecated)',
       type: 'string',
-      fieldset: 'legacy',
       description: 'Gunakan dokumen Homepage untuk mengelola banner.',
       deprecated: {
         reason: 'Digantikan oleh field bilingual pada dokumen Homepage.',
       },
       readOnly: true,
-      hidden: ({ value }) => value === undefined,
+      hidden: true,
       initialValue: undefined,
     }),
     defineField({
@@ -297,49 +298,45 @@ export const siteSettingsType = defineType({
       title: 'Hero Subheading (Deprecated)',
       type: 'text',
       rows: 3,
-      fieldset: 'legacy',
       deprecated: {
         reason: 'Digantikan oleh field bilingual pada dokumen Homepage.',
       },
       readOnly: true,
-      hidden: ({ value }) => value === undefined,
+      hidden: true,
       initialValue: undefined,
     }),
     defineField({
       name: 'aboutSection',
       title: 'Deskripsi Tentang Kami (Deprecated)',
       type: 'array',
-      fieldset: 'legacy',
       of: [defineArrayMember({ type: 'block' })],
       deprecated: {
         reason: 'Konten halaman About akan dikelola pada dokumen terpisah.',
       },
       readOnly: true,
-      hidden: ({ value }) => value === undefined,
+      hidden: true,
       initialValue: undefined,
     }),
     defineField({
       name: 'contactEmail',
       title: 'Email Kontak Lama (Deprecated)',
       type: 'string',
-      fieldset: 'legacy',
       deprecated: {
         reason: 'Gunakan link pada Footer atau Contact Section.',
       },
       readOnly: true,
-      hidden: ({ value }) => value === undefined,
+      hidden: true,
       initialValue: undefined,
     }),
     defineField({
       name: 'contactPhone',
       title: 'Nomor Telepon Lama (Deprecated)',
       type: 'string',
-      fieldset: 'legacy',
       deprecated: {
         reason: 'Gunakan link pada Footer atau Contact Section.',
       },
       readOnly: true,
-      hidden: ({ value }) => value === undefined,
+      hidden: true,
       initialValue: undefined,
     }),
   ],
@@ -368,8 +365,18 @@ export const siteSettingsType = defineType({
     ],
     footerLegalHeading: localizedString('Legal', 'Legal'),
     footerLegalLinks: [
-      siteLink('footer-privacy', 'Kebijakan Privasi', 'Privacy Policy', '#'),
-      siteLink('footer-terms', 'Syarat & Ketentuan', 'Terms & Conditions', '#'),
+      siteLink(
+        'footer-privacy',
+        'Kebijakan Privasi',
+        'Privacy Policy',
+        '/privacy-policy',
+      ),
+      siteLink(
+        'footer-terms',
+        'Syarat & Ketentuan',
+        'Terms & Conditions',
+        '/terms-and-conditions',
+      ),
       siteLink('footer-certifications', 'Sertifikasi ISO', 'ISO Certifications', '#'),
     ],
     footerSocialHeading: localizedString('Media Sosial', 'Social Media'),

@@ -25,7 +25,10 @@ export default async function NewsArchivePage({ params }: PageProps) {
   const dict = await getDictionary(locale as Locale)
   const t = dict.home.news
 
-  const { data } = await sanityFetch({ query: ALL_POSTS_QUERY })
+  const { data } = await sanityFetch({
+    query: ALL_POSTS_QUERY,
+    params: { locale },
+  })
   const posts = data as unknown as Post[]
 
   return (
@@ -40,7 +43,7 @@ export default async function NewsArchivePage({ params }: PageProps) {
               <ArrowLeft className="h-4 w-4" />
               {t.backToHome}
             </Link>
-            <h1 className="text-[40px] font-bold uppercase tracking-tight text-white md:text-5xl">
+            <h1 className="text-[40px] font-bold tracking-tight text-white md:text-5xl">
               {t.archiveTitle}
             </h1>
             <p className="mt-4 max-w-2xl text-lg text-white/60">{t.description}</p>

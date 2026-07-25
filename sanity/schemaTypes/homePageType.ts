@@ -1,5 +1,10 @@
 import { HomeIcon } from '@sanity/icons/Home'
-import { defineArrayMember, defineField, defineType } from 'sanity'
+import {
+  ALL_FIELDS_GROUP,
+  defineArrayMember,
+  defineField,
+  defineType,
+} from 'sanity'
 
 const localizedString = (id: string, en: string) => [
   {
@@ -36,31 +41,31 @@ export const homePageType = defineType({
   title: 'Homepage',
   type: 'document',
   icon: HomeIcon,
-  fieldsets: [
+  groups: [
     {
-      name: 'seo',
-      title: 'SEO Metadata',
-      options: { collapsible: true, collapsed: false },
+      ...ALL_FIELDS_GROUP,
+      hidden: true,
     },
     {
       name: 'hero',
       title: 'Homepage Banner',
-      options: { collapsible: true, collapsed: false },
+      default: true,
     },
     {
       name: 'problem',
-      title: 'Masalah yang Kami Selesaikan',
-      options: { collapsible: true, collapsed: true },
+      title: 'The Problem We Solve',
     },
     {
       name: 'services',
-      title: 'Preview Layanan',
-      options: { collapsible: true, collapsed: true },
+      title: 'What Sets Us Apart',
     },
     {
       name: 'catalog',
-      title: 'Preview Katalog',
-      options: { collapsible: true, collapsed: true },
+      title: 'Our Products',
+    },
+    {
+      name: 'seo',
+      title: 'SEO Metadata',
     },
   ],
   fields: [
@@ -70,7 +75,7 @@ export const homePageType = defineType({
       description:
         'Judul yang tampil di tab browser dan hasil pencarian. Rekomendasi maksimal 60 karakter.',
       type: 'internationalizedArrayString',
-      fieldset: 'seo',
+      group: 'seo',
       validation: (rule) =>
         rule.min(2).warning('Lengkapi Meta Title Bahasa Indonesia dan English.'),
     }),
@@ -80,7 +85,7 @@ export const homePageType = defineType({
       description:
         'Ringkasan halaman untuk hasil pencarian. Rekomendasi 120–160 karakter.',
       type: 'internationalizedArrayText',
-      fieldset: 'seo',
+      group: 'seo',
       validation: (rule) =>
         rule
           .min(2)
@@ -91,7 +96,7 @@ export const homePageType = defineType({
       title: 'Judul Baris Pertama',
       description: 'Kalimat utama sebelum teks berwarna biru muda.',
       type: 'internationalizedArrayString',
-      fieldset: 'hero',
+      group: 'hero',
       validation: (rule) => rule.required().min(2),
     }),
     defineField({
@@ -99,21 +104,21 @@ export const homePageType = defineType({
       title: 'Judul Baris Kedua',
       description: 'Bagian judul yang ditampilkan dengan aksen biru muda.',
       type: 'internationalizedArrayString',
-      fieldset: 'hero',
+      group: 'hero',
       validation: (rule) => rule.required().min(2),
     }),
     defineField({
       name: 'heroDescription',
       title: 'Deskripsi',
       type: 'internationalizedArrayText',
-      fieldset: 'hero',
+      group: 'hero',
       validation: (rule) => rule.required().min(2),
     }),
     defineField({
       name: 'heroImage',
       title: 'Gambar Banner',
       type: 'image',
-      fieldset: 'hero',
+      group: 'hero',
       options: { hotspot: true },
       validation: (rule) => rule.required(),
     }),
@@ -122,21 +127,21 @@ export const homePageType = defineType({
       title: 'Alternative Text Gambar',
       description: 'Jelaskan isi gambar untuk aksesibilitas dan SEO.',
       type: 'internationalizedArrayString',
-      fieldset: 'hero',
+      group: 'hero',
       validation: (rule) => rule.required().min(2),
     }),
     defineField({
       name: 'heroPrimaryCtaLabel',
       title: 'Label Tombol Utama',
       type: 'internationalizedArrayString',
-      fieldset: 'hero',
+      group: 'hero',
       validation: (rule) => rule.required().min(2),
     }),
     defineField({
       name: 'heroPrimaryCtaHref',
       title: 'Link Tombol Utama',
       type: 'string',
-      fieldset: 'hero',
+      group: 'hero',
       description:
         'Gunakan path internal seperti /contact atau URL lengkap https://...',
       validation: (rule) =>
@@ -150,14 +155,14 @@ export const homePageType = defineType({
       name: 'heroSecondaryCtaLabel',
       title: 'Label Tombol Kedua',
       type: 'internationalizedArrayString',
-      fieldset: 'hero',
+      group: 'hero',
       validation: (rule) => rule.required().min(2),
     }),
     defineField({
       name: 'heroSecondaryCtaHref',
       title: 'Link Tombol Kedua',
       type: 'string',
-      fieldset: 'hero',
+      group: 'hero',
       description:
         'Gunakan path internal seperti /services atau URL lengkap https://...',
       validation: (rule) =>
@@ -171,7 +176,7 @@ export const homePageType = defineType({
       name: 'problemHeading',
       title: 'Judul',
       type: 'internationalizedArrayString',
-      fieldset: 'problem',
+      group: 'problem',
       validation: (rule) =>
         rule.min(2).warning('Lengkapi Bahasa Indonesia dan English.'),
     }),
@@ -179,7 +184,7 @@ export const homePageType = defineType({
       name: 'problemDescription',
       title: 'Deskripsi',
       type: 'internationalizedArrayText',
-      fieldset: 'problem',
+      group: 'problem',
       validation: (rule) =>
         rule.min(2).warning('Lengkapi Bahasa Indonesia dan English.'),
     }),
@@ -187,7 +192,7 @@ export const homePageType = defineType({
       name: 'servicesHeading',
       title: 'Judul',
       type: 'internationalizedArrayString',
-      fieldset: 'services',
+      group: 'services',
       validation: (rule) =>
         rule.min(2).warning('Lengkapi Bahasa Indonesia dan English.'),
     }),
@@ -195,7 +200,7 @@ export const homePageType = defineType({
       name: 'servicesDescription',
       title: 'Deskripsi',
       type: 'internationalizedArrayText',
-      fieldset: 'services',
+      group: 'services',
       validation: (rule) =>
         rule.min(2).warning('Lengkapi Bahasa Indonesia dan English.'),
     }),
@@ -204,7 +209,7 @@ export const homePageType = defineType({
       title: 'Daftar Layanan',
       description: 'Urutan item menentukan posisi kartu pada homepage.',
       type: 'array',
-      fieldset: 'services',
+      group: 'services',
       of: [defineArrayMember({ type: 'homeServiceItem' })],
       validation: (rule) =>
         rule.max(4).warning('Desain homepage menampilkan maksimal 4 layanan.'),
@@ -213,7 +218,7 @@ export const homePageType = defineType({
       name: 'catalogHeading',
       title: 'Judul',
       type: 'internationalizedArrayString',
-      fieldset: 'catalog',
+      group: 'catalog',
       validation: (rule) =>
         rule.min(2).warning('Lengkapi Bahasa Indonesia dan English.'),
     }),
@@ -221,7 +226,7 @@ export const homePageType = defineType({
       name: 'catalogDescription',
       title: 'Deskripsi',
       type: 'internationalizedArrayText',
-      fieldset: 'catalog',
+      group: 'catalog',
       validation: (rule) =>
         rule.min(2).warning('Lengkapi Bahasa Indonesia dan English.'),
     }),
@@ -230,7 +235,7 @@ export const homePageType = defineType({
       title: 'Item Preview Katalog',
       description: 'Urutan item menentukan posisi kartu pada homepage.',
       type: 'array',
-      fieldset: 'catalog',
+      group: 'catalog',
       of: [defineArrayMember({ type: 'homeCatalogItem' })],
       validation: (rule) =>
         rule.max(4).warning('Desain homepage menampilkan maksimal 4 item.'),

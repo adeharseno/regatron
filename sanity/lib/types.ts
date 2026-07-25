@@ -47,6 +47,45 @@ export interface SiteSettingsData {
   contactSection?: SiteContactSectionContent
 }
 
+export interface ContactInquiryOption {
+  _key: string
+  label?: string
+}
+
+export interface ContactFormContent {
+  fullNameLabel?: string
+  companyLabel?: string
+  phoneLabel?: string
+  emailLabel?: string
+  inquiryTypeLabel?: string
+  inquiryOptions?: ContactInquiryOption[]
+  messageLabel?: string
+  submitLabel?: string
+  submittingLabel?: string
+  successMessage?: string
+  errorMessage?: string
+}
+
+export interface ContactPageContent {
+  heading?: string
+  description?: string
+  addressLabel?: string
+  address?: string
+  phoneLabel?: string
+  phone?: string
+  emailLabel?: string
+  email?: string
+  form?: ContactFormContent
+}
+
+export interface LegalPageContent {
+  title?: string
+  body?: string
+  lastUpdated?: string
+  metaTitle?: string
+  metaDescription?: string
+}
+
 export interface HomeHeroContent {
   titleLine1?: string
   titleLine2?: string
@@ -110,6 +149,7 @@ export interface Post {
   title: string
   slug: string
   mainImage?: SanityImageSource
+  mainImageAlt?: string
   tag?: string
   publishedAt?: string
   excerpt?: string
@@ -117,4 +157,7 @@ export interface Post {
 
 export interface PostWithBody extends Post {
   body?: Record<string, unknown>[] | null
+  metaTitle?: string
+  metaDescription?: string
+  metaKeywords?: string
 }

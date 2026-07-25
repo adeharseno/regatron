@@ -5,7 +5,7 @@
  */
 
 import {visionTool} from '@sanity/vision'
-import {defineConfig} from 'sanity'
+import {defineConfig, type Template} from 'sanity'
 import { structureTool } from "sanity/structure";
 import { internationalizedArray } from 'sanity-plugin-internationalized-array'
 
@@ -14,6 +14,62 @@ import {apiVersion, dataset, projectId} from './sanity/env'
 import {schema} from './sanity/schemaTypes'
 import {structure} from './sanity/structure'
 import { MigrateHomePageLocalizationAction } from './sanity/actions/migrateHomePageLocalization'
+import {
+  legalPages,
+  localizedStringValue,
+  localizedTextValue,
+} from './lib/legal-pages'
+
+const legalPageTemplates: Template[] = [
+  {
+    id: 'privacyPolicyPageTemplate',
+    title: 'Privacy Policy',
+    schemaType: 'legalPage',
+    value: {
+      title: localizedStringValue(
+        legalPages.privacyPolicy.id.title,
+        legalPages.privacyPolicy.en.title,
+      ),
+      body: localizedTextValue(
+        legalPages.privacyPolicy.id.body,
+        legalPages.privacyPolicy.en.body,
+      ),
+      lastUpdated: legalPages.privacyPolicy.lastUpdated,
+      metaTitle: localizedStringValue(
+        legalPages.privacyPolicy.id.metaTitle,
+        legalPages.privacyPolicy.en.metaTitle,
+      ),
+      metaDescription: localizedTextValue(
+        legalPages.privacyPolicy.id.metaDescription,
+        legalPages.privacyPolicy.en.metaDescription,
+      ),
+    },
+  },
+  {
+    id: 'termsConditionsPageTemplate',
+    title: 'Terms & Conditions',
+    schemaType: 'legalPage',
+    value: {
+      title: localizedStringValue(
+        legalPages.termsConditions.id.title,
+        legalPages.termsConditions.en.title,
+      ),
+      body: localizedTextValue(
+        legalPages.termsConditions.id.body,
+        legalPages.termsConditions.en.body,
+      ),
+      lastUpdated: legalPages.termsConditions.lastUpdated,
+      metaTitle: localizedStringValue(
+        legalPages.termsConditions.id.metaTitle,
+        legalPages.termsConditions.en.metaTitle,
+      ),
+      metaDescription: localizedTextValue(
+        legalPages.termsConditions.id.metaDescription,
+        legalPages.termsConditions.en.metaDescription,
+      ),
+    },
+  },
+]
 
 export default defineConfig({
   basePath: '/studio',
@@ -21,10 +77,20 @@ export default defineConfig({
   dataset,
   // Add and edit the content schema in the './sanity/schemaTypes' folder
   schema,
+  templates: (previous: Template[]) => [...previous, ...legalPageTemplates],
   document: {
     newDocumentOptions: (previous) =>
       previous.filter(
-        (template) => !['homePage', 'siteSettings'].includes(template.templateId),
+        (template) =>
+          ![
+            'homePage',
+            'siteSettings',
+            'contactPage',
+            'contactSubmission',
+            'legalPage',
+            'privacyPolicyPageTemplate',
+            'termsConditionsPageTemplate',
+          ].includes(template.templateId),
       ),
     actions: (previous, context) =>
       context.schemaType === 'homePage'
@@ -38,7 +104,7 @@ export default defineConfig({
         { id: 'en', title: 'English' },
       ],
       defaultLanguages: ['id', 'en'],
-      fieldTypes: ['string', 'text'],
+      fieldTypes: ['string', 'text', 'postBody'],
       languageDisplay: 'titleAndCode',
     }),
     structureTool({structure}),

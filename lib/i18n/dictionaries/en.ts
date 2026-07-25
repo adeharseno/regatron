@@ -292,6 +292,11 @@ const en = {
       ],
       message: "Message",
       submit: "Send Message",
+      submitting: "Sending...",
+      successMessage:
+        "Your message has been sent. Our team will contact you shortly.",
+      errorMessage:
+        "Your message could not be sent. Check your details or try again.",
     },
   },
 };

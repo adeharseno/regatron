@@ -8,7 +8,10 @@ import type { Dictionary } from '@/lib/i18n/dictionaries'
 
 export async function News({ dict, locale }: { dict: Dictionary; locale: Locale }) {
   const t = dict.home.news
-  const { data } = await sanityFetch({ query: LATEST_POSTS_QUERY })
+  const { data } = await sanityFetch({
+    query: LATEST_POSTS_QUERY,
+    params: { locale },
+  })
   const posts = data as unknown as Post[]
 
   // Don't render the section if there are no posts

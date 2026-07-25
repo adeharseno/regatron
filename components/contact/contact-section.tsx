@@ -1,42 +1,57 @@
 import { MapPin, AtSign, Phone } from 'lucide-react'
 import type { Dictionary } from '@/lib/i18n/dictionaries'
+import { ContactForm, type ContactFormCopy } from './contact-form'
+import type { ContactPageContent } from '@/sanity/lib/types'
 
-function Field({
-  id,
-  label,
-  type = 'text',
+export function ContactSection({
+  dict,
+  locale,
+  content,
 }: {
-  id: string
-  label: string
-  type?: string
+  dict: Dictionary
+  locale: string
+  content?: ContactPageContent | null
 }) {
-  return (
-    <div className="relative">
-      <input
-        id={id}
-        name={id}
-        type={type}
-        placeholder=" "
-        className="peer w-full border-0 border-b border-outline-variant bg-transparent px-0 py-3 outline-none transition-all focus:border-primary"
-      />
-      <label
-        htmlFor={id}
-        className="pointer-events-none absolute left-0 top-3 text-sm text-outline transition-all peer-focus:-top-3.5 peer-focus:text-[10px] peer-focus:font-bold peer-focus:uppercase peer-focus:tracking-widest peer-focus:text-primary peer-[:not(:placeholder-shown)]:-top-3.5 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:font-bold peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-widest"
-      >
-        {label}
-      </label>
-    </div>
-  )
-}
-
-export function ContactSection({ dict }: { dict: Dictionary }) {
   const t = dict.contact
 
   const details = [
-    { Icon: MapPin, label: t.addressLabel, value: t.address },
-    { Icon: AtSign, label: t.emailLabel, value: t.email },
-    { Icon: Phone, label: t.phoneLabel, value: t.phone },
+    {
+      Icon: MapPin,
+      label: content?.addressLabel || t.addressLabel,
+      value: content?.address || t.address,
+    },
+    {
+      Icon: AtSign,
+      label: content?.emailLabel || t.emailLabel,
+      value: content?.email || t.email,
+    },
+    {
+      Icon: Phone,
+      label: content?.phoneLabel || t.phoneLabel,
+      value: content?.phone || t.phone,
+    },
   ]
+
+  const cmsOptions =
+    content?.form?.inquiryOptions
+      ?.map((option) => option.label)
+      .filter((label): label is string => Boolean(label)) || []
+
+  const formCopy: ContactFormCopy = {
+    fullName: content?.form?.fullNameLabel || t.form.fullName,
+    company: content?.form?.companyLabel || t.form.company,
+    phone: content?.form?.phoneLabel || t.form.phone,
+    email: content?.form?.emailLabel || t.form.email,
+    inquiryTypeLabel:
+      content?.form?.inquiryTypeLabel || t.form.inquiryTypeLabel,
+    inquiryOptions: cmsOptions.length ? cmsOptions : t.form.inquiryOptions,
+    message: content?.form?.messageLabel || t.form.message,
+    submit: content?.form?.submitLabel || t.form.submit,
+    submitting: content?.form?.submittingLabel || t.form.submitting,
+    successMessage:
+      content?.form?.successMessage || t.form.successMessage,
+    errorMessage: content?.form?.errorMessage || t.form.errorMessage,
+  }
 
   return (
     <section className="overflow-hidden bg-white py-24 mt-20">
@@ -45,9 +60,11 @@ export function ContactSection({ dict }: { dict: Dictionary }) {
           <div className="space-y-12 lg:col-span-5">
             <div className="max-w-md">
               <h1 className="mb-6 text-[40px] font-bold leading-none tracking-tight text-on-background">
-                {t.heading}
+                {content?.heading || t.heading}
               </h1>
-              <p className="text-on-surface-variant">{t.description}</p>
+              <p className="text-on-surface-variant">
+                {content?.description || t.description}
+              </p>
             </div>
             <div className="space-y-10">
               {details.map(({ Icon, label, value }) => (
@@ -69,63 +86,7 @@ export function ContactSection({ dict }: { dict: Dictionary }) {
           <div className="lg:col-span-7 lg:pl-12">
             <div className="relative border border-outline-variant bg-surface-container-lowest p-8 shadow-2xl md:p-14">
               <div className="absolute -right-6 -top-6 -z-10 h-24 w-24 bg-primary/5" />
-              <form className="space-y-10">
-                <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
-                  <Field id="fullName" label={t.form.fullName} />
-                  <Field id="company" label={t.form.company} />
-                </div>
-                <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
-                  <Field id="phone" label={t.form.phone} type="tel" />
-                  <Field id="email" label={t.form.email} type="email" />
-                </div>
-
-                <div className="relative">
-                  <label
-                    htmlFor="inquiryType"
-                    className="mb-3 block text-[10px] font-bold uppercase tracking-widest text-outline"
-                  >
-                    {t.form.inquiryTypeLabel}
-                  </label>
-                  <select
-                    id="inquiryType"
-                    name="inquiryType"
-                    defaultValue=""
-                    className="w-full border-0 border-b border-outline-variant bg-transparent py-3 text-on-surface outline-none transition-all focus:border-primary"
-                  >
-                    <option value="" disabled>
-                      —
-                    </option>
-                    {t.form.inquiryOptions.map((option) => (
-                      <option key={option} value={option}>
-                        {option}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div className="relative">
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={4}
-                    placeholder=" "
-                    className="peer w-full resize-none border-0 border-b border-outline-variant bg-transparent px-0 py-3 outline-none transition-all focus:border-primary"
-                  />
-                  <label
-                    htmlFor="message"
-                    className="pointer-events-none absolute left-0 top-3 text-sm text-outline transition-all peer-focus:-top-3.5 peer-focus:text-[10px] peer-focus:font-bold peer-focus:uppercase peer-focus:tracking-widest peer-focus:text-primary peer-[:not(:placeholder-shown)]:-top-3.5 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:font-bold peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-widest"
-                  >
-                    {t.form.message}
-                  </label>
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full cursor-pointer bg-primary py-5 text-sm font-bold uppercase tracking-[0.2em] text-on-primary shadow-lg transition-all hover:bg-primary-container active:scale-95"
-                >
-                  {t.form.submit}
-                </button>
-              </form>
+              <ContactForm locale={locale} copy={formCopy} />
             </div>
           </div>
         </div>

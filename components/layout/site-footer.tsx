@@ -33,7 +33,7 @@ export function SiteFooter({
   const fallbackLegal: SiteLink[] = dict.footer.legalLinks.map((label, index) => ({
     _key: `fallback-legal-${index}`,
     label,
-    href: '#',
+    href: ['/privacy-policy', '/terms-and-conditions', '#'][index],
   }))
   const fallbackSocial: SiteLink[] = dict.footer.socials.map((label, index) => ({
     _key: `fallback-social-${index}`,

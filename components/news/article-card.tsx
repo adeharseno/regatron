@@ -9,6 +9,7 @@ export interface ArticleCardData {
   title: string
   slug: string
   mainImage?: SanityImageSource
+  mainImageAlt?: string
   tag?: string
   publishedAt?: string
   excerpt?: string
@@ -20,7 +21,7 @@ export function ArticleCard({ article, locale }: { article: ArticleCardData; loc
     : '/placeholder.svg'
 
   const formattedDate = article.publishedAt
-    ? new Date(article.publishedAt).toLocaleDateString('en-US', {
+    ? new Date(article.publishedAt).toLocaleDateString(locale === 'id' ? 'id-ID' : 'en-US', {
         month: 'short',
         day: '2-digit',
         year: 'numeric',
@@ -35,7 +36,7 @@ export function ArticleCard({ article, locale }: { article: ArticleCardData; loc
         <div className="mb-6 aspect-[4/5] overflow-hidden border border-outline-variant/30 bg-surface">
           <img
             src={imgSrc}
-            alt={article.title}
+            alt={article.mainImageAlt || article.title}
             className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
         </div>
@@ -66,7 +67,7 @@ export function ArticleCard({ article, locale }: { article: ArticleCardData; loc
         href={href}
         className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest transition-colors hover:text-primary"
       >
-        <span>Read More</span>
+        <span>{locale === 'id' ? 'Baca Selengkapnya' : 'Read More'}</span>
         <ArrowRight className="h-4 w-4" />
       </Link>
     </article>

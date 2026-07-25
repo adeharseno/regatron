@@ -295,6 +295,11 @@ const id: Dictionary = {
       ],
       message: "Pesan",
       submit: "Kirim Pesan",
+      submitting: "Mengirim...",
+      successMessage:
+        "Pesan Anda berhasil dikirim. Tim kami akan segera menghubungi Anda.",
+      errorMessage:
+        "Pesan belum dapat dikirim. Periksa data Anda atau coba lagi.",
     },
   },
 };

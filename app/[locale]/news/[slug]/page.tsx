@@ -27,15 +27,22 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!isValidLocale(locale)) return {}
   const { data } = await sanityFetch({
     query: POST_BY_SLUG_QUERY,
-    params: { slug },
+    params: { slug, locale },
+    stega: false,
   })
   const post = data as unknown as PostWithBody | null
 
   if (!post) return { title: 'Article Not Found' }
 
+  const keywords = post.metaKeywords
+    ?.split(',')
+    .map((keyword) => keyword.trim())
+    .filter(Boolean)
+
   return {
-    title: `${post.title} — REGATRON News`,
-    description: post.excerpt,
+    title: post.metaTitle || `${post.title} — REGATRON News`,
+    description: post.metaDescription || post.excerpt,
+    keywords: keywords?.length ? keywords : undefined,
     alternates: {
       canonical: `/${locale}/news/${slug}`,
       languages: {
@@ -46,8 +53,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
     openGraph: post.mainImage
       ? {
-          title: post.title,
-          description: post.excerpt,
+          title: post.metaTitle || post.title,
+          description: post.metaDescription || post.excerpt,
           url: `/${locale}/news/${slug}`,
           type: 'article',
           images: [urlFor(post.mainImage).width(1200).height(630).url()],
@@ -63,7 +70,7 @@ export default async function NewsArticlePage({ params }: PageProps) {
 
   const { data } = await sanityFetch({
     query: POST_BY_SLUG_QUERY,
-    params: { slug },
+    params: { slug, locale },
   })
   const post = data as unknown as PostWithBody | null
 
@@ -76,7 +83,7 @@ export default async function NewsArticlePage({ params }: PageProps) {
     : null
 
   const formattedDate = post.publishedAt
-    ? new Date(post.publishedAt).toLocaleDateString('en-US', {
+    ? new Date(post.publishedAt).toLocaleDateString(locale === 'id' ? 'id-ID' : 'en-US', {
         weekday: 'long',
         day: '2-digit',
         month: 'long',
@@ -133,7 +140,7 @@ export default async function NewsArticlePage({ params }: PageProps) {
               <div className="overflow-hidden border border-outline-variant/20">
                 <img
                   src={heroImgSrc}
-                  alt={post.title}
+                  alt={post.mainImageAlt || post.title}
                   className="w-full object-cover"
                   style={{ maxHeight: '480px' }}
                 />
@@ -149,7 +156,9 @@ export default async function NewsArticlePage({ params }: PageProps) {
               {post.body && post.body.length > 0 ? (
                 <PortableText value={post.body as unknown as PortableTextBlock[]} />
               ) : (
-                <p className="italic text-on-surface-variant">No content available.</p>
+                <p className="italic text-on-surface-variant">
+                  {locale === 'id' ? 'Konten belum tersedia.' : 'No content available.'}
+                </p>
               )}
             </div>
 
