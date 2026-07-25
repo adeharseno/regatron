@@ -6,8 +6,6 @@ import { PortableText, type PortableTextBlock } from '@portabletext/react'
 import { sanityFetch } from '@/sanity/lib/live'
 import { ALL_SLUGS_QUERY, POST_BY_SLUG_QUERY } from '@/sanity/lib/queries'
 import { urlFor } from '@/sanity/lib/image'
-import { Navbar } from '@/components/layout/navbar'
-import { SiteFooter } from '@/components/layout/site-footer'
 import type { Post, PostWithBody } from '@/sanity/lib/types'
 import { isValidLocale, locales, type Locale } from '@/lib/i18n/config'
 import { getDictionary } from '@/lib/i18n/dictionaries'
@@ -89,9 +87,7 @@ export default async function NewsArticlePage({ params }: PageProps) {
   const newsHref = `/${locale}/news`
 
   return (
-    <>
-      <Navbar dict={dict} />
-      <main>
+    <main>
         {/* Hero Banner */}
         <section className="pb-16 pt-32">
           <div className="mx-auto max-w-360 px-6 md:px-margin-desktop">
@@ -170,8 +166,6 @@ export default async function NewsArticlePage({ params }: PageProps) {
             </Link>
           </div>
         </section>
-      </main>
-      <SiteFooter dict={dict} locale={locale as Locale} />
-    </>
+    </main>
   )
 }

@@ -4,8 +4,6 @@ import { notFound } from 'next/navigation'
 import { sanityFetch } from '@/sanity/lib/live'
 import { ALL_POSTS_QUERY } from '@/sanity/lib/queries'
 import { ArticleCard } from '@/components/news/article-card'
-import { Navbar } from '@/components/layout/navbar'
-import { SiteFooter } from '@/components/layout/site-footer'
 import type { Post } from '@/sanity/lib/types'
 import { isValidLocale, type Locale } from '@/lib/i18n/config'
 import { getDictionary } from '@/lib/i18n/dictionaries'
@@ -31,9 +29,7 @@ export default async function NewsArchivePage({ params }: PageProps) {
   const posts = data as unknown as Post[]
 
   return (
-    <>
-      <Navbar dict={dict} />
-      <main>
+    <main>
         {/* Hero Banner */}
         <section className="bg-navy pb-20 pt-32">
           <div className="mx-auto max-w-360 px-6 md:px-margin-desktop">
@@ -67,8 +63,6 @@ export default async function NewsArchivePage({ params }: PageProps) {
             )}
           </div>
         </section>
-      </main>
-      <SiteFooter dict={dict} locale={locale as Locale} />
-    </>
+    </main>
   )
 }

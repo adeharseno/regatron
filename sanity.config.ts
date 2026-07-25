@@ -23,7 +23,9 @@ export default defineConfig({
   schema,
   document: {
     newDocumentOptions: (previous) =>
-      previous.filter((template) => template.templateId !== 'homePage'),
+      previous.filter(
+        (template) => !['homePage', 'siteSettings'].includes(template.templateId),
+      ),
     actions: (previous, context) =>
       context.schemaType === 'homePage'
         ? [MigrateHomePageLocalizationAction, ...previous]

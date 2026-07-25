@@ -1,8 +1,6 @@
 import { notFound } from "next/navigation";
 import { CatalogGrid } from "@/components/catalog/catalog-grid";
 import { CatalogHero } from "@/components/catalog/catalog-hero";
-import { Navbar } from "@/components/layout/navbar";
-import { SiteFooter } from "@/components/layout/site-footer";
 import { CtaBanner } from "@/components/shared/cta-banner";
 import { isValidLocale, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
@@ -26,19 +24,16 @@ export default async function CatalogPage({ params }: PageProps) {
   const items = getCatalogItems();
 
   return (
-    <>
-      <Navbar dict={dict} />
-      <main>
-        <CatalogHero dict={dict} />
-        <CatalogGrid dict={dict} items={items} locale={locale as Locale} />
-        <CtaBanner
-          heading={dict.ctaBanner.heading}
-          description={dict.ctaBanner.description}
-          primaryLabel={dict.ctaBanner.primary}
-          secondaryLabel={dict.ctaBanner.secondary}
-        />
-      </main>
-      <SiteFooter dict={dict} locale={locale as Locale} />
-    </>
+    <main>
+      <CatalogHero dict={dict} />
+      <CatalogGrid dict={dict} items={items} locale={locale as Locale} />
+      <CtaBanner
+        locale={locale as Locale}
+        heading={dict.ctaBanner.heading}
+        description={dict.ctaBanner.description}
+        primaryLabel={dict.ctaBanner.primary}
+        secondaryLabel={dict.ctaBanner.secondary}
+      />
+    </main>
   );
 }

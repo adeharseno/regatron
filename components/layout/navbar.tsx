@@ -2,33 +2,69 @@
 
 import { useCallback, useEffect, useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
+import Image from 'next/image'
 import Link from 'next/link'
+import { stegaClean } from '@sanity/client/stega'
 import { ArrowUpRight, Menu, X } from 'lucide-react'
 import type { Locale } from '@/lib/i18n/config'
 import type { Dictionary } from '@/lib/i18n/dictionaries'
+import type { SiteHeaderContent } from '@/sanity/lib/types'
+import { urlFor } from '@/sanity/lib/image'
 
-export function Navbar({ dict }: { dict: Dictionary }) {
+function localizedHref(href: string, locale: Locale) {
+  const cleanHref = stegaClean(href)
+  if (!cleanHref.startsWith('/') || cleanHref.startsWith(`/${locale}`)) {
+    return cleanHref
+  }
+
+  return `/${locale}${cleanHref === '/' ? '' : cleanHref}`
+}
+
+function isActiveHref(href: string, currentPath: string) {
+  const cleanHref = stegaClean(href)
+  if (!cleanHref.startsWith('/')) return false
+  if (cleanHref === '/') return currentPath === '/'
+  return currentPath === cleanHref || currentPath.startsWith(`${cleanHref}/`)
+}
+
+export function Navbar({
+  dict,
+  content,
+}: {
+  dict: Dictionary
+  content?: SiteHeaderContent
+}) {
   const pathname = usePathname()
   const router = useRouter()
 
   const segments = pathname.split('/')
   const locale = (segments[1] ?? 'id') as Locale
   const restOfPath = '/' + segments.slice(2).join('/')
-  const isAboutPage = restOfPath === '/about'
-
-  const isServicesPage = restOfPath === '/services'
-  const isCatalogPage = restOfPath === '/catalog'
-  const isNewsPage = restOfPath === '/news' || restOfPath.startsWith('/news/')
-
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
-  const navigation = [
-    { label: dict.nav.aboutUs, href: `/${locale}/about`, active: isAboutPage },
-    { label: dict.nav.services, href: `/${locale}/services`, active: isServicesPage },
-    { label: dict.nav.catalog, href: `/${locale}/catalog`, active: isCatalogPage },
-    { label: dict.nav.news, href: `/${locale}/news`, active: isNewsPage },
+  const fallbackNavigation = [
+    { _key: 'fallback-about', label: dict.nav.aboutUs, href: '/about' },
+    { _key: 'fallback-services', label: dict.nav.services, href: '/services' },
+    { _key: 'fallback-catalog', label: dict.nav.catalog, href: '/catalog' },
+    { _key: 'fallback-news', label: dict.nav.news, href: '/news' },
   ]
+  const navigationItems = Array.isArray(content?.navigation)
+    ? content.navigation
+    : fallbackNavigation
+  const navigation = navigationItems
+    .filter((item) => item.label && item.href)
+    .map((item) => ({
+      ...item,
+      href: localizedHref(item.href || '#', locale),
+      active: isActiveHref(item.href || '#', restOfPath),
+    }))
+  const contactLabel = content?.contactLabel || dict.nav.contactCta
+  const contactHref = localizedHref(content?.contactHref || '/contact', locale)
+  const logoUrl = content?.logo
+    ? urlFor(content.logo).width(450).height(120).fit('max').url()
+    : '/images/logo.png'
+  const logoAlt = content?.logoAlt || 'REGATRON'
 
   const switchLocale = useCallback(
     (target: Locale) => {
@@ -84,54 +120,30 @@ export function Navbar({ dict }: { dict: Dictionary }) {
     >
       <div className="mx-auto flex h-full max-w-[1440px] items-center justify-between px-6 md:px-margin-desktop">
         <Link href={`/${locale}`} className="flex w-40 items-center md:w-56">
-          <img
-            src="/images/logo.png"
-            alt="REGATRON industrial e-waste processing facility"
-            className="h-full w-full object-cover"
+          <Image
+            src={logoUrl}
+            alt={logoAlt}
+            width={450}
+            height={120}
+            priority
+            className="h-auto w-full object-contain"
           />
         </Link>
 
         <div className="hidden items-center gap-10 md:flex">
-          <Link
-            href={`/${locale}/about`}
-            className={
-              isAboutPage
-                ? 'border-b-2 border-primary pb-1 text-sm font-bold tracking-wider text-primary transition-colors'
-                : 'text-sm font-medium tracking-wider text-secondary transition-colors hover:text-primary'
-            }
-          >
-            {dict.nav.aboutUs}
-          </Link>
-          <Link
-            href={`/${locale}/services`}
-            className={
-              isServicesPage
-                ? 'border-b-2 border-primary pb-1 text-sm font-bold tracking-wider text-primary transition-colors'
-                : 'text-sm font-medium tracking-wider text-secondary transition-colors hover:text-primary'
-            }
-          >
-            {dict.nav.services}
-          </Link>
-          <Link
-            href={`/${locale}/catalog`}
-            className={
-              isCatalogPage
-                ? 'border-b-2 border-primary pb-1 text-sm font-bold tracking-wider text-primary transition-colors'
-                : 'text-sm font-medium tracking-wider text-secondary transition-colors hover:text-primary'
-            }
-          >
-            {dict.nav.catalog}
-          </Link>
-          <Link
-            href={`/${locale}/news`}
-            className={
-              isNewsPage
-                ? 'border-b-2 border-primary pb-1 text-sm font-bold tracking-wider text-primary transition-colors'
-                : 'text-sm font-medium tracking-wider text-secondary transition-colors hover:text-primary'
-            }
-          >
-            {dict.nav.news}
-          </Link>
+          {navigation.map((item) => (
+            <Link
+              key={item._key}
+              href={item.href}
+              className={
+                item.active
+                  ? 'border-b-2 border-primary pb-1 text-sm font-bold tracking-wider text-primary transition-colors'
+                  : 'text-sm font-medium tracking-wider text-secondary transition-colors hover:text-primary'
+              }
+            >
+              {item.label}
+            </Link>
+          ))}
         </div>
 
         <div className="hidden items-center gap-6 md:flex">
@@ -159,10 +171,10 @@ export function Navbar({ dict }: { dict: Dictionary }) {
             </button>
           </div>
           <Link
-            href={`/${locale}/contact`}
+            href={contactHref}
             className="hidden cursor-pointer bg-primary px-5 py-3 text-xs font-bold tracking-wider text-on-primary transition-transform active:scale-95 md:block"
           >
-            {dict.nav.contactCta}
+            {contactLabel}
           </Link>
         </div>
 
@@ -202,7 +214,13 @@ export function Navbar({ dict }: { dict: Dictionary }) {
             onClick={() => setMobileMenuOpen(false)}
             className="flex w-40 items-center"
           >
-            <img src="/images/logo.png" alt="REGATRON" className="h-full w-full object-cover" />
+            <Image
+              src={logoUrl}
+              alt={logoAlt}
+              width={450}
+              height={120}
+              className="h-auto w-full object-contain"
+            />
           </Link>
           <button
             type="button"
@@ -218,7 +236,7 @@ export function Navbar({ dict }: { dict: Dictionary }) {
           <nav className="flex flex-col" aria-label="Mobile navigation">
             {navigation.map((item, index) => (
               <Link
-                key={item.href}
+                key={item._key}
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
                 className={
@@ -275,11 +293,11 @@ export function Navbar({ dict }: { dict: Dictionary }) {
             </div>
 
             <Link
-              href={`/${locale}/contact`}
+              href={contactHref}
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center justify-between bg-primary px-6 py-5 text-sm font-bold uppercase tracking-wider text-white transition-colors hover:bg-primary-container"
             >
-              {dict.nav.contactCta}
+              {contactLabel}
               <ArrowUpRight className="h-5 w-5" />
             </Link>
           </div>
