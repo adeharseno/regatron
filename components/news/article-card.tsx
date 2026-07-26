@@ -41,16 +41,22 @@ export function ArticleCard({ article, locale }: { article: ArticleCardData; loc
           />
         </div>
       </Link>
-      <div className="mb-4 flex items-center gap-4">
+      <div className="mb-4 flex min-w-0 items-center gap-3">
         {article.tag && (
-          <span className="bg-primary/10 px-2 py-1 text-[10px] font-bold uppercase tracking-widest text-primary">
+          <span
+            className="min-w-0 max-w-[70%] truncate rounded-full border border-primary/15 bg-primary/10 px-3 py-1.5 text-[10px] font-bold uppercase leading-none tracking-[0.14em] text-primary"
+            title={article.tag}
+          >
             {article.tag}
           </span>
         )}
         {formattedDate && (
-          <span className="text-[10px] font-medium uppercase text-outline">
+          <time
+            dateTime={article.publishedAt}
+            className="shrink-0 whitespace-nowrap text-[10px] font-medium uppercase tracking-wide text-outline"
+          >
             {formattedDate}
-          </span>
+          </time>
         )}
       </div>
       <Link href={href}>

@@ -335,35 +335,38 @@ export const HOME_PAGE_QUERY = defineQuery(
   }`,
 )
 
-// All posts for the archive/listing page
+// Paginated posts for the archive/listing page
 export const ALL_POSTS_QUERY = defineQuery(
-  `*[_type == "post"] | order(publishedAt desc) {
-    _id,
-    "title": coalesce(
-      titleI18n[language == $locale || _key == $locale][0].value,
-      titleI18n[language == "id" || _key == "id"][0].value,
-      title,
-      ""
-    ),
-    "slug": slug.current,
-    mainImage,
-    "mainImageAlt": coalesce(
-      mainImageAlt[language == $locale || _key == $locale][0].value,
-      mainImageAlt[language == "id" || _key == "id"][0].value
-    ),
-    "tag": coalesce(
-      tagI18n[language == $locale || _key == $locale][0].value,
-      tagI18n[language == "id" || _key == "id"][0].value,
-      tag
-    ),
-    publishedAt,
-    "excerpt": coalesce(
-      metaDescriptionI18n[language == $locale || _key == $locale][0].value,
-      metaDescriptionI18n[language == "id" || _key == "id"][0].value,
-      excerptI18n[language == $locale || _key == $locale][0].value,
-      excerptI18n[language == "id" || _key == "id"][0].value,
-      excerpt
-    )
+  `{
+    "posts": *[_type == "post"] | order(publishedAt desc, _id asc) [$start...$end] {
+      _id,
+      "title": coalesce(
+        titleI18n[language == $locale || _key == $locale][0].value,
+        titleI18n[language == "id" || _key == "id"][0].value,
+        title,
+        ""
+      ),
+      "slug": slug.current,
+      mainImage,
+      "mainImageAlt": coalesce(
+        mainImageAlt[language == $locale || _key == $locale][0].value,
+        mainImageAlt[language == "id" || _key == "id"][0].value
+      ),
+      "tag": coalesce(
+        tagI18n[language == $locale || _key == $locale][0].value,
+        tagI18n[language == "id" || _key == "id"][0].value,
+        tag
+      ),
+      publishedAt,
+      "excerpt": coalesce(
+        metaDescriptionI18n[language == $locale || _key == $locale][0].value,
+        metaDescriptionI18n[language == "id" || _key == "id"][0].value,
+        excerptI18n[language == $locale || _key == $locale][0].value,
+        excerptI18n[language == "id" || _key == "id"][0].value,
+        excerpt
+      )
+    },
+    "total": count(*[_type == "post"])
   }`,
 )
 

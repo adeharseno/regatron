@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import { sanityFetch } from '@/sanity/lib/live'
 import { ALL_POSTS_QUERY } from '@/sanity/lib/queries'
 import { ArticleCard } from '@/components/news/article-card'
+import { Pagination } from '@/components/news/pagination'
 import type { Post } from '@/sanity/lib/types'
 import { isValidLocale, type Locale } from '@/lib/i18n/config'
 import { getDictionary } from '@/lib/i18n/dictionaries'
@@ -11,7 +12,10 @@ import { createPageMetadata } from '@/lib/seo'
 
 interface PageProps {
   params: Promise<{ locale: string }>
+  searchParams: Promise<{ page?: string | string[] }>
 }
+
+const POSTS_PER_PAGE = 6
 
 export async function generateMetadata({ params }: PageProps) {
   const { locale } = await params
@@ -19,17 +23,29 @@ export async function generateMetadata({ params }: PageProps) {
   return createPageMetadata('news', locale)
 }
 
-export default async function NewsArchivePage({ params }: PageProps) {
+export default async function NewsArchivePage({ params, searchParams }: PageProps) {
   const { locale } = await params
   if (!isValidLocale(locale)) notFound()
+  const { page: pageParam } = await searchParams
+  const parsedPage = typeof pageParam === 'string' ? Number.parseInt(pageParam, 10) : 1
+  const requestedPage = Number.isFinite(parsedPage) && parsedPage > 0 ? parsedPage : 1
   const dict = await getDictionary(locale as Locale)
   const t = dict.home.news
 
   const { data } = await sanityFetch({
     query: ALL_POSTS_QUERY,
-    params: { locale },
+    params: {
+      locale,
+      start: (requestedPage - 1) * POSTS_PER_PAGE,
+      end: requestedPage * POSTS_PER_PAGE,
+    },
   })
-  const posts = data as unknown as Post[]
+  const result = data as unknown as { posts: Post[]; total: number }
+  const posts = result.posts ?? []
+  const totalPages = Math.ceil((result.total ?? 0) / POSTS_PER_PAGE)
+  const currentPage = totalPages > 0 ? Math.min(requestedPage, totalPages) : 1
+
+  if (requestedPage > currentPage) notFound()
 
   return (
     <main>
@@ -64,6 +80,11 @@ export default async function NewsArchivePage({ params }: PageProps) {
                 <p className="text-lg text-on-surface-variant">{t.empty}</p>
               </div>
             )}
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              locale={locale as Locale}
+            />
           </div>
         </section>
     </main>
