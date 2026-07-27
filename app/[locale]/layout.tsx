@@ -2,8 +2,10 @@ import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Plus_Jakarta_Sans } from 'next/font/google'
 import { notFound } from 'next/navigation'
+import { Suspense } from 'react'
 import { isValidLocale, type Locale } from '@/lib/i18n/config'
 import { getDictionary } from '@/lib/i18n/dictionaries'
+import { NavigationProgress } from '@/components/layout/navigation-progress'
 import { Navbar } from '@/components/layout/navbar'
 import { SiteFooter } from '@/components/layout/site-footer'
 import { SanityLive } from '@/sanity/lib/live'
@@ -50,6 +52,9 @@ export default async function LocaleLayout({
   return (
     <html lang={locale satisfies Locale} className={`${plusJakarta.variable} bg-background`}>
       <body className="font-sans antialiased">
+        <Suspense fallback={null}>
+          <NavigationProgress />
+        </Suspense>
         <Navbar dict={dict} content={siteSettings?.header} />
         {children}
         <SiteFooter dict={dict} locale={locale} content={siteSettings?.footer} />

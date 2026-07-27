@@ -69,6 +69,57 @@
   }
 }
 
+/* Global route-transition progress bar */
+.navigation-progress {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 9999;
+  height: 3px;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.navigation-progress--visible {
+  opacity: 1;
+}
+
+.navigation-progress__bar {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--color-primary),
+    var(--color-primary-container),
+    var(--color-inverse-primary)
+  );
+  box-shadow: 0 0 10px color-mix(in srgb, var(--color-primary) 70%, transparent);
+  transform-origin: left;
+  transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.navigation-progress__bar::after {
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 80px;
+  content: '';
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 75%));
+  filter: blur(2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navigation-progress {
+    transition: none;
+  }
+
+  .navigation-progress__bar {
+    transition: none;
+  }
+}
+
 /* Signature diagonal cut for hero panel */
 .hero-slant {
   clip-path: polygon(0 0, 100% 0, 75% 100%, 0% 100%);
