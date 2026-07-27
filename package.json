@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --webpack",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "seed:service-catalog": "node --env-file=.env.local scripts/seed-service-catalog.mjs",
+    "seed:about": "node --env-file=.env.local scripts/seed-about-page.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.5.0",

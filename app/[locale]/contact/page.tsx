@@ -7,6 +7,8 @@ import { createPageMetadata } from '@/lib/seo'
 import { sanityFetch } from '@/sanity/lib/live'
 import { CONTACT_PAGE_QUERY } from '@/sanity/lib/queries'
 import type { ContactPageContent } from '@/sanity/lib/types'
+import { JsonLd } from '@/components/seo/json-ld'
+import { webPageSchema } from '@/lib/structured-data'
 
 interface PageProps {
   params: Promise<{ locale: string }>
@@ -32,6 +34,15 @@ export default async function ContactPage({ params }: PageProps) {
 
   return (
     <main>
+      <JsonLd
+        data={webPageSchema({
+          type: 'ContactPage',
+          locale: locale as Locale,
+          path: '/contact',
+          name: content?.heading || dict.contact.heading,
+          description: content?.description || dict.contact.description,
+        })}
+      />
       <ContactSection dict={dict} locale={locale} content={content} />
     </main>
   )

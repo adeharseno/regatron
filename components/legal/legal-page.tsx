@@ -8,6 +8,8 @@ import {
 import { sanityFetch } from '@/sanity/lib/live'
 import { LEGAL_PAGE_QUERY } from '@/sanity/lib/queries'
 import type { LegalPageContent } from '@/sanity/lib/types'
+import { JsonLd } from '@/components/seo/json-ld'
+import { webPageSchema } from '@/lib/structured-data'
 
 async function getLegalPage(
   pageKey: LegalPageKey,
@@ -72,6 +74,14 @@ export async function LegalPage({
 
   return (
     <main className="bg-white">
+      <JsonLd
+        data={webPageSchema({
+          locale,
+          path: definition.path,
+          name: title,
+          description: content?.metaDescription || fallback.metaDescription,
+        })}
+      />
       <article className="mx-auto max-w-4xl px-6 pb-24 pt-36 md:px-10">
         <h1 className="text-4xl font-bold leading-tight text-on-background md:text-5xl">
           {title}

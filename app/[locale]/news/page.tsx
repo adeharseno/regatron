@@ -9,6 +9,8 @@ import type { Post } from '@/sanity/lib/types'
 import { isValidLocale, type Locale } from '@/lib/i18n/config'
 import { getDictionary } from '@/lib/i18n/dictionaries'
 import { createPageMetadata } from '@/lib/seo'
+import { JsonLd } from '@/components/seo/json-ld'
+import { webPageSchema } from '@/lib/structured-data'
 
 interface PageProps {
   params: Promise<{ locale: string }>
@@ -49,6 +51,15 @@ export default async function NewsArchivePage({ params, searchParams }: PageProp
 
   return (
     <main>
+        <JsonLd
+          data={webPageSchema({
+            type: 'Blog',
+            locale: locale as Locale,
+            path: '/news',
+            name: t.archiveTitle,
+            description: t.description,
+          })}
+        />
         {/* Hero Banner */}
         <section className="bg-navy pb-20 pt-32">
           <div className="mx-auto max-w-360 px-6 md:px-margin-desktop">

@@ -144,6 +144,117 @@ export interface HomePageData {
   catalog?: HomeCatalogContent
 }
 
+export interface PageHeroContent {
+  title?: string
+  quote?: string
+  image?: SanityImageSource
+  imageAlt?: string
+}
+
+export interface ServiceLifecycleItem {
+  _key: string
+  title?: string
+  description?: string
+  image?: SanityImageSource
+  imageAlt?: string
+}
+
+export interface ServicePageData {
+  hero?: PageHeroContent
+  lifecycle?: {
+    eyebrow?: string
+    heading?: string
+    items?: ServiceLifecycleItem[]
+  }
+}
+
+export interface CatalogPageData {
+  hero?: PageHeroContent
+  grid?: {
+    eyebrow?: string
+    heading?: string
+  }
+}
+
+export interface CatalogItemData {
+  _id?: string
+  no: number
+  prefix: string
+  category: string
+  code: string
+  name: string
+  image?: SanityImageSource
+  imageAlt?: string
+}
+
+export interface PageSeoContent {
+  title?: string
+  description?: string
+}
+
+export interface AboutHeroContent {
+  title?: string
+  description?: string
+  image?: SanityImageSource
+  imageAlt?: string
+  primaryLabel?: string
+  primaryHref?: string
+  secondaryLabel?: string
+  secondaryHref?: string
+}
+
+export interface AboutProfileContent {
+  heading?: string
+  paragraph1?: string
+  paragraph2?: string
+  highlightLabel?: string
+  highlight?: string
+  image?: SanityImageSource
+  imageAlt?: string
+}
+
+export interface AboutVisionContent {
+  visionLabel?: string
+  vision?: string
+  missionLabel?: string
+  missions?: { _key: string; text?: string }[]
+  valuesEyebrow?: string
+  valuesHeading?: string
+  valuesDescription?: string
+  values?: { _key: string; text?: string }[]
+}
+
+export interface AboutTimelineContent {
+  heading?: string
+  description?: string
+  items?: {
+    _key: string
+    year?: string
+    label?: string
+    description?: string
+  }[]
+}
+
+export interface AboutLeadershipContent {
+  heading?: string
+  description?: string
+  members?: {
+    _key: string
+    name?: string
+    role?: string
+    image?: SanityImageSource
+    imageAlt?: string
+  }[]
+}
+
+export interface AboutPageData {
+  hero?: AboutHeroContent
+  profile?: AboutProfileContent
+  visionMission?: AboutVisionContent
+  timeline?: AboutTimelineContent
+  leadership?: AboutLeadershipContent
+}
+
 export interface Post {
   _id: string
   title: string
@@ -156,6 +267,7 @@ export interface Post {
 }
 
 export interface PostWithBody extends Post {
+  _updatedAt?: string
   body?: Record<string, unknown>[] | null
   metaTitle?: string
   metaDescription?: string

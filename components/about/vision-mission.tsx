@@ -1,10 +1,17 @@
 import { Eye, Handshake, Leaf, Lightbulb, Scale, ShieldCheck, Target } from 'lucide-react'
 import type { Dictionary } from '@/lib/i18n/dictionaries'
+import type { AboutVisionContent } from '@/sanity/lib/types'
 
 const valueIcons = [Leaf, ShieldCheck, Lightbulb, Scale, Handshake]
 
-export function VisionMission({ dict }: { dict: Dictionary }) {
+export function VisionMission({ dict, content }: { dict: Dictionary; content?: AboutVisionContent }) {
   const t = dict.about.visionMission
+  const missions = content?.missions?.length
+    ? content.missions
+    : t.mission.map((text, index) => ({ _key: `fallback-mission-${index}`, text }))
+  const values = content?.values?.length
+    ? content.values
+    : t.values.map((text, index) => ({ _key: `fallback-value-${index}`, text }))
 
   return (
     <section className="bg-surface-container py-24">
@@ -15,9 +22,11 @@ export function VisionMission({ dict }: { dict: Dictionary }) {
               <Eye className="h-6 w-6" />
             </div>
             <h3 className="mb-6 text-xs font-bold uppercase tracking-widest text-secondary">
-              {t.visionLabel}
+              {content?.visionLabel || t.visionLabel}
             </h3>
-            <p className="text-xl leading-relaxed text-on-background">{t.vision}</p>
+            <p className="text-xl leading-relaxed text-on-background">
+              {content?.vision || t.vision}
+            </p>
           </div>
 
           <div className="bg-primary p-12 text-on-primary">
@@ -25,13 +34,13 @@ export function VisionMission({ dict }: { dict: Dictionary }) {
               <Target className="h-6 w-6" />
             </div>
             <h3 className="mb-6 text-xs font-bold uppercase tracking-widest opacity-70">
-              {t.missionLabel}
+              {content?.missionLabel || t.missionLabel}
             </h3>
             <ul className="space-y-4">
-              {t.mission.map((item) => (
-                <li key={item} className="flex items-start gap-3 leading-relaxed">
+              {missions.map((item) => (
+                <li key={item._key} className="flex items-start gap-3 leading-relaxed">
                   <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-white/70" />
-                  <span>{item}</span>
+                  <span>{item.text}</span>
                 </li>
               ))}
             </ul>
@@ -45,21 +54,23 @@ export function VisionMission({ dict }: { dict: Dictionary }) {
           <div className="relative grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-4">
               <span className="mb-5 block text-xs font-bold uppercase tracking-[0.18em] text-secondary-container">
-                {t.valuesEyebrow}
+                {content?.valuesEyebrow || t.valuesEyebrow}
               </span>
-              <h3 className="text-3xl font-bold tracking-tight md:text-4xl">{t.valuesLabel}</h3>
+              <h3 className="text-3xl font-bold tracking-tight md:text-4xl">
+                {content?.valuesHeading || t.valuesLabel}
+              </h3>
               <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/60">
-                {t.valuesDescription}
+                {content?.valuesDescription || t.valuesDescription}
               </p>
             </div>
 
             <div className="grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 lg:col-span-8 lg:grid-cols-5">
-              {t.values.map((value, index) => {
-                const Icon = valueIcons[index]
+              {values.map((value, index) => {
+                const Icon = valueIcons[index % valueIcons.length]
 
                 return (
                   <div
-                    key={value}
+                    key={value._key}
                     className="group border-t border-white/20 pt-5 transition-colors hover:border-secondary-container"
                   >
                     <div className="mb-9 flex items-start justify-between text-secondary-container">
@@ -68,7 +79,7 @@ export function VisionMission({ dict }: { dict: Dictionary }) {
                         {String(index + 1).padStart(2, '0')}
                       </span>
                     </div>
-                    <p className="text-base font-semibold leading-snug text-white">{value}</p>
+                    <p className="text-base font-semibold leading-snug text-white">{value.text}</p>
                   </div>
                 )
               })}

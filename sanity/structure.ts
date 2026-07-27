@@ -6,6 +6,8 @@ import { HomeIcon } from '@sanity/icons/Home'
 import { ThListIcon } from '@sanity/icons/ThList'
 import { ContactSubmissionsTable } from './components/contactSubmissionsTable'
 import { DocumentTextIcon } from '@sanity/icons/DocumentText'
+import { CogIcon as ServiceIcon } from '@sanity/icons/Cog'
+import { DocumentsIcon } from '@sanity/icons/Documents'
 
 // https://www.sanity.io/docs/structure-builder-cheat-sheet
 export const structure: StructureResolver = (S) =>
@@ -22,13 +24,13 @@ export const structure: StructureResolver = (S) =>
             .title('Homepage Banner'),
         ),
       S.listItem()
-        .title('Header, Footer & Contact Section')
-        .icon(CogIcon)
+        .title('About Us')
+        .icon(DocumentTextIcon)
         .child(
           S.document()
-            .schemaType('siteSettings')
-            .documentId('siteSettings')
-            .title('Header, Footer & Contact Section'),
+            .schemaType('aboutPage')
+            .documentId('aboutPage')
+            .title('About Us'),
         ),
       S.listItem()
         .title('Contact Us')
@@ -55,6 +57,34 @@ export const structure: StructureResolver = (S) =>
                     .title('Form Submissions')
                     .component(ContactSubmissionsTable),
                 ),
+            ]),
+        ),
+      S.listItem()
+        .title('E-Waste Service')
+        .icon(ServiceIcon)
+        .child(
+          S.document()
+            .schemaType('servicePage')
+            .documentId('servicePage')
+            .title('E-Waste Service'),
+        ),
+      S.listItem()
+        .title('E-Waste Catalog')
+        .icon(DocumentsIcon)
+        .child(
+          S.list()
+            .title('E-Waste Catalog')
+            .items([
+              S.listItem()
+                .title('Konten Halaman')
+                .icon(EditIcon)
+                .child(
+                  S.document()
+                    .schemaType('catalogPage')
+                    .documentId('catalogPage')
+                    .title('Konten Halaman E-Waste Catalog'),
+                ),
+              S.documentTypeListItem('catalogItem').title('Material Katalog'),
             ]),
         ),
       S.listItem()
@@ -86,7 +116,6 @@ export const structure: StructureResolver = (S) =>
                 ),
             ]),
         ),
-      S.divider(),
       ...S.documentTypeListItems().filter(
         (item) =>
           ![
@@ -95,6 +124,20 @@ export const structure: StructureResolver = (S) =>
             'contactPage',
             'contactSubmission',
             'legalPage',
+            'servicePage',
+            'catalogPage',
+            'catalogItem',
+            'aboutPage',
           ].includes(item.getId() || ''),
       ),
+      S.divider(),
+      S.listItem()
+        .title('Header, Footer & Contact Section')
+        .icon(CogIcon)
+        .child(
+          S.document()
+            .schemaType('siteSettings')
+            .documentId('siteSettings')
+            .title('Header, Footer & Contact Section'),
+        ),
     ])

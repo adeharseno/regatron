@@ -9,6 +9,12 @@ import { urlFor } from '@/sanity/lib/image'
 import type { Post, PostWithBody } from '@/sanity/lib/types'
 import { isValidLocale, locales, type Locale } from '@/lib/i18n/config'
 import { getDictionary } from '@/lib/i18n/dictionaries'
+import { JsonLd } from '@/components/seo/json-ld'
+import {
+  ORGANIZATION_ID,
+  SITE_URL,
+  localizedPageUrl,
+} from '@/lib/structured-data'
 
 interface PageProps {
   params: Promise<{ locale: string; slug: string }>
@@ -92,9 +98,51 @@ export default async function NewsArticlePage({ params }: PageProps) {
     : ''
 
   const newsHref = `/${locale}/news`
+  const articleUrl = localizedPageUrl(
+    locale as Locale,
+    `/news/${slug}`,
+  )
+  const articleImage = post.mainImage
+    ? urlFor(post.mainImage).width(1200).height(675).url()
+    : undefined
+  const articleDescription = post.metaDescription || post.excerpt
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    '@id': `${articleUrl}#article`,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': articleUrl,
+    },
+    headline: post.title,
+    ...(articleDescription ? { description: articleDescription } : {}),
+    ...(articleImage ? { image: [articleImage] } : {}),
+    author: {
+      '@type': 'Organization',
+      '@id': ORGANIZATION_ID,
+      name: 'REGATRON',
+      url: SITE_URL,
+    },
+    publisher: {
+      '@type': 'Organization',
+      '@id': ORGANIZATION_ID,
+      name: 'REGATRON',
+      url: SITE_URL,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${SITE_URL}/images/logo.png`,
+      },
+    },
+    ...(post.publishedAt ? { datePublished: post.publishedAt } : {}),
+    ...(post._updatedAt ? { dateModified: post._updatedAt } : {}),
+    ...(post.tag ? { articleSection: post.tag } : {}),
+    inLanguage: locale === 'id' ? 'id-ID' : 'en-US',
+    isAccessibleForFree: true,
+  }
 
   return (
     <main>
+        <JsonLd data={articleSchema} />
         {/* Hero Banner */}
         <section className="pb-16 pt-32">
           <div className="mx-auto max-w-360 px-6 md:px-margin-desktop">

@@ -195,6 +195,17 @@ export const CONTACT_PAGE_QUERY = defineQuery(
   }`,
 )
 
+export const ORGANIZATION_CONTACT_QUERY = defineQuery(
+  `*[_id == "contactPage"][0] {
+    "address": coalesce(
+      address[language == $locale || _key == $locale][0].value,
+      address[language == "id" || _key == "id"][0].value
+    ),
+    phone,
+    email
+  }`,
+)
+
 export const LEGAL_PAGE_QUERY = defineQuery(
   `*[_id == $documentId][0] {
     "title": coalesce(
@@ -335,6 +346,197 @@ export const HOME_PAGE_QUERY = defineQuery(
   }`,
 )
 
+export const ABOUT_PAGE_QUERY = defineQuery(
+  `*[_id == "aboutPage"][0] {
+    "hero": {
+      "title": coalesce(heroTitle[language == $locale || _key == $locale][0].value, heroTitle[language == "id" || _key == "id"][0].value),
+      "description": coalesce(heroDescription[language == $locale || _key == $locale][0].value, heroDescription[language == "id" || _key == "id"][0].value),
+      "image": heroImage,
+      "imageAlt": coalesce(heroImageAlt[language == $locale || _key == $locale][0].value, heroImageAlt[language == "id" || _key == "id"][0].value),
+      "primaryLabel": coalesce(heroPrimaryLabel[language == $locale || _key == $locale][0].value, heroPrimaryLabel[language == "id" || _key == "id"][0].value),
+      "primaryHref": heroPrimaryHref,
+      "secondaryLabel": coalesce(heroSecondaryLabel[language == $locale || _key == $locale][0].value, heroSecondaryLabel[language == "id" || _key == "id"][0].value),
+      "secondaryHref": heroSecondaryHref
+    },
+    "profile": {
+      "heading": coalesce(profileHeading[language == $locale || _key == $locale][0].value, profileHeading[language == "id" || _key == "id"][0].value),
+      "paragraph1": coalesce(profileParagraph1[language == $locale || _key == $locale][0].value, profileParagraph1[language == "id" || _key == "id"][0].value),
+      "paragraph2": coalesce(profileParagraph2[language == $locale || _key == $locale][0].value, profileParagraph2[language == "id" || _key == "id"][0].value),
+      "highlightLabel": coalesce(profileHighlightLabel[language == $locale || _key == $locale][0].value, profileHighlightLabel[language == "id" || _key == "id"][0].value),
+      "highlight": coalesce(profileHighlight[language == $locale || _key == $locale][0].value, profileHighlight[language == "id" || _key == "id"][0].value),
+      "image": profileImage,
+      "imageAlt": coalesce(profileImageAlt[language == $locale || _key == $locale][0].value, profileImageAlt[language == "id" || _key == "id"][0].value)
+    },
+    "visionMission": {
+      "visionLabel": coalesce(visionLabel[language == $locale || _key == $locale][0].value, visionLabel[language == "id" || _key == "id"][0].value),
+      "vision": coalesce(visionStatement[language == $locale || _key == $locale][0].value, visionStatement[language == "id" || _key == "id"][0].value),
+      "missionLabel": coalesce(missionLabel[language == $locale || _key == $locale][0].value, missionLabel[language == "id" || _key == "id"][0].value),
+      "missions": missions[] {
+        _key,
+        "text": coalesce(text[language == $locale || _key == $locale][0].value, text[language == "id" || _key == "id"][0].value)
+      },
+      "valuesEyebrow": coalesce(valuesEyebrow[language == $locale || _key == $locale][0].value, valuesEyebrow[language == "id" || _key == "id"][0].value),
+      "valuesHeading": coalesce(valuesHeading[language == $locale || _key == $locale][0].value, valuesHeading[language == "id" || _key == "id"][0].value),
+      "valuesDescription": coalesce(valuesDescription[language == $locale || _key == $locale][0].value, valuesDescription[language == "id" || _key == "id"][0].value),
+      "values": values[] {
+        _key,
+        "text": coalesce(text[language == $locale || _key == $locale][0].value, text[language == "id" || _key == "id"][0].value)
+      }
+    },
+    "timeline": {
+      "heading": coalesce(timelineHeading[language == $locale || _key == $locale][0].value, timelineHeading[language == "id" || _key == "id"][0].value),
+      "description": coalesce(timelineDescription[language == $locale || _key == $locale][0].value, timelineDescription[language == "id" || _key == "id"][0].value),
+      "items": milestones[] {
+        _key,
+        year,
+        "label": coalesce(label[language == $locale || _key == $locale][0].value, label[language == "id" || _key == "id"][0].value),
+        "description": coalesce(description[language == $locale || _key == $locale][0].value, description[language == "id" || _key == "id"][0].value)
+      }
+    },
+    "leadership": {
+      "heading": coalesce(leadershipHeading[language == $locale || _key == $locale][0].value, leadershipHeading[language == "id" || _key == "id"][0].value),
+      "description": coalesce(leadershipDescription[language == $locale || _key == $locale][0].value, leadershipDescription[language == "id" || _key == "id"][0].value),
+      "members": members[] {
+        _key,
+        name,
+        "role": coalesce(role[language == $locale || _key == $locale][0].value, role[language == "id" || _key == "id"][0].value),
+        image,
+        "imageAlt": coalesce(imageAlt[language == $locale || _key == $locale][0].value, imageAlt[language == "id" || _key == "id"][0].value)
+      }
+    }
+  }`,
+)
+
+export const ABOUT_PAGE_SEO_QUERY = defineQuery(
+  `*[_id == "aboutPage"][0] {
+    "title": coalesce(seoTitle[language == $locale || _key == $locale][0].value, seoTitle[language == "id" || _key == "id"][0].value),
+    "description": coalesce(seoDescription[language == $locale || _key == $locale][0].value, seoDescription[language == "id" || _key == "id"][0].value)
+  }`,
+)
+
+export const SERVICE_PAGE_QUERY = defineQuery(
+  `*[_id == "servicePage"][0] {
+    "hero": {
+      "title": coalesce(
+        heroTitle[language == $locale || _key == $locale][0].value,
+        heroTitle[language == "id" || _key == "id"][0].value
+      ),
+      "quote": coalesce(
+        heroQuote[language == $locale || _key == $locale][0].value,
+        heroQuote[language == "id" || _key == "id"][0].value
+      ),
+      "image": heroImage,
+      "imageAlt": coalesce(
+        heroImageAlt[language == $locale || _key == $locale][0].value,
+        heroImageAlt[language == "id" || _key == "id"][0].value
+      )
+    },
+    "lifecycle": {
+      "eyebrow": coalesce(
+        lifecycleEyebrow[language == $locale || _key == $locale][0].value,
+        lifecycleEyebrow[language == "id" || _key == "id"][0].value
+      ),
+      "heading": coalesce(
+        lifecycleHeading[language == $locale || _key == $locale][0].value,
+        lifecycleHeading[language == "id" || _key == "id"][0].value
+      ),
+      "items": items[] {
+        _key,
+        "title": coalesce(
+          title[language == $locale || _key == $locale][0].value,
+          title[language == "id" || _key == "id"][0].value
+        ),
+        "description": coalesce(
+          description[language == $locale || _key == $locale][0].value,
+          description[language == "id" || _key == "id"][0].value
+        ),
+        image,
+        "imageAlt": coalesce(
+          imageAlt[language == $locale || _key == $locale][0].value,
+          imageAlt[language == "id" || _key == "id"][0].value
+        )
+      }
+    }
+  }`,
+)
+
+export const SERVICE_PAGE_SEO_QUERY = defineQuery(
+  `*[_id == "servicePage"][0] {
+    "title": coalesce(
+      seoTitle[language == $locale || _key == $locale][0].value,
+      seoTitle[language == "id" || _key == "id"][0].value
+    ),
+    "description": coalesce(
+      seoDescription[language == $locale || _key == $locale][0].value,
+      seoDescription[language == "id" || _key == "id"][0].value
+    )
+  }`,
+)
+
+export const CATALOG_PAGE_QUERY = defineQuery(
+  `{
+    "page": *[_id == "catalogPage"][0] {
+      "hero": {
+        "title": coalesce(
+          heroTitle[language == $locale || _key == $locale][0].value,
+          heroTitle[language == "id" || _key == "id"][0].value
+        ),
+        "quote": coalesce(
+          heroQuote[language == $locale || _key == $locale][0].value,
+          heroQuote[language == "id" || _key == "id"][0].value
+        ),
+        "image": heroImage,
+        "imageAlt": coalesce(
+          heroImageAlt[language == $locale || _key == $locale][0].value,
+          heroImageAlt[language == "id" || _key == "id"][0].value
+        )
+      },
+      "grid": {
+        "eyebrow": coalesce(
+          catalogEyebrow[language == $locale || _key == $locale][0].value,
+          catalogEyebrow[language == "id" || _key == "id"][0].value
+        ),
+        "heading": coalesce(
+          catalogHeading[language == $locale || _key == $locale][0].value,
+          catalogHeading[language == "id" || _key == "id"][0].value
+        )
+      }
+    },
+    "items": *[_type == "catalogItem"] | order(order asc, code asc) {
+      _id,
+      "no": order,
+      prefix,
+      code,
+      "category": coalesce(
+        category[language == $locale || _key == $locale][0].value,
+        category[language == "id" || _key == "id"][0].value
+      ),
+      "name": coalesce(
+        name[language == $locale || _key == $locale][0].value,
+        name[language == "id" || _key == "id"][0].value
+      ),
+      image,
+      "imageAlt": coalesce(
+        imageAlt[language == $locale || _key == $locale][0].value,
+        imageAlt[language == "id" || _key == "id"][0].value
+      )
+    }
+  }`,
+)
+
+export const CATALOG_PAGE_SEO_QUERY = defineQuery(
+  `*[_id == "catalogPage"][0] {
+    "title": coalesce(
+      seoTitle[language == $locale || _key == $locale][0].value,
+      seoTitle[language == "id" || _key == "id"][0].value
+    ),
+    "description": coalesce(
+      seoDescription[language == $locale || _key == $locale][0].value,
+      seoDescription[language == "id" || _key == "id"][0].value
+    )
+  }`,
+)
+
 // Paginated posts for the archive/listing page
 export const ALL_POSTS_QUERY = defineQuery(
   `{
@@ -374,6 +576,7 @@ export const ALL_POSTS_QUERY = defineQuery(
 export const POST_BY_SLUG_QUERY = defineQuery(
   `*[_type == "post" && slug.current == $slug][0] {
     _id,
+    _updatedAt,
     "title": coalesce(
       titleI18n[language == $locale || _key == $locale][0].value,
       titleI18n[language == "id" || _key == "id"][0].value,
@@ -463,5 +666,29 @@ export const LATEST_POSTS_QUERY = defineQuery(
 export const ALL_SLUGS_QUERY = defineQuery(
   `*[_type == "post" && defined(slug.current)] {
     "slug": slug.current
+  }`,
+)
+
+export const SITEMAP_POSTS_QUERY = defineQuery(
+  `*[_type == "post" && defined(slug.current)] | order(_updatedAt desc) {
+    "slug": slug.current,
+    publishedAt,
+    _updatedAt,
+    "image": mainImage.asset->url
+  }`,
+)
+
+export const SITEMAP_PAGE_UPDATES_QUERY = defineQuery(
+  `*[_id in [
+    "homePage",
+    "aboutPage",
+    "servicePage",
+    "catalogPage",
+    "contactPage",
+    "privacyPolicyPage",
+    "termsConditionsPage"
+  ]] {
+    _id,
+    _updatedAt
   }`,
 )

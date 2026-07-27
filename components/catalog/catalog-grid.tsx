@@ -9,9 +9,10 @@ import {
   X,
 } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import type { CatalogItem } from "@/lib/catalog-data";
 import type { Locale } from "@/lib/i18n/config";
 import type { Dictionary } from "@/lib/i18n/dictionaries";
+import type { CatalogItemData, CatalogPageData } from "@/sanity/lib/types";
+import { urlFor } from "@/sanity/lib/image";
 
 const ITEMS_PER_PAGE = 12;
 
@@ -43,11 +44,12 @@ function getVisiblePages(currentPage: number, totalPages: number) {
 
 interface CatalogGridProps {
   dict: Dictionary;
-  items: CatalogItem[];
+  items: CatalogItemData[];
   locale: Locale;
+  content?: CatalogPageData["grid"];
 }
 
-export function CatalogGrid({ dict, items, locale }: CatalogGridProps) {
+export function CatalogGrid({ dict, items, locale, content }: CatalogGridProps) {
   const t = dict.catalog;
   const router = useRouter();
   const pathname = usePathname();
@@ -141,10 +143,10 @@ export function CatalogGrid({ dict, items, locale }: CatalogGridProps) {
       <div className="mx-auto max-w-[1440px] px-6 md:px-margin-desktop">
         <div className="mb-12">
           <span className="mb-3 block text-xs font-bold uppercase tracking-widest text-primary">
-            {t.grid.eyebrow}
+            {content?.eyebrow || t.grid.eyebrow}
           </span>
           <h2 className="max-w-2xl text-[40px] font-bold leading-tight tracking-tight text-on-background">
-            {t.grid.heading}
+            {content?.heading || t.grid.heading}
           </h2>
         </div>
 
@@ -241,15 +243,17 @@ export function CatalogGrid({ dict, items, locale }: CatalogGridProps) {
           <div className="grid grid-cols-1 gap-gutter md:grid-cols-2 lg:grid-cols-3">
             {pageItems.map((item) => (
               <article
-                key={`${item.no}-${item.code}`}
+                key={item._id || `${item.no}-${item.code}`}
                 className="group overflow-hidden border border-outline-variant/30 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:shadow-[0_18px_45px_rgba(0,25,68,0.10)]"
               >
                 <div className="relative aspect-[16/8] overflow-hidden bg-navy">
                   <img
                     src={
-                      categoryImages[item.prefix] ?? "/images/hero-facility.png"
+                      item.image
+                        ? urlFor(item.image).width(900).height(450).url()
+                        : categoryImages[item.prefix] ?? "/images/hero-facility.png"
                     }
-                    alt=""
+                    alt={item.imageAlt || ""}
                     className="h-full w-full object-cover opacity-75 transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/30 to-transparent" />
