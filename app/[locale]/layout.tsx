@@ -2,6 +2,7 @@ import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Plus_Jakarta_Sans } from 'next/font/google'
 import { notFound } from 'next/navigation'
+import Script from 'next/script'
 import { Suspense } from 'react'
 import { isValidLocale, type Locale } from '@/lib/i18n/config'
 import { getDictionary } from '@/lib/i18n/dictionaries'
@@ -11,6 +12,8 @@ import { SiteFooter } from '@/components/layout/site-footer'
 import { SanityLive } from '@/sanity/lib/live'
 import { getSiteSettings } from '@/sanity/lib/site-settings'
 import '../globals.css'
+
+const GOOGLE_ANALYTICS_ID = 'G-RJJQGD8QE0'
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
@@ -61,6 +64,22 @@ export default async function LocaleLayout({
         <SanityLive />
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
+      {process.env.NODE_ENV === 'production' && (
+        <>
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
+            strategy="afterInteractive"
+          />
+          <Script id="google-analytics" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GOOGLE_ANALYTICS_ID}');
+            `}
+          </Script>
+        </>
+      )}
     </html>
   )
 }
