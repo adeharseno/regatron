@@ -160,7 +160,7 @@ export function ContactForm({
           name="recaptchaToken"
         />
       <fieldset
-        disabled={isBusy || !siteKey}
+        disabled={pending || !siteKey}
         className="m-0 space-y-10 border-0 p-0 disabled:opacity-70"
       >
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
