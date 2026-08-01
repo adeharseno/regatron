@@ -28,9 +28,27 @@ export const metadata: Metadata = {
   description:
     'Pioneering PCB scrap and e-waste processing in Indonesia. Precious metal extraction through environmentally friendly processes with Industry 4.0 standards.',
   generator: 'v0.app',
+  manifest: '/images/favicon/site.webmanifest',
   icons: {
-    icon: [{ url: '/images/favicon.ico', type: 'image/x-icon' }],
-    shortcut: '/images/favicon.ico',
+    icon: [
+      {
+        url: '/images/favicon/favicon.svg',
+        type: 'image/svg+xml',
+      },
+      {
+        url: '/images/favicon/favicon-96x96.png',
+        type: 'image/png',
+        sizes: '96x96',
+      },
+    ],
+    shortcut: '/images/favicon/favicon.ico',
+    apple: [
+      {
+        url: '/images/favicon/apple-touch-icon.png',
+        type: 'image/png',
+        sizes: '180x180',
+      },
+    ],
   },
 }
 
