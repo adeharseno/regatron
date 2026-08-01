@@ -7,8 +7,13 @@ import { submitContactForm } from '@/app/[locale]/contact/actions'
 declare global {
   interface Window {
     grecaptcha?: {
-      ready: (callback: () => void) => void
-      execute: (siteKey: string, options: { action: string }) => Promise<string>
+      enterprise: {
+        ready: (callback: () => void) => void
+        execute: (
+          siteKey: string,
+          options: { action: string },
+        ) => Promise<string>
+      }
     }
   }
 }
@@ -106,7 +111,7 @@ export function ContactForm({
 
     setGeneratingToken(true)
     try {
-      const token = await window.grecaptcha.execute(siteKey, {
+      const token = await window.grecaptcha.enterprise.execute(siteKey, {
         action: 'contact_form',
       })
       if (!token || !recaptchaTokenRef.current) {
@@ -137,9 +142,11 @@ export function ContactForm({
     <>
       {siteKey && (
         <Script
-          src={`https://www.google.com/recaptcha/api.js?render=${encodeURIComponent(siteKey)}`}
+          src={`https://www.google.com/recaptcha/enterprise.js?render=${encodeURIComponent(siteKey)}`}
           strategy="afterInteractive"
-          onReady={() => window.grecaptcha?.ready(() => setCaptchaReady(true))}
+          onReady={() =>
+            window.grecaptcha?.enterprise.ready(() => setCaptchaReady(true))
+          }
           onError={() => setCaptchaClientError(true)}
         />
       )}
