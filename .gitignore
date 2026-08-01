@@ -10,6 +10,9 @@
 # Production build
 /build
 
+# Local Sanity dataset exports (may contain personal data)
+/backups/
+
 # Environment variables (SANGAT PENTING!)
 .env
 .env.local

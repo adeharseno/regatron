@@ -4,7 +4,6 @@ import { CatalogHero } from "@/components/catalog/catalog-hero";
 import { CtaBanner } from "@/components/shared/cta-banner";
 import { isValidLocale, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
-import { getCatalogItems } from "@/lib/catalog-data";
 import { createPageMetadata } from "@/lib/seo";
 import { sanityFetch } from "@/sanity/lib/live";
 import {
@@ -52,7 +51,7 @@ export default async function CatalogPage({ params }: PageProps) {
     page: CatalogPageData | null;
     items: CatalogItemData[];
   } | null;
-  const items = result?.items?.length ? result.items : getCatalogItems();
+  const items = result?.items ?? [];
 
   return (
     <main>
