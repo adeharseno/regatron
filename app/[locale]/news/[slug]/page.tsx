@@ -10,6 +10,7 @@ import type { Post, PostWithBody } from '@/sanity/lib/types'
 import { isValidLocale, locales, type Locale } from '@/lib/i18n/config'
 import { getDictionary } from '@/lib/i18n/dictionaries'
 import { JsonLd } from '@/components/seo/json-ld'
+import { GoogleSwgBasic } from '@/components/news/google-swg-basic'
 import {
   ORGANIZATION_ID,
   SITE_URL,
@@ -142,6 +143,7 @@ export default async function NewsArticlePage({ params }: PageProps) {
 
   return (
     <main>
+        <GoogleSwgBasic />
         <JsonLd data={articleSchema} />
         {/* Hero Banner */}
         <section className="pb-16 pt-32">
